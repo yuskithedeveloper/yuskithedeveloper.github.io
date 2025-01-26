@@ -236,7 +236,7 @@
         }
 
         body, input, button, select, option, textarea, span, a {
-            font-family: Roboto;
+            font-family: Verdana;
         }
 
         span, label, a, button {
@@ -345,6 +345,11 @@
             font-style: italic;
         }
 
+        .secret {
+            cursor: pointer;
+            filter: blur(1px);
+        }
+
         .left-menu {
             font-size: 12px;
             position: fixed;
@@ -354,10 +359,6 @@
             background-color: rgba(0,0,0,0);
         }
 
-            .left-menu .menu-items-container {
-                display: none;
-            }
-
             .left-menu .menu-item {
                 margin: 5px 10px 5px 0;
             }
@@ -366,36 +367,10 @@
                     border-left: none;
                     font-size: 3rem;
                     width: 100%;
-                    text-align: left;
-                    padding: 0 10px 0 20px;
+                    text-align: center;
+                    padding: 3px 0px 6px 0px;
                 }
 
-            .left-menu.expanded .menu-items-container {
-                display: block;
-            }
-
-        @media (hover: hover) {
-            .left-menu .left-menu-hoverable:hover .menu-items-container {
-                display: block;
-            }
-        }
-
-        .left-menu .shortcut-blog {
-            margin: 5px 0 5px 0;
-            display: none;
-        }
-
-            .left-menu .menu-switch button, .left-menu .shortcut-blog button {
-                padding-top: 0;
-                padding-bottom: 0;
-                font-size: 3rem;
-                font-weight: bold;
-                border-left: none;
-                width: 2.7rem;
-            }
-
-        .left-menu.expanded .menu-switch button, .menu-switch button:active, .menu-switch button:hover {
-            background-color: #fadbfb;
         }
 
         .general-container {
@@ -547,18 +522,174 @@
                 background-color: #efebd1;
             }
     </style>
+
+    <script type="text/javascript">
+        if (!window.Tools) {
+            window.Tools = {
+                isLocalFile: function () {
+                    return (window.location.protocol === 'file:');
+                },
+
+                getUrlParameter: function (parameterName) {
+                    const search = window.location.search;
+                    const searchParams = (search.substr(1)).split('&');
+                    if (searchParams[0] == '')
+                        return '';
+
+                    let parsedParams = [];
+                    for (let i = 0; i < searchParams.length; i++) {
+                        const valueAndKey = searchParams[i].split('=');
+                        parsedParams[valueAndKey[0]] = valueAndKey[1];
+                    }
+
+                    const result = parsedParams[parameterName];
+                    if (!result)
+                        return '';
+                    return result;
+                },
+
+                stringToB64: function (str) {
+                    if (!str)
+                        return '';
+
+                    const array16 = new Uint16Array(str.length);
+                    for (let i = 0; i < array16.length; i++) {
+                        array16[i] = str.charCodeAt(i);
+                    }
+
+                    const array8 = new Uint8Array(array16.buffer);
+
+                    let result = '';
+                    for (let i = 0; i < array8.byteLength; i++) {
+                        result += String.fromCharCode(array8[i]);
+                    }
+                    return btoa(result);
+                },
+
+                stringFromB64: function (str) {
+                    if (!str)
+                        return '';
+
+                    const bin = atob(str);
+                    const array8 = new Uint8Array(bin.length);
+                    for (let i = 0; i < array8.length; i++) {
+                        array8[i] = bin.charCodeAt(i);
+                    }
+                    const array16 = new Uint16Array(array8.buffer);
+                    let result = '';
+                    for (let i = 0; i < array16.byteLength / 2; i++) {
+                        result += String.fromCharCode(array16[i]);
+                    }
+                    return result;
+                },
+            }
+        }
+
+        if (!window.UI) {
+            window.UI = {
+                scrollPositions: {},
+
+                refresh: function () {
+                    let section = Tools.getUrlParameter('section');
+                    if (!section) {
+                        section = 'home';
+                    }
+                    section = section.toLowerCase();
+
+                    const sectionElement = document.getElementById(section);
+                    if (!sectionElement) {
+                        section = 'not-found';
+                    }
+
+                    const htmlElement = document.getElementById('html');
+                    const sections = htmlElement.getElementsByTagName('section');
+                    for (let i = 0; i < sections.length; i++) {
+                        if (sections[i].id == section) {
+                            const sectionTitle = sections[i].getAttribute('data-title');
+                            const titleElement = document.getElementsByTagName('title')[0];
+                            if (sectionTitle) {
+                                titleElement.innerHTML = sectionTitle + ' - YuskiTheDeveloper';
+                            }
+                            else {
+                                titleElement.innerHTML = 'YuskiTheDeveloper';
+                            }
+
+                            sections[i].style.display = '';
+                        }
+                        else {
+                            sections[i].style.display = 'none';
+                        }
+                    }
+
+                    if ((UI.scrollPositions[section] > 0)) {
+                        document.body.scrollTop = UI.scrollPositions[section];
+                        document.documentElement.scrollTop = UI.scrollPositions[section];
+                    } else {
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                    }
+                },
+
+                navigate: function (section) {
+                    let currentSection = Tools.getUrlParameter('section');
+                    if (currentSection) {
+                        currentSection = currentSection.toLowerCase();
+                        UI.scrollPositions[currentSection] = document.body.scrollTop || document.documentElement.scrollTop || 0;
+                    }
+
+                    let url = '?section=' + section;
+
+                    if (Tools.isLocalFile()) {
+                        window.location.href = url;
+                    }
+                    else {
+                        window.history.pushState(null, '', url);
+                        UI.refresh();
+                    }
+                },
+
+                revealSecret: function (element, secret) {
+                    const revealedSecret = Tools.stringFromB64(secret);
+                    const tagName = element.tagName.toLowerCase(); 
+                    if (tagName == 'a') {
+                        if (element.getAttribute('href') == revealedSecret)
+                            return true;
+
+                        element.setAttribute('href', revealedSecret);
+                        element.classList.remove("secret");
+                        return false;
+                    }
+                    else if (tagName == 'span') {
+                        if (element.innerText == revealedSecret)
+                            return true;
+
+                        element.innerText = revealedSecret;
+                        element.classList.remove("secret");
+                        return false;
+                    }
+                }
+            };
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            UI.refresh();
+        });
+    </script>
 </head>
 <body>
     <div class="general-container">
-
-        <div class="general-content" id="general-section-html">
-            <div class="container flex">
+        <div class="left-menu">
+            <div class="menu-item"><button class="color-1" type="button" href="#" onclick="UI.navigate('home')" title="home">/</button></div>
+            <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('soon')" title="blog">b.</button></div>
+            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="services">{&nbsp;}</button></div>
+        </div>
+        <div class="general-content" id="html">
+            <section class="container flex" style="display:none;" id="home" data-title="YuskiTheDeveloper">
                 <div class="block">
                     <div class="title"><h1>Hi \ Hola \ Привет!</h1></div>
                     <div>
-                        <p><span>I am Kirill Iusupov</span></p>
-                        <p><span>I am a developer, architect, and <nobr>team leader</nobr> with <nobr>15+ years of experience</nobr></span></p>
-                        <p><span>I create software</span></p>
+                        <p><span>I am </span><span class="secret" onclick="UI.revealSecret(this, 'SwBpAHIAaQBsAGwAIABJAHUAcwB1AHAAbwB2AA==')">????? ??????</span><span>.</span></p>
+                        <p><span>I am an engineer, architect and <nobr>team leader. </nobr></span><br /><a href="?section=services" onclick="UI.navigate('services'); return false;">I create software.</a></p>
                         <p><span>Welcome to my site!</span></p>
                     </div>
                 </div>
@@ -566,7 +697,8 @@
                     <div class="title"><h1>This site</h1></div>
                     <div>
                         <p><span>Minimalistic, lightweight, hand-crafted from scratch with "notepad"... almost:)</span></p>
-                        <p><span>Should work in modern browsers and look fine on your phone</span></p>
+                        <p><span>Should work in modern browsers and look fine on your phone.</span></p>
+                        <p><span>You can find some explanations and details </span><a href="?section=about" onclick="UI.navigate('about'); return false;">here.</a></p>
                     </div>
                 </div>
 
@@ -579,13 +711,157 @@
                 <div class="block">
                     <div class="title"><h1>Privacy, terms, etc.</h1></div>
                     <div>
-                        <p><span>I don't collect or store any information about the visitors of my site. I don't use cookies, browser storage or things like that</span></p>
-                        <p><span>You can use anything found here for free in any way you like. As usually, no warranty or liability on my part</span></p>
+                        <p><span>I don't collect or store any information about the visitors of my site. I don't use cookies, browser storage or things like that.</span></p>
+                        <p><span>You can use anything found here for free in any way you like. As usually, no warranty or liability on my part.</span></p>
                     </div>
                 </div>
-
-            </div>
-
+            </section>
+            <section class="container flex" style="display:none;" id="not-found" data-title="Not found">
+                <div class="container">
+                    <div class="block color-bw">
+                        <div class="title highlighted"><h1>Not found</h1></div>
+                        <div>
+                            <p>
+                                <span>The requested page does not exist in my site</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="soon" data-title="Coming Soon">
+                <div class="container">
+                    <div class="block color-bw">
+                        <div class="title highlighted"><h1>Coming Soon</h1></div>
+                        <div>
+                            <p style="text-align:center">
+                                <span>53% done...</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="about" data-title="About">
+                <div class="container">
+                    <div class="block">
+                        <div class="title"><h1>What is this site about</h1></div>
+                        <div>
+                            <p class="ul-header"><span>This site focuses on three main topics:</span></p>
+                            <ul>
+                                <li>
+                                    <h3>Software development in general</h3>
+                                    <p><span>Anything about jobs, skills, technologies, practices, even architecture or database design considerations.</span></p>
+                                </li>
+                                <li>
+                                    <h3>Programming in deep</h3>
+                                    <p><span>With code examples, guides, and a couple of things hard to find on StackOverflow.</span></p>
+                                </li>
+                                <li>
+                                    <h3>Some personal experiences I want to share</h3>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>Technical concept</h1></div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <h3>Only HTML \ CSS \ JavaScript</h3>
+                                    <p><span>I want this site to be as simple as possible, both in terms of development and deployment \ hosting. I don't need any IDE \ code editor \ web server \ database \ etc. to work on it. And any hosting will do.</span></p>
+                                </li>
+                                <li>
+                                    <h3>Single file</h3>
+                                    <p><span>I like the idea of having anything in one file. It makes fairly easy to store temporary site data. Working with user interface is easier too. Updates are fast and flawless. And no annoying hyperlink navigation flickering.</span></p>
+                                    <p><span>On the other hand. There is increased traffic, the need of some kind of JavaScript navigation, the final HTML is bulky.</span></p>
+                                    <p><span>But since at this moment the whole site is less that 1MB the concept works fine. For comparison: my LinkedIn page is about 3MB, my recently created and empty GitHub is 2MB, google.com is almost 2MB too... It looks like I have nothing to worry about.</span></p>
+                                    <p><span>Obviously, I'll put all the media in separate files (except the site icon and background svg).</span></p>
+                                </li>
+                                <li>
+                                    <h3>No third-party</h3>
+                                    <p><span>This site is very simple. It took me just a few days to create it from scratch. It looks not so bad in any of my devices. There is just no need of using any CMS or third-party library.</span></p>
+                                    <p><span>Also, this kind of hand-making work brings pleasure:)</span></p>
+                                </li>
+                                <li>
+                                    <h3>Any browser \ device friendly</h3>
+                                    <p><span>I test and check that everything works as intended in all browsers and devices at my disposal.</span></p>
+                                    <p><span>I even downgraded some JavaScript code, so it can run on older browsers like Internet Explorer.</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>Other considerations</h1></div>
+                        <div>
+                            <p><span>Making a trendy-looking eye-catching site is definitely not a goal here, so the UI is kind of ascetic.</span></p>
+                            <p><span>I don't care about search engines, indexing, Google ranking, etc.</span></p>
+                            <p><span>This site is absolutely commerce-free. No advertising, no paid reviews, no partner links. No monetization.</span></p>
+                            <p><span>It's just for fun.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="services" class="container flex">
+                <div class="container">
+                    <div class="block">
+                        <div class="title"><h1>May I help you?</h1></div>
+                        <div>
+                            <p><span>With over 15 year of experience in software development, I have the necessary skills to get the work done. Well done.</span></p>
+                            <p class="ul-header"><span>I can join your team\company\startup and help you to:</span></p>
+                            <ul>
+                                <li>
+                                    <p>
+                                        <span>
+                                            Design the <b>"architecture"</b>, draw database schemas, think about integration issues,
+                                            look for some useful third-party solutions, split everything into microservices and
+                                            merge it back into a monolith.
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <span>
+                                            Implement the above with <b>.NET, JavaScript, SQL </b> and some fancy (or not) frameworks (or
+                                            without them).
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <span>
+                                            Review what was coded with something like SonarQube and <b>auto-test</b> what was
+                                            compiled with Selenium or JMeter.
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <span>
+                                            Setup the <b>CI\CD</b> or in the worst-case do all the setup\deploy manually.
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <span>
+                                            Work with <b>legacy projects</b>, figure out why everything is so slow and buggy,
+                                            understand shit code.
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> 
+                    <div class="block">
+                        <div class="title"><h1>Contacts</h1></div>
+                        <div>
+                            <p><span>Right now I'm open for new projects. Feel free to reach me out!</span></p>
+                            <p><span><a href="#" class="secret" onclick="return UI.revealSecret(this, 'bQBhAGkAbAB0AG8AOgB5AHUAcwBrAGkAYQBuAHkAdwBoAGUAcgBlAEAAcAByAG8AdABvAG4ALgBtAGUA');">EMail</a></span></p>
+                            <p><span><a href="https://www.upwork.com/freelancers/~018e1f8b4721662cee?mp_source=share">Upwork</a></span></p>
+                            <p><span><a href="https://www.linkedin.com/in/yuskithedeveloper">LinkedIn</a></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </body>
