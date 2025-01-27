@@ -298,7 +298,7 @@
 
         a {
             text-decoration: none;
-            color: #dc2b2b;
+            color: #3246bb;
             font-weight: bold;
         }
 
@@ -336,8 +336,12 @@
             margin-top: 0;
         }
 
-        .highlighted {
+        .highlighted-red {
             color: #dc2b2b;
+        }
+
+        .highlighted-green {
+            color: #409d10;
         }
 
         .tag {
@@ -353,7 +357,7 @@
         .left-menu {
             font-size: 12px;
             position: fixed;
-            top: 20%;
+            top: 5%;
             left: 0;
             overflow: hidden;
             background-color: rgba(0,0,0,0);
@@ -431,7 +435,7 @@
                     }
 
         .block:nth-child(4n+1) {
-            border-top: solid 0.5rem #67c636;
+            border-top: solid 0.5rem #409d10;
             border-right: solid 0.5rem #b75858;
             border-left: solid 0.5rem #ffffff00;
             border-bottom: solid 0.5rem #ffffff00;
@@ -467,7 +471,7 @@
         }
 
         .block:nth-child(4n+4) {
-            border-left: solid 0.5rem #67c636;
+            border-left: solid 0.5rem #409d10;
             border-top: solid 0.5rem #ffffff00;
             border-right: solid 0.5rem #ffffff00;
             border-bottom: solid 0.5rem #ffffff00;
@@ -481,7 +485,7 @@
         button.color-1 {
             border-top: solid 2px #b75858;
             border-right: solid 2px #beaf56;
-            border-bottom: solid 2px #67c636;
+            border-bottom: solid 2px #409d10;
             border-left: solid 2px #3246bb;
         }
 
@@ -493,7 +497,7 @@
             border-top: solid 2px #3246bb;
             border-right: solid 2px #b75858;
             border-bottom: solid 2px #beaf56;
-            border-left: solid 2px #67c636;
+            border-left: solid 2px #409d10;
         }
 
             button.color-2:active, button.color-2:hover {
@@ -501,7 +505,7 @@
             }
 
         button.color-3 {
-            border-top: solid 2px #67c636;
+            border-top: solid 2px #409d10;
             border-right: solid 2px #3246bb;
             border-bottom: solid 2px #b75858;
             border-left: solid 2px #beaf56;
@@ -513,7 +517,7 @@
 
         button.color-4 {
             border-top: solid 2px #beaf56;
-            border-right: solid 2px #67c636;
+            border-right: solid 2px #409d10;
             border-bottom: solid 2px #3246bb;
             border-left: solid 2px #b75858;
         }
@@ -650,7 +654,7 @@
 
                 revealSecret: function (element, secret) {
                     const revealedSecret = Tools.stringFromB64(secret);
-                    const tagName = element.tagName.toLowerCase(); 
+                    const tagName = element.tagName.toLowerCase();
                     if (tagName == 'a') {
                         if (element.getAttribute('href') == revealedSecret)
                             return true;
@@ -667,11 +671,16 @@
                         element.classList.remove("secret");
                         return false;
                     }
+                },
+
+                showSiteSize: function () {
+                    document.getElementById('site-size').innerText = parseInt(new Blob([document.documentElement.outerHTML]).size / 1024);
                 }
             };
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+            UI.showSiteSize();
             UI.refresh();
         });
     </script>
@@ -681,7 +690,7 @@
         <div class="left-menu">
             <div class="menu-item"><button class="color-1" type="button" href="#" onclick="UI.navigate('home')" title="home">/</button></div>
             <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('soon')" title="blog">b.</button></div>
-            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="services">{&nbsp;}</button></div>
+            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="services">{&thinsp;}</button></div>
         </div>
         <div class="general-content" id="html">
             <section class="container flex" style="display:none;" id="home" data-title="YuskiTheDeveloper">
@@ -719,7 +728,7 @@
             <section class="container flex" style="display:none;" id="not-found" data-title="Not found">
                 <div class="container">
                     <div class="block color-bw">
-                        <div class="title highlighted"><h1>Not found</h1></div>
+                        <div class="title highlighted-red"><h1>Not found</h1></div>
                         <div>
                             <p>
                                 <span>The requested page does not exist in my site</span>
@@ -731,7 +740,7 @@
             <section class="container flex" style="display:none;" id="soon" data-title="Coming Soon">
                 <div class="container">
                     <div class="block color-bw">
-                        <div class="title highlighted"><h1>Coming Soon</h1></div>
+                        <div class="title highlighted-green"><h1>Coming Soon</h1></div>
                         <div>
                             <p style="text-align:center">
                                 <span>53% done...</span>
@@ -743,48 +752,47 @@
             <section class="container flex" style="display:none;" id="about" data-title="About">
                 <div class="container">
                     <div class="block">
-                        <div class="title"><h1>What is this site about</h1></div>
+                        <div class="title"><h1>In this site...</h1></div>
                         <div>
-                            <p class="ul-header"><span>This site focuses on three main topics:</span></p>
                             <ul>
                                 <li>
                                     <h3>Software development in general</h3>
-                                    <p><span>Anything about jobs, skills, technologies, practices, even architecture or database design considerations.</span></p>
+                                    <p><span>Anything about technologies, practices, architecture, database design, etc. Without "10 SQL tricks", "Window.setTimeout() explained" or "[ProductName] features overview" stuff.</span></p>
                                 </li>
                                 <li>
                                     <h3>Programming in deep</h3>
-                                    <p><span>With code examples, guides, and a couple of things hard to find on StackOverflow.</span></p>
+                                    <p><span>With code examples, detailed guides and other things hard to find.</span></p>
                                 </li>
                                 <li>
-                                    <h3>Some personal experiences I want to share</h3>
+                                    <h3>Other personal experiences I want to share</h3>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="block">
-                        <div class="title"><h1>Technical concept</h1></div>
+                        <div class="title"><h1>The concept</h1></div>
                         <div>
                             <ul>
                                 <li>
-                                    <h3>Only HTML \ CSS \ JavaScript</h3>
-                                    <p><span>I want this site to be as simple as possible, both in terms of development and deployment \ hosting. I don't need any IDE \ code editor \ web server \ database \ etc. to work on it. And any hosting will do.</span></p>
+                                    <h3>HTML \ CSS \ JavaScript only</h3>
+                                    <p><span>I want this site to be as simple as possible, both in terms of development and deployment \ hosting. I don't need any IDE \ code editor \ web server \ database \ etc. to work on it, and can host it anywhere.</span></p>
+                                    <p><span>Also, I really miss the old lightweight sites not overfocusing on "cool" effects and animation.</span></p>
                                 </li>
                                 <li>
                                     <h3>Single file</h3>
-                                    <p><span>I like the idea of having anything in one file. It makes fairly easy to store temporary site data. Working with user interface is easier too. Updates are fast and flawless. And no annoying hyperlink navigation flickering.</span></p>
+                                    <p><span>I like the idea of having anything in one file. It makes fairly easy to store temporary site data. Working with user interface is easier too. Site updates are fast and flawless. And no annoying hyperlink navigation flickering.</span></p>
                                     <p><span>On the other hand. There is increased traffic, the need of some kind of JavaScript navigation, the final HTML is bulky.</span></p>
-                                    <p><span>But since at this moment the whole site is less that 1MB the concept works fine. For comparison: my LinkedIn page is about 3MB, my recently created and empty GitHub is 2MB, google.com is almost 2MB too... It looks like I have nothing to worry about.</span></p>
-                                    <p><span>Obviously, I'll put all the media in separate files (except the site icon and background svg).</span></p>
+                                    <p><span>At this moment the whole site is less that 1MB (about <span id="site-size"></span>KB), for comparison: my LinkedIn page is about 3MB, my recently created and empty GitHub is 2MB, google.com is almost 2MB too... It looks like I have nothing to worry about.</span></p>
+                                    <p><span>Obviously, I'll put all the media in separate files (except the site icon and background which is an svg).</span></p>
                                 </li>
                                 <li>
                                     <h3>No third-party</h3>
                                     <p><span>This site is very simple. It took me just a few days to create it from scratch. It looks not so bad in any of my devices. There is just no need of using any CMS or third-party library.</span></p>
-                                    <p><span>Also, this kind of hand-making work brings pleasure:)</span></p>
+                                    <p><span>Also, this kind of hand-crafting brings pleasure:)</span></p>
                                 </li>
                                 <li>
                                     <h3>Any browser \ device friendly</h3>
-                                    <p><span>I test and check that everything works as intended in all browsers and devices at my disposal.</span></p>
-                                    <p><span>I even downgraded some JavaScript code, so it can run on older browsers like Internet Explorer.</span></p>
+                                    <p><span>I test and check that everything works as intended in all browsers and devices at my disposal (even in Edge Internet Explorer mode).</span></p>
                                 </li>
                             </ul>
                         </div>
@@ -792,7 +800,7 @@
                     <div class="block">
                         <div class="title"><h1>Other considerations</h1></div>
                         <div>
-                            <p><span>Making a trendy-looking eye-catching site is definitely not a goal here, so the UI is kind of ascetic.</span></p>
+                            <p><span>Again, making a trendy-looking eye-catching site is not a goal here, so the UI is kind of ascetic.</span></p>
                             <p><span>I don't care about search engines, indexing, Google ranking, etc.</span></p>
                             <p><span>This site is absolutely commerce-free. No advertising, no paid reviews, no partner links. No monetization.</span></p>
                             <p><span>It's just for fun.</span></p>
@@ -850,7 +858,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div> 
+                    </div>
                     <div class="block">
                         <div class="title"><h1>Contacts</h1></div>
                         <div>
