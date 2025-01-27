@@ -369,7 +369,7 @@
 
                 .left-menu .menu-item button {
                     border-left: none;
-                    font-size: 2rem;
+                    font-size: 2.5rem;
                     width: 100%;
                     text-align: center;
                     padding: 2px 1px 3px 1px;
@@ -586,6 +586,22 @@
                     }
                     return result;
                 },
+
+                httpGetAsync: function (url, context, onDone) {
+                    setTimeout(() => {
+                        const xmlHttp = new XMLHttpRequest();
+                        xmlHttp.onreadystatechange = function () {
+                            if (xmlHttp.readyState == 4) {
+                                console.log(xmlHttp);
+                                onDone(context, xmlHttp.status);
+                            }
+                        }
+                        xmlHttp.open("GET", url, true);
+                        xmlHttp.send(null);
+                       
+                    }, 1000)
+                  
+                }
             }
         }
 
@@ -688,9 +704,9 @@
 <body>
     <div class="general-container">
         <div class="left-menu">
-            <div class="menu-item"><button class="color-1" type="button" href="#" onclick="UI.navigate('home')" title="home">/</button></div>
-            <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('soon')" title="blog">b.</button></div>
-            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="services">{&thinsp;}</button></div>
+            <div class="menu-item"><button class="color-1" type="button" href="#" onclick="UI.navigate('home')" title="Home">/</button></div>
+            <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('blog')" title="Blog">b.</button></div>
+            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="Services & contacts">@</button></div>
         </div>
         <div class="general-content" id="html">
             <section class="container flex" style="display:none;" id="home" data-title="YuskiTheDeveloper">
@@ -698,19 +714,18 @@
                     <div class="title"><h1>Hi \ Hola \ Привет!</h1></div>
                     <div>
                         <p><span>I am </span><span class="secret" onclick="UI.revealSecret(this, 'SwBpAHIAaQBsAGwAIABJAHUAcwB1AHAAbwB2AA==')">????? ??????</span><span>.</span></p>
-                        <p><span>I am an engineer, architect and <nobr>team leader. </nobr></span><br /><a href="?section=services" onclick="UI.navigate('services'); return false;">I create software.</a></p>
+                        <p><span>I am an engineer, architect and <nobr>team leader. </nobr></span><br /><a href="?section=services" onclick="UI.navigate('services'); return false;">I create software</a><span>.</span></p>
                         <p><span>Welcome to my site!</span></p>
                     </div>
                 </div>
                 <div class="block">
                     <div class="title"><h1>This site</h1></div>
                     <div>
-                        <p><span>Minimalistic, lightweight, hand-crafted from scratch with "notepad"... almost:)</span></p>
-                        <p><span>Should work in modern browsers and look fine on your phone.</span></p>
-                        <p><span>You can find some explanations and details </span><a href="?section=about" onclick="UI.navigate('about'); return false;">here.</a></p>
+                        <p><span>Minimalistic, lightweight, hand-crafted from scratch with "notepad"... almost:)<br />Should work in modern browsers and look fine on your phone.</span></p>
+                        <p><span>A mix of professional site and personal blog.</span></p>
+                        <p><span>You can find more details </span><a href="?section=about" onclick="UI.navigate('about'); return false;">here</a><span>.</span></p>
                     </div>
                 </div>
-
                 <div class="block">
                     <div class="title"><h1>What's new?</h1></div>
                     <div>
@@ -808,7 +823,7 @@
                     </div>
                 </div>
             </section>
-            <section id="services" class="container flex">
+            <section class="container flex" style="display:none;" id="services" data-title="Services and contacts">
                 <div class="container">
                     <div class="block">
                         <div class="title"><h1>May I help you?</h1></div>
@@ -866,6 +881,70 @@
                             <p><span><a href="#" class="secret" onclick="return UI.revealSecret(this, 'bQBhAGkAbAB0AG8AOgB5AHUAcwBrAGkAYQBuAHkAdwBoAGUAcgBlAEAAcAByAG8AdABvAG4ALgBtAGUA');">EMail</a></span></p>
                             <p><span><a href="https://www.upwork.com/freelancers/~018e1f8b4721662cee?mp_source=share" target="_blank">Upwork</a></span></p>
                             <p><span><a href="https://www.linkedin.com/in/yuskithedeveloper" target="_blank">LinkedIn</a></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="blog" data-title="Blog">
+                <div class="block">
+                    <div class="title"><h1>Links</h1></div>
+                    <div>
+                        <p><span>A selected collection of other personal sites</span></p>
+                        <p><a href="?section=links" onclick="UI.navigate('links'); return false;">View</a></p>
+                    </div>
+                </div> 
+                <div class="block">
+                    <div class="title"><h1>Site concept</h1></div>
+                    <div>
+                        <p><span>Some details about this site, how it is done and why.</span></p>
+                        <p><a href="?section=about" onclick="UI.navigate('about'); return false;">View</a></p>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="links" data-title="Links">
+                <script>
+                    function CheckAvailability() {
+                        if (Tools.isLocalFile()) {
+                            alert('This functionality may not work properly due to CORS restrictions');
+                        }
+
+                        var links = document.getElementById('links-list').getElementsByTagName('a');
+                        for (let i = 0; i < links.length; i++) {
+                            var url = links[i].getAttribute('href') 
+                            links[i].innerHTML = '<span>' + url + '</span><span> - checking...</span>';
+
+                            Tools.httpGetAsync(url, { element: links[i], url: url }, (context, responseStatus) => {  
+                                if (responseStatus >= 200 && responseStatus < 400) {
+                                    context.element.innerHTML = '<span>' + context.url + '</span><span class="highlighted-green"> - OK (' + responseStatus + ')</span>';
+                                } else {
+                                    context.element.innerHTML = '<span>' + context.url + '</span><span class="highlighted-red"> - Failed (' + responseStatus + ')</span>';
+                                }
+                            });
+                        }
+                    }
+                </script>
+                <div class="container">
+                    <div class="block">
+                        <div class="title"><h1>About</h1></div>
+                        <div>
+                            <p><span>Since <b>personal sites</b> have become rare and hard to find, I think it's worth having a small collection here.</span></p>
+                            <p><span>I'll update this list time to time</span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>The links</h1></div>
+                        <div>
+                            <ul id="links-list">
+                                <li><a href="https://dustinbrett.com/" target="_blank"><span>https://dustinbrett.com/</span></a></li>
+                                <li><a href="https://TEST_NOTEXISTING_PAGE_x738we28ewuw_823.com/" target="_blank"><span>https://TEST_NOTEXISTING_PAGE_x738we28ewuw_823.com/</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>Check availability</h1></div>
+                        <div>
+                            <p><span>A little tool to check if the links are still alive.</span></p>
+                            <p><button type="button" class="color-1" onclick="CheckAvailability()">Check</button></p>
                         </div>
                     </div>
                 </div>
