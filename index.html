@@ -279,7 +279,7 @@
             margin-bottom: 0.6rem;
         }
 
-        ul {
+        ul, ol {
             padding-left: 1.8rem;
             margin-top: 0;
         }
@@ -310,6 +310,7 @@
         code {
             color: #171717;
             font-family: monospace;
+            white-space: nowrap;
         }
 
             code span {
@@ -317,9 +318,10 @@
             }
 
             code.code-block {
-                display: inline-block;
+                display: block;
                 padding: 5px;
                 border: solid 1px #dddddd;
+                overflow-x: auto;
             }
 
             code.html .tag {
@@ -347,11 +349,11 @@
             }
 
             code .indent::before {
-                content: '\00a0\00a0\00a0\00a0';
+                content: '\00a0\00a0';
             }
 
             code .indent-2::before {
-                content: '\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0';
+                content: '\00a0\00a0\00a0\00a0';
             }
 
         input.input-numeric {
@@ -752,7 +754,7 @@
         <div class="left-menu">
             <div class="menu-item"><button class="color-1" type="button" href="#" onclick="UI.navigate('home')" title="Home">/</button></div>
             <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('blog')" title="Blog">b.</button></div>
-            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="Services & contacts">@</button></div>
+            <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="Services & contacts">{&thinsp;}</button></div>
         </div>
         <div class="general-content" id="html">
             <section class="container flex" style="display:none;" id="home" data-title="YuskiTheDeveloper">
