@@ -276,6 +276,7 @@
 
         img {
             max-width: 100%;
+            border: solid 1px #dddddd;
         }
 
         p {
@@ -745,6 +746,32 @@
 
                 showSiteSize: function () {
                     document.getElementById('site-size').innerText = parseInt(new Blob([document.documentElement.outerHTML]).size / 1024);
+                },
+
+                toggleImgs: function (sender, imgsContainer) {
+                    const showText = sender.getAttribute('data-show-text');
+                    const hideText = sender.getAttribute('data-hide-text');
+
+                    const isShow = sender.innerText === showText;
+                    if (isShow) {
+                        sender.innerText = hideText;
+                    }
+                    else {
+                        sender.innerText = showText;
+                    }
+
+                    const imgs = imgsContainer.getElementsByTagName('img');
+                    for (let i = 0; i < imgs.length; i++) {
+                        if (isShow) {
+                            if (!imgs[i].getAttribute('src')) {
+                                imgs[i].setAttribute('src', imgs[i].getAttribute('data-src'));
+                            }
+                            imgs[i].style.display = '';
+                        }
+                        else {
+                            imgs[i].style.display = 'none';
+                        }
+                    }
                 }
             };
         }
@@ -1048,18 +1075,19 @@
             <section class="container flex" style="display:none;" id="article-cors" data-title="CORS">
                 <div class="container">
                     <div class="block">
-                        <div class="title"><h1>CORS in <strike>two words</strike> four sentences</h1></div>
-                        <div class="align-center"><img src="articles/article-cors/1.jpg" /></div>
+                        <div class="title"><h1>CORS in <strike>two words</strike> three sentences</h1></div>
                         <div>
                             <ol>
                                 <li>
                                     <p><span>The browser loads a site from the server (<nobr><b>origin-A</b></nobr>) containing a script that makes a request to another server (<nobr><b>origin-B</b></nobr>).</span></p>
                                 </li>
                                 <li>
-                                    <p><span>The browser executes the script and makes a <i>"preflight"</i> request (OPTIONS HTTP method) to <nobr><b>origin-B</b></nobr>.</span></p>
-                                </li>
-                                <li>
-                                    <p><span>The response may contain <code>"Access-Control-Allow-Origin"</code> and <code>"Access-Control-Allow-Methods"</code> headers (these are the most commonly used, but there are others).</span></p>
+                                    <p>
+                                        <span>
+                                            The browser executes the script and makes a <i>"preflight"</i> request (OPTIONS HTTP method) to <nobr><b>origin-B</b></nobr>.
+                                            <br />The response may contain <code>"Access-Control-Allow-Origin"</code> and <code>"Access-Control-Allow-Methods"</code> headers (these are the most commonly used, but there are others).
+                                        </span>
+                                    </p>
                                 </li>
                                 <li>
                                     <p>
@@ -1070,6 +1098,12 @@
                                     </p>
                                 </li>
                             </ol>
+                            <p>
+                                <span>Here is an explanatory gif: </span><button type="button" class="color-1" onclick="UI.toggleImgs(this, document.getElementById('article-cors-img'))" data-show-text="Show" data-hide-text="Hide">Show</button>
+                            </p>
+                        </div>
+                        <div class="align-center" id="article-cors-img">
+                            <img data-src="articles/article-cors/1.gif" alt="CORS animation" style="display:none;" />
                         </div>
                         <div>
                             <p>
