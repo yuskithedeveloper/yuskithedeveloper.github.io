@@ -856,7 +856,7 @@
                                     <p><span>I like the idea of having anything in one file. It makes fairly easy to store temporary site data. Working with user interface is easier too. Site updates are fast and flawless. And no annoying hyperlink navigation flickering.</span></p>
                                     <p><span>On the other hand. There is increased traffic, the need of some kind of JavaScript navigation, the final HTML is bulky.</span></p>
                                     <p><span>At this moment the whole site is less that 1MB (about <span id="site-size"></span>KB), for comparison: my LinkedIn page is about 3MB, my recently created and empty GitHub is 2MB, google.com is almost 2MB too... It looks like I have nothing to worry about.</span></p>
-                                    <p><span>Obviously, I'll put all the media in separate files (except the site icon and background which is an svg).</span></p>
+                                    <p><span>Obviously, I'll put all the media in separate files (except the site icon and background, which is a SVG).</span></p>
                                 </li>
                                 <li>
                                     <h3>No third-party</h3>
@@ -918,7 +918,7 @@
                                 <li>
                                     <p>
                                         <span>
-                                            Setup the <b>CI\CD</b> or in the worst-case do all the setup\deploy manually.
+                                            Set up the <b>CI\CD</b> or in the worst-case do all the setup\deploy manually.
                                         </span>
                                     </p>
                                 </li>
@@ -1031,7 +1031,7 @@
                             <p><span>A little tool to check if the links above are still alive: <button type="button" class="color-1" onclick="CheckAvailability()">Check</button></span></p>
                             <p>
                                 <span>
-                                    Due to CORS restrictions it doesn't work for all sites (or needs CORS to be disabled in the browser).
+                                    Due to CORS restrictions, it doesn't work for all sites (or needs CORS to be disabled in the browser).
                                     <br />Anyway, it's a good starting point to make a brief article <a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">about CORS</a>.
                                 </span>
                             </p> 
@@ -1058,7 +1058,7 @@
                                     <p>
                                         <span>
                                             Before executing the actual meaningful request (GET, POST, etc.) the browser checks if <nobr><b>origin-A</b></nobr> is within the <code>"Access-Control-Allow-Origin"</code> and the HTTP method is in <code>"Access-Control-Allow-Methods"</code>.
-                                            <br /><span class="highlighted-red">If not - the request is blocked.</span>
+                                            <br /><b>If not - the request is blocked.</b>
                                         </span>
                                     </p>
                                 </li>
@@ -1078,10 +1078,10 @@
                         <div>
                             <ul>
                                 <li>
-                                    <p><span>CORS headers are controlled by <nobr><b>origin-B</b></nobr>, not <nobr>origin-A</nobr>. Usually, in your React \ Angular \ Vue app you have to put it on the server API side.</span></p>
+                                    <p><span>CORS headers are controlled by <nobr><b>origin-B</b></nobr>, not <nobr>origin-A</nobr>. Usually, in your React \ Angular \ Vue app, you have to put it on the server API side.</span></p>
                                 </li>
                                 <li>
-                                    <p><span>You can bypass CORS restrictions by using a so called <i>"CORS proxy"</i> (the problem of misunderstanding CORS is so big that even some commercial workarounds were implemented). However, I don't recommend it for anything serious.</span></p>
+                                    <p><span>You can bypass CORS restrictions by using a so-called <i>"CORS proxy"</i> (the problem of misunderstanding CORS is so big that even some commercial workarounds were implemented). However, I don't recommend it for anything serious.</span></p>
                                 </li>
                                 <li>
                                     <p><span>As all the checks are done by your browser, there are some ways to disable it (with extensions, startup arguments and so on). But don't ask your users to do that.</span></p>
@@ -1095,7 +1095,7 @@
                             <p class="ul-header"><span>Here are some examples - just to show that CORS was not invented only to inconvenience developers.</span></p>
                             <ul>
                                 <li>
-                                    <h3>XSS-based DDOS \ Flood</h3>
+                                    <h3>XSS-based DDoS \ Flood</h3>
                                     <p>
                                         <span>
                                             The idea here is about making a user to participate in an attack without even knowing what is going on.
@@ -1144,7 +1144,7 @@
                                             </code>
                                         </span>
                                     </p>
-                                    <p><span>Again, with a wrong CORS configuration (or without CORS at all) and without other security measures this would work.</span></p>
+                                    <p><span>Again, with a wrong CORS configuration (or without CORS at all) and without other security measures, this would work.</span></p>
                                 </li>
                                 <li>
                                     <h3>Fishing and fake sites</h3>
@@ -1154,7 +1154,7 @@
                                 </li>
                                 <li>
                                     <h3 class="highlighted-red">CORS will not prevent cookies and other data theft</h3>
-                                    <p><span>In the code below <code>https://userdatatheft.com</code> is the server who controls the CORS headers, so it will likely set <code>"Access-Control-Allow-Origin: *"</code>, and the request will pass.</span></p>
+                                    <p><span>In the code below, <code>https://userdatatheft.com</code> is the server who controls the CORS headers, so it will likely set <code>"Access-Control-Allow-Origin: *"</code>, and the request will pass.</span></p>
                                     <p>
                                         <span>
                                             <code class="code-block html js">
