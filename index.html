@@ -301,11 +301,11 @@
             cursor: pointer;
         }
 
-        a {
-            text-decoration: none;
-            color: #3246bb;
-            font-weight: bold;
-        }
+            a, button.a {
+                text-decoration: none;
+                color: #3246bb;
+                font-weight: bold;
+            }
 
         textarea {
             width: 95%;
@@ -438,6 +438,24 @@
             }
         }
 
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            padding-top: 3rem; 
+            cursor: pointer;
+            background-color: rgba(255,255,255,0.95);
+            height:100%;
+        }
+
+            .popup-container > * {
+                max-width: 90%;
+                max-height:80%;
+            }
+
         .general-container {
             padding: 1rem;
         }
@@ -449,6 +467,21 @@
         .title {
             margin-bottom: 1rem;
         }
+
+        .img-container-v {
+            text-align: center;
+        }
+
+        .img-container-h {
+            text-align: center;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+            .img-container-h.preview img {
+                max-width: 30%;
+                cursor: pointer;
+            }
 
         .block {
             margin: 0.5rem auto 0.5rem auto;
@@ -749,20 +782,30 @@
                 },
 
                 toggleImgs: function (sender, imgsContainer) {
-                    const showText = sender.getAttribute('data-show-text');
-                    const hideText = sender.getAttribute('data-hide-text');
+                    let showText = sender.getAttribute('data-show-text');
+                    if (!showText) {
+                        showText = 'Show';
+                    }
+                    let hideText = sender.getAttribute('data-hide-text');
+                    if (!hideText) {
+                        hideText = 'Hide';
+                    }
 
-                    const isShow = sender.innerText === showText;
-                    if (isShow) {
+                    var isShowingAttr = sender.getAttribute('data-is-showing');
+
+                    const switchToShow = ((!isShowingAttr) || (isShowingAttr === 'false'));
+                    if (switchToShow) {
+                        sender.setAttribute('data-is-showing', 'true');
                         sender.innerText = hideText;
                     }
                     else {
+                        sender.setAttribute('data-is-showing', 'false');
                         sender.innerText = showText;
                     }
 
                     const imgs = imgsContainer.getElementsByTagName('img');
                     for (let i = 0; i < imgs.length; i++) {
-                        if (isShow) {
+                        if (switchToShow) {
                             if (!imgs[i].getAttribute('src')) {
                                 imgs[i].setAttribute('src', imgs[i].getAttribute('data-src'));
                             }
@@ -772,6 +815,18 @@
                             imgs[i].style.display = 'none';
                         }
                     }
+                },
+
+                copyToPopup: function (element) {
+                    const popupContainer = document.getElementsByClassName('popup-container')[0];
+                    popupContainer.innerHTML = element.outerHTML;
+                    popupContainer.style.display = '';
+                },
+
+                releasePopup: function () {
+                    const popupContainer = document.getElementsByClassName('popup-container')[0];
+                    popupContainer.innerHTML = '';
+                    popupContainer.style.display = 'none';
                 }
             };
         }
@@ -789,6 +844,7 @@
             <div class="menu-item"><button class="color-2" type="button" href="#" onclick="UI.navigate('blog')" title="Blog">b.</button></div>
             <div class="menu-item"><button class="color-3" type="button" href="#" onclick="UI.navigate('services')" title="Services & contacts">{&thinsp;}</button></div>
         </div>
+        <div class="popup-container" style="display:none" onclick="UI.releasePopup();"></div>
         <div class="general-content" id="html">
             <section class="container flex" style="display:none;" id="home" data-title="YuskiTheDeveloper">
                 <div class="block">
@@ -820,7 +876,7 @@
                 <div class="block">
                     <div class="title"><h1>What's new?</h1></div>
                     <div>
-                        <p><span>Article: CORS </span><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">published</a></p> 
+                        <p><span>Article: CORS </span><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">published</a></p>
                     </div>
                 </div>
                 <div class="block">
@@ -999,6 +1055,13 @@
                         <p><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">View</a></p>
                     </div>
                 </div>
+                <div class="block">
+                    <div class="title"><h1>Photos: Beautiful moments</h1></div>
+                    <div>
+                        <p><span>20 years (2005 - 2024), 3 photos each.</span></p>
+                        <p><a href="?section=photos-moments" onclick="UI.navigate('photos-moments'); return false;">View</a></p>
+                    </div>
+                </div>
             </section>
             <section class="container flex" style="display:none;" id="links" data-title="Links">
                 <script>
@@ -1099,10 +1162,10 @@
                                 </li>
                             </ol>
                             <p>
-                                <span>Here is an explanatory gif: </span><button type="button" class="color-1" onclick="UI.toggleImgs(this, document.getElementById('article-cors-img'))" data-show-text="Show" data-hide-text="Hide">Show</button>
+                                <span>Here is an explanatory gif: </span><button type="button" class="color-1" onclick="UI.toggleImgs(this, document.getElementById('article-cors-img'))">Show</button>
                             </p>
                         </div>
-                        <div class="align-center" id="article-cors-img">
+                        <div class="img-container-v" id="article-cors-img">
                             <img data-src="articles/article-cors/1.gif" alt="CORS animation" style="display:none;" />
                         </div>
                         <div>
@@ -1215,6 +1278,57 @@
                                     </p>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="photos-moments" data-title="Beautiful moments"> 
+                <div class="container">
+                    <div class="block">
+                        <div class="title"><h1>Beautiful moments</h1></div>
+                        <div>
+                            <p><span>Instead of hundreds of photos, I selected three (per year) that I would like to share.</span></p>
+                            <p><span class="highlighted-red"><i>2010 - 2024 cooming soon.</i></span></p>
+                        </div>
+                    </div>   
+                    <div class="block color-bw">
+                        <div><p><span>2009: <button type="button" class="a" onclick="UI.toggleImgs(this, document.getElementById('photos-moments-2009'))">Show</button></span></p></div>
+                        <div class="img-container-h preview" id="photos-moments-2009">
+                            <img data-src="photos/photos-moments/2009-1.jpg" alt="2009" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2009-2.jpg" alt="2009" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2009-3.jpg" alt="2009" style="display:none;" onclick="UI.copyToPopup(this);" />
+                        </div>
+                    </div>
+                    <div class="block color-bw">
+                        <div><p><span>2008: <button type="button" class="a" onclick="UI.toggleImgs(this, document.getElementById('photos-moments-2008'))">Show</button></span></p></div>
+                        <div class="img-container-h preview" id="photos-moments-2008">
+                            <img data-src="photos/photos-moments/2008-1.jpg" alt="2008" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2008-2.jpg" alt="2008" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2008-3.jpg" alt="2008" style="display:none;" onclick="UI.copyToPopup(this);" />
+                        </div>
+                    </div>
+                    <div class="block color-bw">
+                        <div><p><span>2007: <button type="button" class="a" onclick="UI.toggleImgs(this, document.getElementById('photos-moments-2007'))">Show</button></span></p></div>
+                        <div class="img-container-h preview" id="photos-moments-2007">
+                            <img data-src="photos/photos-moments/2007-1.jpg" alt="2007" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2007-2.jpg" alt="2007" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2007-3.jpg" alt="2007" style="display:none;" onclick="UI.copyToPopup(this);" />
+                        </div>
+                    </div>
+                    <div class="block color-bw">
+                        <div><p><span>2006: <button type="button" class="a" onclick="UI.toggleImgs(this, document.getElementById('photos-moments-2006'))">Show</button></span></p></div>
+                        <div class="img-container-h preview" id="photos-moments-2006">
+                            <img data-src="photos/photos-moments/2006-1.jpg" alt="2006" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2006-2.jpg" alt="2006" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2006-3.jpg" alt="2006" style="display:none;" onclick="UI.copyToPopup(this);" />
+                        </div>
+                    </div>
+                    <div class="block color-bw">
+                        <div><p><span>2005: <button type="button" class="a" onclick="UI.toggleImgs(this, document.getElementById('photos-moments-2005'))">Show</button></span></p></div>
+                        <div class="img-container-h preview" id="photos-moments-2005">
+                            <img data-src="photos/photos-moments/2005-1.jpg" alt="2005" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-2.jpg" alt="2005" style="display:none;" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-3.jpg" alt="2005" style="display:none;" onclick="UI.copyToPopup(this);" />
                         </div>
                     </div>
                 </div>
