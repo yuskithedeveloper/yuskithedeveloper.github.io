@@ -1074,7 +1074,7 @@
                     <div class="title"><h1>Code: Code to HTML convertor beta</h1></div>
                     <div>
                         <p><span>A very simple source code to HTML convertor \ syntax highlighter.</span></p>
-                        <p><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">Try</a></p>
+                        <p><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">View</a></p>
                     </div>
                 </div>
             </section>
@@ -1363,7 +1363,7 @@
                 </div>
             </section>
             <section class="container flex" style="display:none;" id="code-to-html" data-title="Code to Html">
-                <script type="text/javascript">
+                <script type="text/javascript" id="code-to-html-script">
                     if (!window.Code2Html) {
                         window.Code2Html = {
                             create: function (options) {
@@ -1519,31 +1519,31 @@
                                     if (!options)
                                         return;
 
-                                    if (options.tagCss) {
+                                    if ((options.tagCss) || (options.tagCss === '')) {
                                         _tagCss = options.tagCss;
                                     }
-                                    if (options.braceCss) {
+                                    if ((options.braceCss) || (options.braceCss === '')) {
                                         _braceCss = options.braceCss;
                                     }
-                                    if (options.declarationCss) {
+                                    if ((options.declarationCss) || (options.declarationCss === '')) {
                                         _declarationCss = options.declarationCss;
                                     }
-                                    if (options.statementCss) {
+                                    if ((options.statementCss) || (options.statementCss === '')) {
                                         _statementCss = options.statementCss;
                                     }
-                                    if (options.classCss) {
+                                    if ((options.classCss) || (options.classCss === '')) {
                                         _classCss = options.classCss;
                                     }
-                                    if (options.methodCss) {
+                                    if ((options.methodCss) || (options.methodCss === '')) {
                                         _methodCss = options.methodCss;
                                     }
-                                    if (options.stringCss) {
+                                    if ((options.stringCss) || (options.stringCss === '')) {
                                         _stringCss = options.stringCss;
                                     }
-                                    if (options.normalCss) {
+                                    if ((options.normalCss) || (options.normalCss === '')) {
                                         _normalCss = options.normalCss;
                                     }
-                                    if (options.lineCss) {
+                                    if ((options.lineCss) || (options.lineCss === '')) {
                                         _lineCss = options.lineCss;
                                     }
 
@@ -1591,12 +1591,44 @@
                         }
                     }
 
-                    function TestCode2Html() {
+                    function Code2HtmlSample() {
+                        const options = {
+                            //tagCss: '',
+                            //braceCss: '',
+                            //declarationCss: '',
+                            //statementCss: '',
+                            //classCss: '',
+                            //methodCss: '',
+                            //stringCss: '',
+                            //normalCss: '',
+                            //lineCss: '',
+
+                            initialIndent: 0
+                        };
+                        const code = 'if (myVar == 1) return true; else return false;';
+                        const html = Code2Html.create(options).convert(code);
+
+                        document.getElementById('code-to-html-html').value = html;
+                        document.getElementById('code-to-html-preview').innerHTML = html;
+                    }
+                </script>
+                <script type="text/javascript">
+                    function Code2HtmlRun() {
                         const code = document.getElementById('code-to-html-src').value;
                         const html = Code2Html.create({ initialIndent: parseInt(document.getElementById('code-to-html-indent').value) }).convert(code);
                         document.getElementById('code-to-html-html').value = html;
                         document.getElementById('code-to-html-preview').innerHTML = html;
                     }
+
+                    function Code2HtmlShowSelfCode() { 
+                        const code = document.getElementById('code-to-html-script').innerText; 
+                        const html = Code2Html.create().convert(code);
+                        document.getElementById('code-to-html-self').innerHTML = html;
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        //Code2HtmlShowSelfCode();
+                    });
                 </script>
                 <div class="container">
                     <div class="block">
@@ -1612,9 +1644,16 @@
                         <div class="title"><h1>The playground</h1></div>
                         <p><label>Code to convert:<textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></label></p>
                         <p><label>Initial indent:<input type="number" id="code-to-html-indent" style="width:60px" value="0" /></label></p>
-                        <p><span><button class="color-1" onclick="TestCode2Html()">Convert</button></span></p>
+                        <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
                         <p><label>Preview:<span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></label></p>
                         <p><label>Html:<textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></label></p>
+                    </div>
+                    <div class="block">
+                        <div class="title"><h1>The convertor code</h1></div>
+                        <div>
+                            <p><span class="highlighted-red"><i>Not ready to be shown.</i></span></p>
+                        </div>
+                        <!--<div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>-->
                     </div>
                 </div>
             </section>
