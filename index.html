@@ -1397,12 +1397,22 @@
 
                                 function convert(code) {
                                     let result = '';
-                                    result += '<code class="' + _codeCss + '">';
+                                    result += '<code class="' + _codeCss + '">\n';
+
                                     const lines = code.split('\n');
+                                    let contentStarted = false;
                                     let indent = _initialIndent;
                                     let prevLexeme = '';
                                     for (let l = 0; l < lines.length; l++) {
                                         const line = lines[l];
+
+                                        if (!contentStarted) {
+                                            if (!line)
+                                                continue;
+                                            else {
+                                                contentStarted = true;
+                                            }
+                                        }
 
                                         result += '<span class="' + _lineCss + '">';
 
@@ -1560,7 +1570,7 @@
                                         result += '\n<br />';
                                     }
 
-                                    result += '</code>';
+                                    result += '\n</code>';
                                     return result;
                                 };
 
