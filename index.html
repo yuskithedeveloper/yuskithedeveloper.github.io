@@ -1677,15 +1677,12 @@
                             lineCss: '',
 
                             initialIndent: 0,
-                            inputIndentSize: 4,
-                            outputIndentSize: 2
+                            inputIndentSize: 0,
+                            outputIndentSize: 0
                         };
 
                         const code = 'if (myVar == 1) return true; else return false;';
                         const html = Code2Html.create(options).convert(code);
-
-                        document.getElementById('code-to-html-html').value = html;
-                        document.getElementById('code-to-html-preview').innerHTML = html;
                     }
                 </script>
                 <script type="text/javascript">
@@ -1732,6 +1729,7 @@
                     <div class="block">
                         <div class="title"><h1>The convertor code</h1></div>
                         <div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>
+                        <div><p><a href="https://github.com/yuskithedeveloper/snippets/blob/main/JS/Code2Html.js" target="_blank">Github</a></p></div>
                     </div>
                 </div>
             </section>
