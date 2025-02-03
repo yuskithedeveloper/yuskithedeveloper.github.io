@@ -740,7 +740,8 @@
                     if ((UI.scrollPositions[section] > 0)) {
                         document.body.scrollTop = UI.scrollPositions[section];
                         document.documentElement.scrollTop = UI.scrollPositions[section];
-                    } else {
+                    }
+                    else {
                         document.body.scrollTop = 0;
                         document.documentElement.scrollTop = 0;
                     }
@@ -1095,7 +1096,8 @@
                                     Tools.httpGetStatusAsync(url, { element: links[i], url: url }, function (context, responseStatus) {
                                         if (responseStatus >= 200 && responseStatus < 400) {
                                             context.element.innerHTML = '<a href="' + url + '" target="_blank">' + url + '</a><span class="highlighted-green"> - OK (' + responseStatus + ')</span>';
-                                        } else {
+                                        }
+                                        else {
                                             context.element.innerHTML = '<a href="' + url + '" target="_blank">' + url + '</a><span class="highlighted-red"> - Failed (' + responseStatus + ')</span>';
                                         }
                                     });
@@ -1384,7 +1386,7 @@
                                 let _lineCss = 'line';
                                 let _initialIndent = 0;
 
-                                initOptions(options);
+                                _initOptions(options);
 
                                 const _separators = ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'];
                                 const _quotes = ['\'', '"'];
@@ -1396,6 +1398,7 @@
                                     result += '<code class="' + _codeCss + '">';
                                     const lines = code.split('\n');
                                     let indent = _initialIndent;
+                                    let prevLexeme = '';
                                     for (let l = 0; l < lines.length; l++) {
                                         const line = lines[l];
 
@@ -1410,7 +1413,6 @@
                                         let stringLiteral = false;
                                         let escape = false;
                                         let lexeme = '';
-                                        let prevLexeme = '';
                                         for (let i = 0; i < line.length; i++) {
                                             const ch = line[i];
 
@@ -1456,12 +1458,16 @@
                                                     resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>' + ch;
 
                                                     if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
-                                                        indentChangeStmnt = 1;
+                                                        indentChangeStmnt += 1;
                                                     }
-                                                    else if (lexeme == 'return' || lexeme == 'break' || lexeme == 'continue') {
-                                                        indentChangeStmnt = -1;
+                                                    else if ((lexeme == 'return' || lexeme == 'break' || lexeme == 'continue')
+                                                        && (prevLexeme == 'if' || prevLexeme == 'else' || prevLexeme == 'switch' || prevLexeme == 'case' || prevLexeme == 'default' || prevLexeme == 'for' || prevLexeme == 'while')) {
+                                                        indentChangeStmnt -= 1;
                                                     }
-                                                    prevLexeme = lexeme;
+
+                                                    if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
+                                                        prevLexeme = lexeme;
+                                                    }
                                                     lexeme = '';
                                                 }
                                                 else {
@@ -1469,18 +1475,24 @@
                                                 }
 
                                                 if (ch === '{') {
-                                                    indentChangeBrace = 1;
+                                                    if ((prevLexeme != 'if') && (prevLexeme != 'for') && (prevLexeme != 'while')) {
+                                                        indentChangeBrace += 1;
+                                                    }
+                                                    prevLexeme = '';
                                                 }
                                                 else if (ch === '}') {
-                                                    indentChangeBrace = -1;
+                                                    indentChangeBrace -= 1;
+                                                    prevLexeme = '';
                                                 }
-                                            } else {
+                                            }
+                                            else {
                                                 if (ch == '<') {
                                                     resultLine += '&lt;';
                                                 }
                                                 else if (ch == '>') {
                                                     resultLine += '&gt;';
-                                                } else {
+                                                }
+                                                else {
                                                     resultLine += ch;
                                                 }
                                             }
@@ -1499,32 +1511,36 @@
                                             resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>';
 
                                             if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
-                                                indentChangeStmnt = 1;
+                                                indentChangeStmnt += 1;
                                             }
-                                            else if (lexeme == 'return' || lexeme == 'break' || lexeme == 'continue') {
-                                                indentChangeStmnt = -1;
+                                            else if ((lexeme == 'return' || lexeme == 'break' || lexeme == 'continue')
+                                                && (prevLexeme == 'if' || prevLexeme == 'else' || prevLexeme == 'switch' || prevLexeme == 'case' || prevLexeme == 'default' || prevLexeme == 'for' || prevLexeme == 'while')) {
+                                                indentChangeStmnt -= 1;
                                             }
-                                            prevLexeme = lexeme;
+
+                                            if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
+                                                prevLexeme = lexeme;
+                                            }
                                             lexeme = '';
                                         }
 
                                         if (indentChangeBrace < 0) {
-                                            indent += indentChangeBrace;
+                                            indent -= 1;
                                         }
-
+                                         
                                         for (let i = 0; i < indent; i++) {
                                             resultLine = '&nbsp;&nbsp;' + resultLine;
                                         }
 
                                         if (indentChangeBrace > 0) {
-                                            indent += indentChangeBrace;
+                                            indent += 1;
                                         }
                                         else if (indentChangeStmnt > 0) {
-                                            indent += indentChangeStmnt;
+                                            indent += 1;
                                         }
 
                                         if ((indentChangeBrace >= 0) && (indentChangeStmnt < 0)) {
-                                            indent += indentChangeStmnt;
+                                            indent -= 1;
                                         }
 
                                         result += resultLine;
@@ -1537,7 +1553,7 @@
                                 };
 
 
-                                function initOptions(options) {
+                                function _initOptions(options) {
                                     if (!options)
                                         return;
 
@@ -1577,8 +1593,6 @@
                                     }
                                 }
 
-
-
                                 function _getLexemeType(lexeme, prevLexeme, nextCh) {
                                     if (lexeme === 'new' || lexeme === 'var' || lexeme === 'const' || lexeme === 'let' || lexeme === 'function' || lexeme === 'class' || lexeme === 'true' || lexeme === 'false')
                                         return 'declaration';
@@ -1587,7 +1601,7 @@
                                     if (nextCh === '(') {
                                         if (prevLexeme === 'new')
                                             return 'class';
-                                        else
+                                        else if (lexeme !== '')
                                             return 'method';
                                     }
                                 };
