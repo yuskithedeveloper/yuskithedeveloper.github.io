@@ -1386,7 +1386,10 @@
                                 let _normalCss = 'normal';
                                 let _specialCharCss = 'special-char';
                                 let _lineCss = 'line';
+
                                 let _initialIndent = 0;
+                                let _inputIndentSize = 4;
+                                let _outputIndentSize = 2;
 
                                 _initOptions(options);
 
@@ -1400,40 +1403,71 @@
                                     result += '<code class="' + _codeCss + '">\n';
 
                                     const lines = code.split('\n');
-                                    let contentStarted = false;
-                                    let indent = _initialIndent;
-                                    let prevLexeme = '';
+
+                                    let minIndent;
+
+                                    let contentStartLine;
+                                    let contentEndLine;
                                     for (let l = 0; l < lines.length; l++) {
                                         const line = lines[l];
 
-                                        if (!contentStarted) {
-                                            if (!line)
-                                                continue;
+                                        let lineHasContent = false;
+                                        let lineIndent = 0;
+                                        for (let i = 0; i < line.length; i++) {
+                                            const ch = line[i];
+                                            if (_spaces.indexOf(ch) >= 0) {
+                                                lineIndent++;
+                                            }
                                             else {
-                                                contentStarted = true;
+                                                lineHasContent = true;
+                                                break;
                                             }
                                         }
+
+                                        if (lineHasContent) {
+                                            if (isNaN(contentStartLine)) {
+                                                contentStartLine = l;
+                                            }
+                                            if (isNaN(contentEndLine) || (l > contentEndLine)) {
+                                                contentEndLine = l;
+                                            }
+                                            if (isNaN(minIndent) || (lineIndent < minIndent)) {
+                                                minIndent = lineIndent;
+                                            }
+                                        }
+                                    }
+
+                                    let prevLexeme = '';
+                                    for (let l = contentStartLine; l <= contentEndLine; l++) {
+                                        const line = lines[l];
 
                                         result += '<span class="' + _lineCss + '">';
 
                                         let resultLine = '';
 
-                                        let indentChangeBrace = 0;
-                                        let indentChangeStmnt = 0;
                                         let lineContentStarted = false;
                                         let stringLiteralQuote = '';
                                         let stringLiteral = false;
                                         let escape = false;
                                         let lexeme = '';
                                         for (let i = 0; i < line.length; i++) {
+                                            if (i < minIndent)
+                                                continue;
+
                                             const ch = line[i];
 
                                             if (!lineContentStarted) {
-                                                if (_spaces.indexOf(ch) < 0) {
+                                                if (_spaces.indexOf(ch) >= 0) {
+                                                    if ((i % _inputIndentSize) == 0) {
+                                                        for (let i = 0; i < _outputIndentSize; i++) {
+                                                            resultLine += '&nbsp;';
+                                                        }
+                                                    }
+                                                    continue;
+                                                }
+                                                else {
                                                     lineContentStarted = true;
                                                 }
-                                                else
-                                                    continue;
                                             }
 
                                             let escSet = false;
@@ -1479,14 +1513,6 @@
                                                         resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                     }
 
-                                                    if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
-                                                        indentChangeStmnt += 1;
-                                                    }
-                                                    else if ((lexeme == 'return' || lexeme == 'break' || lexeme == 'continue')
-                                                        && (prevLexeme == 'if' || prevLexeme == 'else' || prevLexeme == 'switch' || prevLexeme == 'case' || prevLexeme == 'default' || prevLexeme == 'for' || prevLexeme == 'while')) {
-                                                        indentChangeStmnt -= 1;
-                                                    }
-
                                                     if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
                                                         prevLexeme = lexeme;
                                                     }
@@ -1496,14 +1522,7 @@
                                                     lexeme += ch;
                                                 }
 
-                                                if (ch === '{') {
-                                                    if ((prevLexeme != 'if') && (prevLexeme != 'for') && (prevLexeme != 'while')) {
-                                                        indentChangeBrace += 1;
-                                                    }
-                                                    prevLexeme = '';
-                                                }
-                                                else if (ch === '}') {
-                                                    indentChangeBrace -= 1;
+                                                if ((ch === '{') || (ch === '}')) {
                                                     prevLexeme = '';
                                                 }
                                             }
@@ -1532,37 +1551,14 @@
                                             const lexemeCss = _getLexemeCss(lexemeType);
                                             resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>';
 
-                                            if (lexeme == 'if' || lexeme == 'else' || lexeme == 'switch' || lexeme == 'case' || lexeme == 'default' || lexeme == 'for' || lexeme == 'while') {
-                                                indentChangeStmnt += 1;
-                                            }
-                                            else if ((lexeme == 'return' || lexeme == 'break' || lexeme == 'continue')
-                                                && (prevLexeme == 'if' || prevLexeme == 'else' || prevLexeme == 'switch' || prevLexeme == 'case' || prevLexeme == 'default' || prevLexeme == 'for' || prevLexeme == 'while')) {
-                                                indentChangeStmnt -= 1;
-                                            }
-
                                             if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
                                                 prevLexeme = lexeme;
                                             }
                                             lexeme = '';
                                         }
 
-                                        if (indentChangeBrace < 0) {
-                                            indent -= 1;
-                                        }
-
-                                        for (let i = 0; i < indent; i++) {
-                                            resultLine = '&nbsp;&nbsp;' + resultLine;
-                                        }
-
-                                        if (indentChangeBrace > 0) {
-                                            indent += 1;
-                                        }
-                                        else if (indentChangeStmnt > 0) {
-                                            indent += 1;
-                                        }
-
-                                        if ((indentChangeBrace >= 0) && (indentChangeStmnt < 0)) {
-                                            indent -= 1;
+                                        for (let i = 0; i < _initialIndent * _outputIndentSize; i++) {
+                                            resultLine = '&nbsp;' + resultLine;
                                         }
 
                                         result += resultLine;
@@ -1578,6 +1574,10 @@
                                 function _initOptions(options) {
                                     if (!options)
                                         return;
+
+                                    if ((options.codeCss) || (options.codeCss === '')) {
+                                        _codeCss = options.codeCss;
+                                    }
 
                                     if ((options.tagCss) || (options.tagCss === '')) {
                                         _tagCss = options.tagCss;
@@ -1615,6 +1615,12 @@
 
                                     if (options.initialIndent) {
                                         _initialIndent = options.initialIndent;
+                                    }
+                                    if (options.inputIndentSize) {
+                                        _inputIndentSize = options.inputIndentSize;
+                                    }
+                                    if (options.outputIndentSize) {
+                                        _outputIndentSize = options.outputIndentSize;
                                     }
                                 }
 
@@ -1657,6 +1663,7 @@
 
                     function Code2HtmlSample() {
                         const options = {
+                            codeCss: '',
                             tagCss: '',
                             tagBraceCss: '',
                             declarationCss: '',
@@ -1666,10 +1673,14 @@
                             stringCss: '',
                             stringEscCss: '',
                             normalCss: '',
+                            specialCharCss: '',
                             lineCss: '',
 
-                            initialIndent: 0
+                            initialIndent: 0,
+                            inputIndentSize: 4,
+                            outputIndentSize: 2
                         };
+
                         const code = 'if (myVar == 1) return true; else return false;';
                         const html = Code2Html.create(options).convert(code);
 
@@ -1680,7 +1691,12 @@
                 <script type="text/javascript">
                     function Code2HtmlRun() {
                         const code = document.getElementById('code-to-html-src').value;
-                        const html = Code2Html.create({ initialIndent: parseInt(document.getElementById('code-to-html-indent').value) }).convert(code);
+                        const options = {
+                            initialIndent: parseInt(document.getElementById('code-to-html-indent-init').value),
+                            inputIndentSize: parseInt(document.getElementById('code-to-html-indent-input').value),
+                            outputIndentSize: parseInt(document.getElementById('code-to-html-indent-output').value),
+                        }
+                        const html = Code2Html.create(options).convert(code);
                         document.getElementById('code-to-html-html').value = html;
                         document.getElementById('code-to-html-preview').innerHTML = html;
                     }
@@ -1701,14 +1717,14 @@
                         <div>
                             <p><span>Here is a beta-version of my own implementation of source code to HTML convertor \ syntax highlighter.</span></p>
                             <p><span>For now, only JavaScript is (partially) supported. However, I've already used it for my site.</span></p>
-                            <p><span>This far from ideal implementation took me about 4 hours.</span></p>
+                            <p><span>This far from ideal implementation took me about one day.</span></p>
                             <p><span class="highlighted-red"><i>C# support cooming soon.</i></span></p>
                         </div>
                     </div>
                     <div class="block">
                         <div class="title"><h1>The playground</h1></div>
                         <p><label>Code to convert:<textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></label></p>
-                        <p><label>Initial indent:<input type="number" id="code-to-html-indent" style="width:60px" value="0" /></label></p>
+                        <p><label>Initial indent:<input type="number" id="code-to-html-indent-init" style="width:40px" value="0" /></label> <label>Input indent:<input type="number" id="code-to-html-indent-input" style="width:40px" value="4" /></label> <label>Output indent:<input type="number" id="code-to-html-indent-output" style="width:40px" value="2" /></label></p>
                         <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
                         <p><label>Preview:<span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></label></p>
                         <p><label>Html:<textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></label></p>
