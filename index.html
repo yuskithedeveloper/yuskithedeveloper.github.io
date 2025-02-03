@@ -359,6 +359,10 @@
                 color: #A31515;
             }
 
+                code.js .string .escape {
+                    color: #B776FB;
+                }
+
             code .indent::before {
                 content: '\00a0\00a0';
             }
@@ -1375,6 +1379,7 @@
                                 let _classCss = 'class';
                                 let _methodCss = 'method';
                                 let _stringCss = 'string';
+                                let _stringEscCss = 'escape';
                                 let _normalCss = 'normal';
                                 let _lineCss = 'line';
                                 let _initialIndent = 0;
@@ -1384,6 +1389,7 @@
                                 const _separators = ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'];
                                 const _quotes = ['\'', '"'];
                                 const _spaces = [' ', '\t'];
+                                const _esc = ['\\'];
 
                                 function convert(code) {
                                     let result = '';
@@ -1402,6 +1408,7 @@
                                         let lineContentStarted = false;
                                         let stringLiteralQuote = '';
                                         let stringLiteral = false;
+                                        let escape = false;
                                         let lexeme = '';
                                         let prevLexeme = '';
                                         for (let i = 0; i < line.length; i++) {
@@ -1416,7 +1423,16 @@
                                                 }
                                             }
 
-                                            if (_quotes.indexOf(ch) >= 0) {
+                                            let escSet = false;
+                                            if ((!escape) && (_esc.indexOf(ch) >= 0)) {
+                                                escape = true;
+                                                escSet = true;
+                                                if (stringLiteral) {
+                                                    resultLine += '<span class="' + _stringEscCss + '">';
+                                                }
+                                            }
+
+                                            if ((_quotes.indexOf(ch) >= 0) && (!escape)) {
                                                 if (!stringLiteral) {
                                                     stringLiteral = true;
                                                     stringLiteralQuote = ch;
@@ -1467,6 +1483,13 @@
                                                     resultLine += '&gt;';
                                                 } else {
                                                     resultLine += ch;
+                                                }
+                                            }
+
+                                            if (escape && !escSet) {
+                                                escape = false;
+                                                if (stringLiteral) {
+                                                    resultLine += '</span>';
                                                 }
                                             }
                                         }
@@ -1540,6 +1563,9 @@
                                     if ((options.stringCss) || (options.stringCss === '')) {
                                         _stringCss = options.stringCss;
                                     }
+                                    if ((options.stringEscCss) || (options.stringEscCss === '')) {
+                                        _stringEscCss = options.stringEscCss;
+                                    }
                                     if ((options.normalCss) || (options.normalCss === '')) {
                                         _normalCss = options.normalCss;
                                     }
@@ -1593,15 +1619,16 @@
 
                     function Code2HtmlSample() {
                         const options = {
-                            //tagCss: '',
-                            //braceCss: '',
-                            //declarationCss: '',
-                            //statementCss: '',
-                            //classCss: '',
-                            //methodCss: '',
-                            //stringCss: '',
-                            //normalCss: '',
-                            //lineCss: '',
+                            tagCss: '',
+                            braceCss: '',
+                            declarationCss: '',
+                            statementCss: '',
+                            classCss: '',
+                            methodCss: '',
+                            stringCss: '',
+                            stringEscCss: '',
+                            normalCss: '',
+                            lineCss: '',
 
                             initialIndent: 0
                         };
@@ -1620,14 +1647,14 @@
                         document.getElementById('code-to-html-preview').innerHTML = html;
                     }
 
-                    function Code2HtmlShowSelfCode() { 
-                        const code = document.getElementById('code-to-html-script').innerText; 
+                    function Code2HtmlShowSelfCode() {
+                        const code = document.getElementById('code-to-html-script').innerText;
                         const html = Code2Html.create().convert(code);
                         document.getElementById('code-to-html-self').innerHTML = html;
                     }
 
                     document.addEventListener("DOMContentLoaded", function () {
-                        //Code2HtmlShowSelfCode();
+                        Code2HtmlShowSelfCode();
                     });
                 </script>
                 <div class="container">
@@ -1653,7 +1680,7 @@
                         <div>
                             <p><span class="highlighted-red"><i>Not ready to be shown.</i></span></p>
                         </div>
-                        <!--<div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>-->
+                        <div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>
                     </div>
                 </div>
             </section>
