@@ -1394,7 +1394,7 @@
                                 function convert(code) {
                                     let result = '';
                                     result += '<code class="' + _codeCss + '">';
-                                    const lines = code.split(/\r?\n/);
+                                    const lines = code.split('\n');
                                     let indent = _initialIndent;
                                     for (let l = 0; l < lines.length; l++) {
                                         const line = lines[l];
