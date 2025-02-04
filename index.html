@@ -345,34 +345,44 @@
                 color: #132DFF;
             }
 
-            code.js .decl {
+            code.js .decl, code.csharp .decl {
                 color: #0100FF;
             }
 
-            code.js .stmnt {
+            code.js .stmnt, code.csharp .stmnt {
                 color: #8F08C4;
             }
 
-            code.js .class {
+            code.js .class, code.csharp .class {
                 color: #5491C0;
             }
 
-            code.js .method {
+            code.js .method, code.csharp .method {
                 color: #74531F;
             }
 
-            code.js .string {
+            code.js .string, code.csharp .string {
                 color: #A31515;
             }
 
-                code.js .string .escape {
+                code.js .string .escape, code.csharp .string .escape {
                     color: #B776FB;
                 }
 
-            code.js .comment {
+            code.js .comment, code.csharp .comment {
                 color: #0C670B;
             }
 
+        .field {
+            white-space: nowrap;
+            height: 40px;
+            display: inline-block;
+        }
+
+            .field label {
+                display: inline-block;
+                width: 10rem;
+            }
 
         input.input-numeric {
             width: 50px;
@@ -1376,7 +1386,7 @@
                     if (!window.Code2Html) {
                         window.Code2Html = {
                             create: function (lang, options) {
-                                const _options = _initOptions(options);
+                                const _options = _initOptions(lang, options);
 
                                 const _lang = _getLang(lang);
 
@@ -1554,9 +1564,9 @@
                                     return result;
                                 };
 
-                                function _initOptions(options) {
+                                function _initOptions(lang, options) {
                                     let result = {
-                                        codeCss: 'code-block html js',
+                                        codeCss: 'code-block html ' + lang,
                                         tagCss: 'tag',
                                         tagBraceCss: 'tag-brace',
                                         declarationCss: 'decl',
@@ -1850,12 +1860,16 @@
                     </div>
                     <div class="block">
                         <div class="title"><h1>The playground</h1></div>
-                        <p><label>Code to convert:<textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></label></p>
-                        <p><label>Language:<select id="code-to-html-lang" style="width:180px;"><option value="js">JavaScript</option><option value="csharp">C#</option></select></label></p>
-                        <p><label>Initial indent:<input type="number" id="code-to-html-indent-init" style="width:40px" value="0" /></label> <label>Input indent:<input type="number" id="code-to-html-indent-input" style="width:40px" value="4" /></label> <label>Output indent:<input type="number" id="code-to-html-indent-output" style="width:40px" value="2" /></label></p>
+                        <p><label for="code-to-html-src">Code to convert:</label><textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></p>
+                        <p>
+                            <span class="field"> <label for="code-to-html-lang">Language:</label><select id="code-to-html-lang" style="width: 4rem;"><option value="js">JS</option><option value="csharp">C#</option></select></span>
+                            <br /><span class="field"><label for="code-to-html-indent-init">Initial indent:</label><input type="number" id="code-to-html-indent-init" style="width: 4rem" value="0" /></span>
+                            <br /><span class="field"><label for="code-to-html-indent-input">Input indent:</label><input type="number" id="code-to-html-indent-input" style="width: 4rem" value="4" /></span>
+                            <br /><span class="field"><label for="code-to-html-indent-output">Output indent:</label><input type="number" id="code-to-html-indent-output" style="width: 4rem" value="2" /></span>
+                        </p>
                         <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
-                        <p><label>Preview:<span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></label></p>
-                        <p><label>Html:<textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></label></p>
+                        <p><label>Preview:</label><span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></p>
+                        <p><label for="code-to-html-html">Html:</label><textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></p>
                     </div>
                     <div class="block">
                         <div class="title"><h1>The convertor code</h1></div>
