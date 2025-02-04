@@ -253,8 +253,9 @@
             font-size: 1.2rem;
         }
 
-        select {
+        input, textarea, select {
             background-color: white;
+            border: solid 1px #767676;
         }
 
         h1 {
@@ -1850,7 +1851,7 @@
                     <div class="block">
                         <div class="title"><h1>The playground</h1></div>
                         <p><label>Code to convert:<textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></label></p>
-                        <p><label>Language:<select id="code-to-html-lang"><option value="js">JavaScript</option><option value="csharp">C#</option></select></label></p>
+                        <p><label>Language:<select id="code-to-html-lang" style="width:180px;"><option value="js">JavaScript</option><option value="csharp">C#</option></select></label></p>
                         <p><label>Initial indent:<input type="number" id="code-to-html-indent-init" style="width:40px" value="0" /></label> <label>Input indent:<input type="number" id="code-to-html-indent-input" style="width:40px" value="4" /></label> <label>Output indent:<input type="number" id="code-to-html-indent-output" style="width:40px" value="2" /></label></p>
                         <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
                         <p><label>Preview:<span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></label></p>
