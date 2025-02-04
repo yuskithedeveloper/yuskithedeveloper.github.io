@@ -364,13 +364,10 @@
                     color: #B776FB;
                 }
 
-            code .indent::before {
-                content: '\00a0\00a0';
+            code.js .comment {
+                color: #0C670B;
             }
 
-            code .indent-2::before {
-                content: '\00a0\00a0\00a0\00a0';
-            }
 
         input.input-numeric {
             width: 50px;
@@ -1383,6 +1380,7 @@
                                 let _methodCss = 'method';
                                 let _stringCss = 'string';
                                 let _stringEscCss = 'escape';
+                                let _commentCss = 'comment';
                                 let _normalCss = 'normal';
                                 let _specialCharCss = 'special-char';
                                 let _lineCss = 'line';
@@ -1438,6 +1436,7 @@
                                     }
 
                                     let prevLexeme = '';
+                                    let blockComment = false;
                                     for (let l = contentStartLine; l <= contentEndLine; l++) {
                                         const line = lines[l];
 
@@ -1448,6 +1447,7 @@
                                         let lineContentStarted = false;
                                         let stringLiteralQuote = '';
                                         let stringLiteral = false;
+                                        let lineComment = false;
                                         let escape = false;
                                         let lexeme = '';
                                         for (let i = 0; i < line.length; i++) {
@@ -1467,7 +1467,45 @@
                                                 }
                                                 else {
                                                     lineContentStarted = true;
+                                                    if (blockComment) {
+                                                        resultLine += '<span class="' + _commentCss + '">';
+                                                    }
                                                 }
+                                            }
+
+                                            if ((!stringLiteral) && (!lineComment) && (!blockComment) && (ch === '/') && (i < line.length - 1)) {
+                                                const nextCh = line[i + 1];
+                                                if (nextCh == '/') {
+                                                    lineComment = true;
+                                                    resultLine += '<span class="' + _commentCss + '">';
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + nextCh + '</span>';
+                                                    i++;
+                                                    continue;
+                                                }
+                                                else if (nextCh == '*') {
+                                                    blockComment = true;
+                                                    resultLine += '<span class="' + _commentCss + '">';
+                                                    resultLine += '<span class="' + _specialCharCss + '">' + ch + nextCh + '</span>';
+                                                    i++;
+                                                    continue;
+                                                }
+                                            }
+
+                                            if (lineComment || blockComment) { 
+                                                if ((blockComment) && (ch === '*') && (i < line.length - 1)) {
+                                                    const nextCh = line[i + 1];
+                                                    if (nextCh == '/') {
+                                                        blockComment = false;
+
+                                                        resultLine += '<span class="' + _specialCharCss + '">' + ch + nextCh + '</span>';
+                                                        resultLine += '</span>';
+                                                        i++;
+                                                        continue;
+                                                    }
+                                                }
+                                                 
+                                                resultLine += ch;
+                                                continue;
                                             }
 
                                             let escSet = false;
@@ -1513,7 +1551,7 @@
                                                         resultLine += '<span class="' + _specialCharCss + '">' + ch + '</span>';
                                                     }
 
-                                                    if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
+                                                    if (lexemeType) {
                                                         prevLexeme = lexeme;
                                                     }
                                                     lexeme = '';
@@ -1551,10 +1589,15 @@
                                             const lexemeCss = _getLexemeCss(lexemeType);
                                             resultLine += '<span class="' + lexemeCss + '">' + lexeme + '</span>';
 
-                                            if (lexemeType == 'declaration' || lexemeType == 'statement' || lexemeType == 'class' || lexemeType == 'method') {
+                                            if (lexemeType) {
                                                 prevLexeme = lexeme;
                                             }
                                             lexeme = '';
+                                        }
+                                        //this is a comment
+                                        if (lineComment || blockComment) {
+                                            lineComment = false;
+                                            result += '</span>';
                                         }
 
                                         for (let i = 0; i < _initialIndent * _outputIndentSize; i++) {
@@ -1569,7 +1612,6 @@
                                     result += '\n</code>';
                                     return result;
                                 };
-
 
                                 function _initOptions(options) {
                                     if (!options)
@@ -1602,6 +1644,9 @@
                                     }
                                     if ((options.stringEscCss) || (options.stringEscCss === '')) {
                                         _stringEscCss = options.stringEscCss;
+                                    }
+                                    if ((options.commentCss) || (options.commentCss === '')) {
+                                        _commentCss = options.commentCss;
                                     }
                                     if ((options.normalCss) || (options.normalCss === '')) {
                                         _normalCss = options.normalCss;
@@ -1672,6 +1717,7 @@
                             methodCss: '',
                             stringCss: '',
                             stringEscCss: '',
+                            commentCss: '',
                             normalCss: '',
                             specialCharCss: '',
                             lineCss: '',
