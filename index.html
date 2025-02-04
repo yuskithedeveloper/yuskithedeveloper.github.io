@@ -1491,7 +1491,7 @@
                                                 }
                                             }
 
-                                            if (lineComment || blockComment) { 
+                                            if (lineComment || blockComment) {
                                                 if ((blockComment) && (ch === '*') && (i < line.length - 1)) {
                                                     const nextCh = line[i + 1];
                                                     if (nextCh == '/') {
@@ -1503,7 +1503,7 @@
                                                         continue;
                                                     }
                                                 }
-                                                 
+
                                                 resultLine += ch;
                                                 continue;
                                             }
@@ -1594,7 +1594,7 @@
                                             }
                                             lexeme = '';
                                         }
-                                        //this is a comment
+
                                         if (lineComment || blockComment) {
                                             lineComment = false;
                                             result += '</span>';
