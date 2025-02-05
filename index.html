@@ -1409,7 +1409,7 @@
                                         let lineContentStarted = false;
                                         let stringLiteralQuote = '';
                                         let stringLiteral = false;
-                                        let lineComment = false; 
+                                        let lineComment = false;
                                         let lexeme = '';
                                         for (let i = 0; i < line.length; i++) {
                                             if (i < codeInfo.minIndent)
@@ -1475,8 +1475,8 @@
                                                 resultLine += _getClosingTag();
                                                 i++;
                                                 continue;
-                                            } 
-                                           
+                                            }
+
                                             if ((_lang.quotes.indexOf(ch) >= 0)) {
                                                 if (!stringLiteral) {
                                                     stringLiteral = true;
