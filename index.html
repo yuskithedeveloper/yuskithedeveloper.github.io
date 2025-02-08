@@ -281,7 +281,6 @@
 
         img {
             max-width: 100%;
-            border: solid 1px #dddddd;
         }
 
         p {
@@ -752,6 +751,13 @@
                             }
 
                             sections[i].style.display = '';
+
+                            const imgs = sections[i].getElementsByTagName('img');
+                            for (let j = 0; j < imgs.length; j++) {
+                                if ((!imgs[j].getAttribute('src')) && (imgs[j].getAttribute('data-src'))) {
+                                    imgs[j].setAttribute('src', imgs[j].getAttribute('data-src'));
+                                }
+                            }
                         }
                         else {
                             sections[i].style.display = 'none';
@@ -1350,41 +1356,41 @@
                     <div class="block color-bw">
                         <div class="title"><h3>2009</h3></div>
                         <div class="img-container-h preview" id="photos-moments-2009">
-                            <img src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2009-3.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2009-3.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
                         </div>
                     </div>
                     <div class="block color-bw">
                         <div class="title"><h3>2008</h3></div>
                         <div class="img-container-h preview" id="photos-moments-2008">
-                            <img src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
                         </div>
                     </div>
                     <div class="block color-bw">
                         <div class="title"><h3>2007</h3></div>
                         <div class="img-container-h preview" id="photos-moments-2007">
-                            <img src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
                         </div>
                     </div>
                     <div class="block color-bw">
                         <div class="title"><h3>2006</h3></div>
                         <div class="img-container-h preview" id="photos-moments-2006">
-                            <img src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
-                            <img src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
                         </div>
                     </div>
                     <div class="block color-bw">
                         <div class="title"><h3>2005</h3></div>
                         <div class="img-container-h preview" id="photos-moments-2005">
-                            <img src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
-                            <img src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
-                            <img src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
                         </div>
                     </div>
                 </div>
@@ -1518,7 +1524,6 @@
                                                 }
                                             }
                                             else if (!stringLiteral) {
-                                                console.log('xx', ch);
                                                 if ((_lang.separators.indexOf(ch) >= 0) || (_lang.spaces.indexOf(ch) >= 0)) {
                                                     const nextNonSpaceCh = _getNextNonSpace(line, i);
                                                     const prevNonSpaceCh = _getPrevNonSpace(line, i - lexeme.length);
@@ -1530,7 +1535,6 @@
                                                     else {
                                                         resultLine += _getContentTag(_options.specialCharCss, _escapeChar(ch));
                                                     }
-                                                    console.log('xx2', ch);
 
                                                     if (lexeme) {
                                                         prevLexeme = lexeme;
@@ -1543,7 +1547,6 @@
 
                                                 if (stringInterpolation && (_lang.interpolationBraces.indexOf(ch) >= 0)) {
                                                     resultLine += _getOpeningTag(_options.stringCss);
-                                                    console.log('stringLiteral = true', ch);
                                                     stringLiteral = true;
 
                                                     prevLexeme = '';
@@ -1556,7 +1559,6 @@
                                                 if (stringInterpolation && (_lang.interpolationBraces.indexOf(ch) >= 0)) {
                                                     resultLine += _getClosingTag();
                                                     resultLine += _getContentTag(_options.specialCharCss, ch);
-                                                    console.log('stringLiteral = false', ch);
                                                     stringLiteral = false;
                                                 }
                                                 else {
@@ -1922,9 +1924,12 @@
                         <div>
                             <p><span>This is a copy of my <a href="https://www.linkedin.com/pulse/way-thinking-1-test-task-performance-kirill-iusupov-yqxge/" target="_blank">LinkedIn</a> article. I just thought why not post it here too to see how it looks, with more control over the markup and the awesome <a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">code</a> blocks:)</span></p>
                         </div>
-                    </div>
+                    </div> 
                     <div class="block">
                         <div class="title"><h1>Test task &amp; Performance optimization</h1></div>
+                        <div>
+                            <img data-src="articles/article-tt-po/1.jpg" />
+                        </div>
                         <div>
                             <p><span>Showing how a developer (me in this case) approaches a problem, and how an apparently simple task can become somewhat complicated and unclear.</span></p>
                             <p><span>Some performance optimization tips, not the best C# code and other tech stuff.</span></p>
