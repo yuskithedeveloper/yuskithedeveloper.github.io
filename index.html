@@ -425,6 +425,15 @@
             filter: blur(1px);
         }
 
+        .description {
+            text-align: center;
+        }
+
+            .description span {
+                font-size: 1rem;
+                font-style: italic;
+            }
+
         .term {
             font-style: italic;
         }
@@ -1951,6 +1960,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Straightforward implementation, took 15 minutes</span></p>
                         <p><span>Sure, this is not the code task authors are expecting. But it works, so I'll use it as a self-test for further implementations.</span></p>
                         <p class="sub-title"><h3>Doubts and thoughts:</h3></p>
                         <ul>
@@ -2053,6 +2063,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Some improvements but still straightforward, 10 minutes more and lines of code doubled</span></p>
                     </div>
                     <div class="block color-bw">
                         <p><span class="thought">Run... Oh, "War and Peace" is not long enough, I need at least "War and Peace" x5.</span></p>
@@ -2163,6 +2174,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>The same with Stopwatches, another 10 minutes</span></p>
                         <h3>The results:</h3>
                         <ul>
                             <li><p><span><code>List.Contains</code> took almost 33 seconds, super slow, as expected. <span class="thought">I used it on purpose.</span></span></p></li>
@@ -2179,6 +2191,7 @@
                                 <br /><span class="line"><span class="decl">var</span> <span class="normal">isDuplicate</span> <span class="special-char">=</span> <span class="special-char">!</span><span class="normal">duplicateWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Life-changing line of code (two lines, actually)</span></p>
                         <p>
                             <span>
                                 It was 34 seconds in total, now it is about 1400 ms (again, after several measurements).
@@ -2201,6 +2214,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Storing and reusing the results of previous calls</span></p>
                         <p><span>1400 to 1150 ms in total (-18%). And slightly faster if I run it again without clearing the <code>Dictionary</code>.</span></p>
                         <h2>Avoid misuses</h2>
                         <p><span>See the <code>String.ToLower</code> at the beginning? It takes less than 100 ms (80-90 ms to be exact) - nothing too bad if we are talking about tens of seconds. But now it has become 7-8%.</span></p>
@@ -2209,6 +2223,7 @@
                                 <span class="line"><span class="decl">var</span> <span class="normal">duplicateWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="class">StringComparer</span><span class="special-char">.</span><span class="normal">OrdinalIgnoreCase</span><span class="special-char">)</span><span class="special-char">;</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>The right way of doing a string comparison. And the fastest one</span></p>
                         <p><span>Another 50ms gone (-4%; hereinafter: from previous result). Obviously, the usage of <code>StringComparer</code> has some cost.</span></p>
                         <p><span><b>The output is not lower-case only anymore, but the task doesn't have any requirements about it.</b></span></p>
                         <h2>A couple more things</h2>
@@ -2367,6 +2382,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>This implementation took about 2 hours with all the debug and tests</span></p>
                         <p><span class="thought">I don't think it's possible to tell how I did come to this implementation.</span></p>
                         <p><span>First, the performance: 640 ms (-20%) (without <code>Stopwatches</code>)</span></p>
                         <p><span>Next, the test task does not mention anything about same length words ordering, so different solutions can return different results - and this is absolutely valid, and this is the case with this new one. I had to change my self-tests to avoid false failures. <span class="thought">I'll not add another performance-decreasing <code>OrderBy</code> or <code>ThenBy</code> to make it deterministic without explicit requirement, no-no-no.</span></span></p>
@@ -2411,6 +2427,7 @@
                                 <span class="line"><span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="class">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Different ways to store word separators and the fastest version of the check</span></p>
                         <p><span>The 20-ifs approach (with <code>==</code> and <code>Equals</code>) didn't improve anything at all. <span class="thought">A bit surprised here.</span></span></p>
                         <p><span>Neither did the <code>HashSet</code>. <span class="thought">Expected, the collection is too small.</span></span></p>
                         <p><span>Using the <code>List</code> did the trick, and now I'm at 530 ms (-17%). <span class="thought">Surprised, <code>List.Contains</code> is faster than <code>Array.Contains</code>...</span></span></p>
@@ -2446,6 +2463,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Using a char array instead of a StringBuilder</span></p>
                         <p><span>10-15ms faster (-3%), barely noticeable. And puts this weird limit on the word length. <span class="thought">Not a problem for now, changing 100 to 10000 doesn't seem to affect timing.</span></span></p>
                     </div>
                     <div class="block color-bw">
@@ -2524,6 +2542,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
+                        <p class="description"><span>Not bad for a robot</span></p>
                     </div>
                 </div>
             </section>
