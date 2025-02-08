@@ -1985,7 +1985,7 @@
                                 <br /><span class="line"></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">bigIn</span> <span class="special-char">=</span> <span class="normal">File</span><span class="special-char">.</span><span class="method">ReadAllText</span><span class="special-char">(</span><span class="string"><span class="special-char">"</span>C:<span class="escape"><span class="special-char">\\</span></span>Users<span class="escape"><span class="special-char">\\</span></span>-<span class="escape"><span class="special-char">\\</span></span>Downloads<span class="escape"><span class="special-char">\\</span></span>WarAndPeace.txt<span class="special-char">"</span></span><span class="special-char">)</span><span class="special-char">;</span></span>
                                 <br /><span class="line"></span>
-                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">testTaskRunners</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="normal">ITestTask</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">{</span> <span class="decl">new</span> <span class="class">TestTask_Straightforward</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">}</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">testTaskRunners</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="class">ITestTask</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">{</span> <span class="decl">new</span> <span class="class">TestTask_Straightforward</span><span class="special-char">(</span><span class="special-char">)</span> <span class="special-char">}</span><span class="special-char">;</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">runner</span> <span class="normal">in</span> <span class="normal">testTaskRunners</span><span class="special-char">)</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">selfTestOut</span> <span class="special-char">=</span> <span class="normal">runner</span><span class="special-char">.</span><span class="method">Run</span><span class="special-char">(</span><span class="normal">selfTestIn</span><span class="special-char">)</span><span class="special-char">;</span></span>
@@ -2169,7 +2169,7 @@
                             <li><p><span>The self-made <code>Reverse</code> took only ~400 milliseconds, not bad. <span class="thought">I'm surprised.</span></span></p></li>
                             <li><p><span><code>String.Split</code> took ~300 ms.</span></p></li>
                             <li><p><span><code>OrderBy</code> another ~250 ms.</span></p></li>
-                            <li><p><span><code>String.ToLower</code>, <code>String.Length%2 == 0</code>, <code>List.Add</code> and <code>String.Join</code> took less than 100 ms each.</span></p></li>
+                            <li><p><span><code>String.ToLower</code>, <code>String.Length % 2 == 0</code>, <code>List.Add</code> and <code>String.Join</code> took less than 100 ms each.</span></p></li>
                         </ul>
                         <h2>Use appropriate data structures</h2>
                         <p><span>With this quantity of words, I need a <code>HashSet</code> for duplicates detection, not a <code>List</code>. In fact, I put <code>List.Contains</code> in my code only to illustrate this very common mistake.</span></p>
@@ -2427,7 +2427,7 @@
                                 <br /><span class="line"><span class="decl">var</span> <span class="normal">wordBuilderIndex</span> <span class="special-char">=</span> <span class="normal">0</span><span class="special-char">;</span></span>
                                 <br /><span class="line"><span class="stmnt">foreach</span> <span class="special-char">(</span><span class="decl">var</span> <span class="normal">chr</span> <span class="normal">in</span> <span class="normal">input</span><span class="special-char">)</span></span>
                                 <br /><span class="line"><span class="special-char">{</span></span>
-                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="normal">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="class">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">isSeparator</span><span class="special-char">)</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="stmnt">if</span> <span class="special-char">(</span><span class="normal">wordBuilderIndex</span> <span class="special-char">!</span><span class="special-char">=</span> <span class="normal">0</span><span class="special-char">)</span></span>
@@ -2462,24 +2462,24 @@
                             <h3>I repeated my tests with a 135MB text file ("War and Peace" x40) as input:</h3>
                         </p>
                         <ul>
-                            <li><p><span>List-based solution (the first one): Didn't test as it would take too long.</span></p></li>
-                            <li><p><span>HashSet-based solution: 5000 ms.</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with StringBuilder): 4050 ms (-20%)</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with char array): 3840 ms (-5%)</span></p></li>
+                            <li><p><span><code>List</code> solution (the first one): Didn't test as it would take too long.</span></p></li>
+                            <li><p><span><code>HashSet</code> solution: 5000 ms.</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>StringBuilder</code>): 4050 ms (-20%)</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>char[]</code>): 3840 ms (-5%)</span></p></li>
                         </ul>
-                        <p><span class="thought">At least the later versions are faster!</span></p>
+                        <p><span class="thought">At least the supposed to be faster versions are faster!</span></p>
                         <p class="sub-title"><h3>And then with an input where all the "words" are unique and have the same length (GUIDs), about the same input length as above:</h3></p>
                         <ul>
-                            <li><p><span>HashSet-based solution: 1750 ms.</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with StringBuilder): 2700 ms (+50%)</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with char array): 2650 ms (-2%)</span></p></li>
+                            <li><p><span><code>HashSet</code> solution: 1750 ms.</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>StringBuilder</code>): 2700 ms (+50%)</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>char[]</code>): 2650 ms (-2%)</span></p></li>
                         </ul>
                         <p><span class="thought">Expected</span></p>
                         <p class="sub-title"><h3>And then with an input where all the "words" are unique and have different length (numbers):</h3></p>
                         <ul>
-                            <li><p><span>HashSet-based solution: 6900 ms.</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with StringBuilder): 6000 ms (-13%)</span></p></li>
-                            <li><p><span>List of Dictionaries solution (with char array): 5800 ms (-3%)</span></p></li>
+                            <li><p><span><code>HashSet</code> solution: 6900 ms.</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>StringBuilder</code>): 6000 ms (-13%)</span></p></li>
+                            <li><p><span><code>List&lt;Dictionary&gt;</code> solution (with <code>char[]</code>): 5800 ms (-3%)</span></p></li>
                         </ul>
                         <p><span class="thought">Not the best nor the worst...</span></p>
                         <p><span>Which solution is the best? It depends... <i>Which one are expecting the task authors?</i></span></p>
@@ -2495,7 +2495,7 @@
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">public</span> <span class="decl">string</span> <span class="method">Run</span><span class="special-char">(</span><span class="decl">string</span> <span class="normal">input</span><span class="special-char">)</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="special-char">{</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> Split the sentence into words</span></span>
-                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="normal">Consts</span><span class="special-char">.</span><span class="normal">Separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
+                                <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="decl">var</span> <span class="normal">words</span> <span class="special-char">=</span> <span class="normal">input</span><span class="special-char">.</span><span class="method">Split</span><span class="special-char">(</span><span class="class">Consts</span><span class="special-char">.</span><span class="normal">Separators</span><span class="special-char">,</span> <span class="class">StringSplitOptions</span><span class="special-char">.</span><span class="normal">RemoveEmptyEntries</span><span class="special-char">)</span><span class="special-char">;</span></span>
                                 <br /><span class="line"></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><span class="special-char">//</span> List to store the transformed words</span></span>
                                 <br /><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span> <span class="normal">transformedWords</span> <span class="special-char">=</span> <span class="decl">new</span> <span class="class">List</span><span class="special-char">&lt;</span><span class="decl">string</span><span class="special-char">&gt;</span><span class="special-char">(</span><span class="special-char">)</span><span class="special-char">;</span></span>
