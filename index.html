@@ -317,7 +317,7 @@
         }
 
         code {
-            color: #171717;
+            color: #484848;
             font-family: monospace;
             font-size: 1.2rem;
             white-space: nowrap;
@@ -423,6 +423,14 @@
         .secret {
             cursor: pointer;
             filter: blur(1px);
+        }
+
+        .term {
+            font-style: italic;
+        }
+
+        .thought {
+            font-style: italic;
         }
 
         .left-menu {
@@ -1164,15 +1172,15 @@
                             <li>
                                 <p>
                                     <span>
-                                        The browser executes the script and makes a <i>"preflight"</i> request (OPTIONS HTTP method) to <nobr><b>origin-B</b></nobr>.
-                                        <br />The response may contain <code>"Access-Control-Allow-Origin"</code> and <code>"Access-Control-Allow-Methods"</code> headers (these are the most commonly used, but there are others).
+                                        The browser executes the script and makes a <span class="term">"preflight"</span> request (OPTIONS HTTP method) to <nobr><b>origin-B</b></nobr>.
+                                        <br />The response may contain <code>Access-Control-Allow-Origin</code> and <code>Access-Control-Allow-Methods</code> headers (these are the most commonly used, but there are others).
                                     </span>
                                 </p>
                             </li>
                             <li>
                                 <p>
                                     <span>
-                                        Before executing the actual meaningful request (GET, POST, etc.) the browser checks if <nobr><b>origin-A</b></nobr> is within the <code>"Access-Control-Allow-Origin"</code> and the HTTP method is in <code>"Access-Control-Allow-Methods"</code>.
+                                        Before executing the actual meaningful request (GET, POST, etc.) the browser checks if <nobr><b>origin-A</b></nobr> is within the <code>Access-Control-Allow-Origin</code> and the HTTP method is in <code>Access-Control-Allow-Methods</code>.
                                         <br /><b>If not - the request is blocked.</b>
                                     </span>
                                 </p>
@@ -1186,8 +1194,8 @@
                         </p>
                         <p>
                             <span>
-                                <b>Important:</b> <i>"origin"</i> is a combination of scheme ("http", "https"), domain (but not subdomain) and port.
-                                <br />For example, <code>"https://ui.domain.com"</code> and <code>"https://api.domain.com"</code> are considered different origins.
+                                <b>Important:</b> <span class="term">"origin"</span> is a combination of scheme ("http", "https"), domain (but not subdomain) and port.
+                                <br />For example, "https://ui.domain.com" and "https://api.domain.com" are considered different origins.
                             </span>
                         </p>
                     </div>
@@ -1198,7 +1206,7 @@
                                 <p><span>CORS headers are controlled by <nobr><b>origin-B</b></nobr>, not <nobr>origin-A</nobr>. Usually, in your React \ Angular \ Vue app, you have to put it on the server API side.</span></p>
                             </li>
                             <li>
-                                <p><span>You can bypass CORS restrictions by using a so-called <i>"CORS proxy"</i> (the problem of misunderstanding CORS is so big that even some commercial workarounds were implemented). However, I don't recommend it for anything serious.</span></p>
+                                <p><span>You can bypass CORS restrictions by using a so-called <span class="term">"CORS proxy"</span> (the problem of misunderstanding CORS is so big that even some commercial workarounds were implemented). However, I don't recommend it for anything serious.</span></p>
                             </li>
                             <li>
                                 <p><span>As all the checks are done by your browser, there are some ways to disable it (with extensions, startup arguments and so on). But don't ask your users to do that.</span></p>
@@ -1220,7 +1228,7 @@
                         </p>
                         <p>
                             <span>
-                                Many times, reading about XSS attacks, I found an example with an <code>"alert()"</code>, which is confusing as it does nothing but reveal itself.
+                                Many times, reading about XSS attacks, I found an example with an <code>alert()</code>, which is confusing as it does nothing but reveal itself.
                                 <br />Here is a better example:
                             </span>
                         </p>
@@ -1238,7 +1246,7 @@
                             </span>
                         </p>
                         <p>
-                            <span>Without CORS restrictions (or with <code>"Access-Control-Allow-Origin: *"</code> on the attackable site) every user who opens a site containing the script above, would make a request, every second.</span>
+                            <span>Without CORS restrictions (or with "<code>Access-Control-Allow-Origin: *</code>" on the attackable site) every user who opens a site containing the script above, would make a request, every second.</span>
                         </p>
                         <h2>CSRF (XSS-based user action emulation)</h2>
                         <p>
@@ -1266,7 +1274,7 @@
                                 <br />But keep in mind that CORS doesn't prevent such things, it just makes them a bit more complicated.
                             </span>
                         </p>
-                        <h2 class="highlighted-red">CORS will not prevent cookies and other data theft</h2><p><span>In the code below, <code>https://userdatatheft.com</code> is the server who controls the CORS headers, so it will likely set <code>"Access-Control-Allow-Origin: *"</code>, and the request will pass.</span></p>
+                        <h2 class="highlighted-red">CORS will not prevent cookies and other data theft</h2><p><span>In the code below, "https://userdatatheft.com" is the server who controls the CORS headers, so it will likely set "<code>Access-Control-Allow-Origin: *</code>", and the request will pass.</span></p>
                         <p>
                             <span>
                                 <code class="code-block html js">
@@ -1873,7 +1881,7 @@
                         </p>
                         <p><span>Showing how a developer (me in this case) approaches a problem, and how an apparently simple task can become somewhat complicated and unclear.</span></p>
                         <p><span>Some performance optimization tips, not the best C# code and other tech stuff.</span></p>
-                        <p><span><i>I'm not into test tasks, but this time I thought why not...</i></span></p>
+                        <p><span class="thought">I'm not into test tasks, but this time I thought why not...</span></p>
                         <h2>The (little rephrased) test task:</h2>
                         <ol>
                             <li>
@@ -1894,16 +1902,14 @@
                                 <p><span>Do not use AI, GPT, etc.</span></p>
                             </li>
                         </ul>
-                        <p><span><i>Okay, "Create a new project"...</i></span></p>
+                        <p><span class="thought">Okay, "Create a new project"...</span></p>
                     </div>
                     <div class="block">
                         <h1>First implementations &amp;&amp; first questions</h1>
                         <p>
-                            <span>
-                                <i>
-                                    Windows Forms? Web? Experiment with MAUI? Unit Test Project?
-                                    <br />Console.
-                                </i>
+                            <span class="thought">
+                                Windows Forms? Web? Experiment with MAUI? Unit Test Project?
+                                <br />Console.
                             </span>
                         </p>
                         <p>
@@ -1949,25 +1955,25 @@
                         <p class="sub-title"><h3>Doubts and thoughts:</h3></p>
                         <ul>
                             <li>
-                                <p><span>Maybe I need a case-insensitive duplicates detection? Yes, normally we consider words to be the same regardless of case. <i>I'll just do String.ToLower...</i></span></p>
+                                <p><span>Maybe I need a case-insensitive duplicates detection? Yes, normally we consider words to be the same regardless of case. <span class="thought">I'll just do <code>String.ToLower...</code></span></span></p>
                             </li>
                             <li>
-                                <p><span>What chars should I use as input separators? <i>I'll put it into a const.</i></span></p>
+                                <p><span>What chars should I use as input separators? <span class="thought">I'll put it into a <code>const</code>.</span></span></p>
                             </li>
                             <li>
-                                <p><span>What if the input is null? <i>Return null.</i></span></p>
+                                <p><span>What if the input is null? <span class="thought">Return null.</span></span></p>
                             </li>
                             <li>
-                                <p><span>Or it doesn't fit in memory? <i>I don't think the task is about this.</i></span></p>
+                                <p><span>Or it doesn't fit in memory? <span class="thought">I don't think the task is about this.</span></span></p>
                             </li>
                             <li>
-                                <p><span>Any other info about the input? <i>No?</i></span></p>
+                                <p><span>Any other info about the input? <span class="thought">No?</span></span></p>
                             </li>
                             <li>
-                                <p><span>No String.Reverse in C#??? <i>No String.Reverse in C#.</i></span></p>
+                                <p><span>No <code>String.Reverse</code> in C#??? <span class="thought">No <code>String.Reverse</code> in C#.</span></span></p>
                             </li>
                         </ul>
-                        <p><span>Obviously, I need a much longer string to measure the performance. And self-tests. And performance comparisons. <i>And Program.cs is not the right place...</i></span></p>
+                        <p><span>Obviously, I need a much longer string to measure the performance. And self-tests. And performance comparisons. <span class="thought">And Program.cs is not the right place...</span></span></p>
                         <p>
                             <code class="code-block csharp">
                                 <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">Program</span></span>
@@ -2049,9 +2055,9 @@
                         </p>
                     </div>
                     <div class="block color-bw">
-                        <p><span><i>Run... Oh, "War and Peace" is not long enough, I need at least "War and Peace" x5.</i></span></p>
-                        <p><span><i>Run... 34065 milliseconds for a 16468070-length string and 2882885 words. Maybe it is fast enough?</i></span></p>
-                        <p><span><i>Should I put this stopwatch somewhere else? I'll remove it from the final version anyway...</i></span></p>
+                        <p><span class="thought">Run... Oh, "War and Peace" is not long enough, I need at least "War and Peace" x5.</span></p>
+                        <p><span class="thought">Run... 34065 milliseconds for a 16468070-length string and 2882885 words. Maybe it is fast enough?</span></p>
+                        <p><span class="thought">Should I put this <code>Stopwatch</code> somewhere else? I'll remove it from the final version anyway...</span></p>
                     </div>
                     <div class="block">
                         <h1>On the surface (tips)</h1>
@@ -2159,10 +2165,10 @@
                         </p>
                         <h3>The results:</h3>
                         <ul>
-                            <li><p><span><code>List.Contains</code> took almost 33 seconds, super slow, as expected. <i>I used it on purpose.</i></span></p></li>
-                            <li><p><span>The self-made <code>Reverse</code> took only ~400 milliseconds, not bad. <i>I'm surprised.</i></span></p></li>
+                            <li><p><span><code>List.Contains</code> took almost 33 seconds, super slow, as expected. <span class="thought">I used it on purpose.</span></span></p></li>
+                            <li><p><span>The self-made <code>Reverse</code> took only ~400 milliseconds, not bad. <span class="thought">I'm surprised.</span></span></p></li>
                             <li><p><span><code>String.Split</code> took ~300 ms.</span></p></li>
-                            <li><p><span><code>OrderBy</code> another ~250 ms.</i></span></p></li>
+                            <li><p><span><code>OrderBy</code> another ~250 ms.</span></p></li>
                             <li><p><span><code>String.ToLower</code>, <code>String.Length%2 == 0</code>, <code>List.Add</code> and <code>String.Join</code> took less than 100 ms each.</span></p></li>
                         </ul>
                         <h2>Use appropriate data structures</h2>
@@ -2195,7 +2201,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
-                        <p><span>1400 to 1150 ms in total (-18%). And slightly faster if I run it again without clearing the Dictionary.</span></p>
+                        <p><span>1400 to 1150 ms in total (-18%). And slightly faster if I run it again without clearing the <code>Dictionary</code>.</span></p>
                         <h2>Avoid misuses</h2>
                         <p><span>See the <code>String.ToLower</code> at the beginning? It takes less than 100 ms (80-90 ms to be exact) - nothing too bad if we are talking about tens of seconds. But now it has become 7-8%.</span></p>
                         <p>
@@ -2249,20 +2255,20 @@
                                 </p>
                             </li>
                         </ul>
-                        <p><span>Honestly, I didn't see any improvements here. <i>This is expected: String.Join has a special case for lists and arrays, modulus operator is optimized by many compilers, and we have relatively few single-char words.</i></span></p>
+                        <p><span>Honestly, I didn't see any improvements here. <span class="thought">This is expected: <code>String.Join</code> has a special case for lists and arrays, modulus operator is optimized by many compilers, and we have relatively few single-char words.</span></span></p>
                         <h2>Remove the debug code</h2>
                         <p><span>The <code>Stopwatches</code>. I removed them (except one) and the time dropped from 1100 to 800 (-27%).</span></p>
                     </div>
                     <div class="block color-bw">
-                        <p><span><i>This the "solution" I'm supposed to demonstrate? A HashSet and a Dictionary? Not too impressive, but who knows...</i></span></p>
-                        <p><span><i>At this point, I spent about 1 hour on the task.</i></span></p>
-                        <p><span><i>Definitely I should rename "isEven" var to "isEvenLength" and "TestTask_Fast" to "TestTask_WithHashSet". And move the overall time measurement to Program.cs.</i></span></p>
+                        <p><span class="thought">This the "solution" I'm supposed to demonstrate? A <code>HashSet</code> and a <code>Dictionary</code>? Not too impressive, but who knows...</span></p>
+                        <p><span class="thought">At this point, I spent about 1 hour on the task.</span></p>
+                        <p><span class="thought">Definitely I should rename "<code>isEven</code>" var to "<code>isEvenLength</code>" and "<code>TestTask_Fast</code>" to "<code>TestTask_WithHashSet</code>". And move the overall time measurement to Program.cs.</span></p>
                     </div>
                     <div class="block">
                         <h1>Deeper (tips?)</h1>
                         <p><span>800 ms now. There are some problems with my solution above: (1) it iterates over the input at least 4 times, (2) creates lots of objects, and (3) there is nothing I can do about it. On the other hand, there is one important good thing about it: it's readable and maintainable.</span></p>
                         <p><span>Now I will try a different approach.</span></p>
-                        <p><span><i>If I was working on a regular project, "REST here, CRUD there", I would think twice before going ahead. </i></span></p>
+                        <p><span class="thought">If I was working on a regular project, "REST here, CRUD there", I would think twice before going ahead.</span></p>
                         <h2>Not so readable code</h2>
                         <p><span>The main idea here is to use some task-relevant and more efficient data structure instead of <code>IEnumerable&lt;string&gt;</code></span></p>
                         <p>
@@ -2365,16 +2371,16 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
-                        <p><span><i>I don't think it's possible to tell how I did come to this implementation.</i></span></p>
+                        <p><span class="thought">I don't think it's possible to tell how I did come to this implementation.</span></p>
                         <p><span>First, the performance: 640 ms (-20%) (without <code>Stopwatches</code>)</span></p>
-                        <p><span>Next, the test task does not mention anything about same length words ordering, so different solutions can return different results - and this is absolutely valid, and this is the case with this new one. I had to change my self-tests to avoid false failures. <i>I'll not add another performance-decreasing OrderBy\ThenBy to make it deterministic without explicit requirement, no-no-no.</i></span></p>
+                        <p><span>Next, the test task does not mention anything about same length words ordering, so different solutions can return different results - and this is absolutely valid, and this is the case with this new one. I had to change my self-tests to avoid false failures. <span class="thought">I'll not add another performance-decreasing <code>OrderBy</code> or <code>ThenBy</code> to make it deterministic without explicit requirement, no-no-no.</span></span></p>
                         <p class="sub-title">
                             <h3>The slow parts:</h3>
                         </p>
                         <ul>
                             <li><p><span><code>Consts.Separators.Contains</code> (<code>Separators</code> is a 20 chars array).</span></p></li>
                             <li><p><span>First <code>StringBuilder</code> (<code>var wordBuilder</code>) operations.</span></p></li>
-                            <li><p><span>AddWord method. <i>Expected.</i></span></p></li>
+                            <li><p><span><code>AddWord</code> method. <span class="thought">Expected.</span></span></p></li>
                         </ul>
                         <h2>Experiment</h2>
                         <p><span>Using an array to store the separators was a good idea, since this is the right type for <code>String.Split</code>. But I don't have <code>String.Split</code> anymore...</span></p>
@@ -2409,10 +2415,10 @@
                                 <span class="line"><span class="decl">var</span> <span class="normal">isSeparator</span> <span class="special-char">=</span> <span class="class">Consts</span><span class="special-char">.</span><span class="normal">SeparatorsList</span><span class="special-char">.</span><span class="method">Contains</span><span class="special-char">(</span><span class="normal">chr</span><span class="special-char">)</span><span class="special-char">;</span></span>
                             </code>
                         </p>
-                        <p><span>The 20-ifs approach (with == and <code>Equals</code>) didn't improve anything at all. <i>A bit surprised here.</i></span></p>
-                        <p><span>Neither did the <code>HashSet</code>. <i>Expected, the collection is too small.</i></span></p>
-                        <p><span>Using the <code>List</code> did the trick, and now I'm at 530 ms (-17%). <i>Surprised, List.Contains is faster than Array.Contains...</i></span></p>
-                        <p><span><i>Remember it was unclear what chars should I use as separators? At this point it makes difference: with a couple of separators, the ifs-method is faster than List, and something like Char.IsLetterOrDigit is faster than both. I'll stick with the List for now.</i></span></p>
+                        <p><span>The 20-ifs approach (with <code>==</code> and <code>Equals</code>) didn't improve anything at all. <span class="thought">A bit surprised here.</span></span></p>
+                        <p><span>Neither did the <code>HashSet</code>. <span class="thought">Expected, the collection is too small.</span></span></p>
+                        <p><span>Using the <code>List</code> did the trick, and now I'm at 530 ms (-17%). <span class="thought">Surprised, <code>List.Contains</code> is faster than <code>Array.Contains</code>...</span></span></p>
+                        <p><span class="thought">Remember it was unclear what chars should I use as separators? At this point it makes difference: with a couple of separators, the ifs-method is faster than <code>List</code>, and something like <code>Char.IsLetterOrDigit</code> is faster than both. I'll stick with the List for now.</span></p>
                         <h2>Experiment more...</h2>
                         <p><span><code>StringBuilders</code> are great, but I need something simpler. Like an array.</span></p>
                         <p>
@@ -2444,7 +2450,7 @@
                                 <br /><span class="line"><span class="special-char">}</span></span>
                             </code>
                         </p>
-                        <p><span>10-15ms faster (-3%), barely noticeable. And puts this weird limit on the word length. <i>Not a problem for now, changing 100 to 10000 doesn't seem to affect timing.</i></span></p>
+                        <p><span>10-15ms faster (-3%), barely noticeable. And puts this weird limit on the word length. <span class="thought">Not a problem for now, changing 100 to 10000 doesn't seem to affect timing.</span></span></p>
                     </div>
                     <div class="block color-bw">
                         <p><span>I've done more experiments, but only the mentioned two were successful in terms of performance.</span></p>
@@ -2461,27 +2467,27 @@
                             <li><p><span>List of Dictionaries solution (with StringBuilder): 4050 ms (-20%)</span></p></li>
                             <li><p><span>List of Dictionaries solution (with char array): 3840 ms (-5%)</span></p></li>
                         </ul>
-                        <p><span><i>At least the later versions are faster!</i></span></p>
+                        <p><span class="thought">At least the later versions are faster!</span></p>
                         <p class="sub-title"><h3>And then with an input where all the "words" are unique and have the same length (GUIDs), about the same input length as above:</h3></p>
                         <ul>
                             <li><p><span>HashSet-based solution: 1750 ms.</span></p></li>
                             <li><p><span>List of Dictionaries solution (with StringBuilder): 2700 ms (+50%)</span></p></li>
                             <li><p><span>List of Dictionaries solution (with char array): 2650 ms (-2%)</span></p></li>
                         </ul>
-                        <p><span><i>Expected</i></span></p>
+                        <p><span class="thought">Expected</span></p>
                         <p class="sub-title"><h3>And then with an input where all the "words" are unique and have different length (numbers):</h3></p>
                         <ul>
                             <li><p><span>HashSet-based solution: 6900 ms.</span></p></li>
                             <li><p><span>List of Dictionaries solution (with StringBuilder): 6000 ms (-13%)</span></p></li>
                             <li><p><span>List of Dictionaries solution (with char array): 5800 ms (-3%)</span></p></li>
                         </ul>
-                        <p><span><i>Not the best nor the worst...</i></span></p>
+                        <p><span class="thought">Not the best nor the worst...</span></p>
                         <p><span>Which solution is the best? It depends... <i>Which one are expecting the task authors?</i></span></p>
                     </div>
                     <div class="block">
-                        <p><span><i>I spent 4 or 5 hours on this task already (1 hour for the HashSet implementation and another 4 hours for the final "List of Dictionaries" version). This is more than I'm ready to spend on a test task...</i></span></p>
-                        <p><span><i>No ideas for further improvements.</i></span></p>
-                        <p><span><i>Wait...</i></span></p>
+                        <p><span class="thought">I spent 4 or 5 hours on this task already (1 hour for the HashSet implementation and another 4 hours for the final "List of Dictionaries" version). This is more than I'm ready to spend on a test task...</i></span></p>
+                        <p><span class="thought">No ideas for further improvements.</span></p>
+                        <p><span class="thought">Wait...</span></p>
                         <p>
                             <code class="code-block csharp">
                                 <span class="line"><span class="decl">internal</span> <span class="decl">class</span> <span class="class">TestTask_GPT</span> <span class="special-char">:</span> <span class="class">ITestTask</span></span>
