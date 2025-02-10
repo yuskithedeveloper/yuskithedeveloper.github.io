@@ -333,11 +333,16 @@
                 padding: 5px;
                 border: solid 1px #dddddd;
                 overflow: auto;
+                font-size: 1rem;
             }
 
                 code.code-block.sized {
                     min-height: 200px;
                     max-height: 200px;
+                }
+
+                code.code-block span {
+                    font-size: 1rem;
                 }
 
             code.html .tag {
@@ -479,12 +484,13 @@
 
         .popup-container {
             position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             top: 0;
             left: 0;
             width: 100%;
             max-width: 100%;
-            text-align: center;
-            padding-top: 3rem;
             cursor: pointer;
             background-color: rgba(255,255,255,0.95);
             height: 100%;
@@ -550,7 +556,6 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                justify-content: center;
                 align-content: flex-start;
                 align-items: flex-start;
             }
@@ -868,10 +873,15 @@
                     }
                 },
 
+                showImgFullSize: function (src) {
+                    let html = '<img src="' + src + '"/>';
+                    UI.openPopup(html);
+                },
+
                 openPopup: function (html) {
                     const popupContainer = document.getElementsByClassName('popup-container')[0];
                     popupContainer.innerHTML = html;
-                    popupContainer.style.display = '';
+                    popupContainer.style.display = 'flex';
                     document.documentElement.style.overflow = 'hidden';
                 },
 
@@ -926,7 +936,7 @@
                     <h1>What's new?</h1>
                     <p><span>Article: Test task && Performance optimization </span><a href="?section=article-tt-po" onclick="UI.navigate('article-tt-po'); return false;">published</a></p>
                     <p><span>Tool: Source code to HTML convertor </span><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">released</a></p>
-                    <p><span>Photos: Beautiful moments 2005 - 2009 </span><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">updated</a></p>
+                    <p><span>Photos: Rnd beautiful moments 2005 - 2009 </span><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">updated</a></p>
                 </div>
                 <div class="block">
                     <h1>Privacy, terms, etc.</h1>
@@ -1085,7 +1095,7 @@
                     </div>
                 </div>
                 <div class="block">
-                    <h1>Photos: Beautiful moments 2005 - 2009</h1>
+                    <h1>Photos: Rnd beautiful moments 2005 - 2009</h1>
                     <p><span>3 photos per year.</span></p>
                     <p><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">View</a></p>
                 </div>
@@ -1300,61 +1310,49 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="photos-moments-05-09" data-title="Beautiful moments 2005 - 2009">
-                <script type="text/javascript">
-                    if (!window.SectionMoments) {
-                        window.SectionMoments = {
-                            showFullSize: function (img) {
-                                let html = img.outerHTML;
-                                html = html.replace('.preview', '');
-                                UI.openPopup(html);
-                            }
-                        }
-                    }
-                </script>
+            <section class="container flex" style="display:none;" id="photos-moments-05-09" data-title="Rnd beautiful moments 2005 - 2009">
                 <div class="container">
                     <div class="block">
-                        <h1>Beautiful moments 2005 - 2009</h1>
-                        <p><span>Instead of hundreds of photos, I selected three (per year) that I would like to share.</span></p>
+                        <h1>Rnd beautiful moments 2005 - 2009</h1>
                     </div>
                     <div class="block color-bw">
                         <h2>2009</h2>
                         <p class="img-container-h preview" id="photos-moments-2009">
-                            <img data-src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2009-3.preview.jpg" alt="2009" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-1.jpg');" />
+                            <img data-src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-2.jpg');" />
+                            <img data-src="photos/photos-moments/2009-3.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-3.jpg');" />
                         </p>
                     </div>
                     <div class="block color-bw">
                         <h2>2008</h2>
                         <p class="img-container-h preview" id="photos-moments-2008">
-                            <img data-src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-1.jpg');" />
+                            <img data-src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-2.jpg');" />
+                            <img data-src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-3.jpg');" />
                         </p>
                     </div>
                     <div class="block color-bw">
                         <h2>2007</h2>
                         <p class="img-container-h preview" id="photos-moments-2007">
-                            <img data-src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-1.jpg');" />
+                            <img data-src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-2.jpg');" />
+                            <img data-src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-3.jpg');" />
                         </p>
                     </div>
                     <div class="block color-bw">
                         <h2>2006</h2>
                         <p class="img-container-h preview" id="photos-moments-2006">
-                            <img data-src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
-                            <img data-src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="SectionMoments.showFullSize(this);" />
+                            <img data-src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-1.jpg');" />
+                            <img data-src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-2.jpg');" />
+                            <img data-src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-3.jpg');" />
                         </p>
                     </div>
                     <div class="block color-bw">
                         <h2>2005</h2>
                         <p class="img-container-h preview" id="photos-moments-2005">
-                            <img data-src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
-                            <img data-src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
-                            <img data-src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.copyToPopup(this);" />
+                            <img data-src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-1.jpg');" />
+                            <img data-src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-2.jpg');" />
+                            <img data-src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-3.jpg');" />
                         </p>
                     </div>
                 </div>
@@ -2547,6 +2545,8 @@
                         <p class="description"><span>Not bad for a robot</span></p>
                     </div>
                 </div>
+            </section>
+            <section>
             </section>
         </div>
     </div>
