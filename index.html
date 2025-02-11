@@ -881,7 +881,7 @@
                 openPopup: function (html) {
                     const popupContainer = document.getElementsByClassName('popup-container')[0];
                     popupContainer.innerHTML = html;
-                    popupContainer.style.display = 'flex';
+                    popupContainer.style.display = '';
                     document.documentElement.style.overflow = 'hidden';
                 },
 
@@ -934,7 +934,7 @@
                 </div>
                 <div class="block">
                     <h1>What's new?</h1>
-                    <p><span>Photos: Rnd beautiful moments 2010 - 2014 </span><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">published</a></p>
+                    <p><span>Photos: Rnd beauty 2010 - 2014 </span><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">published</a></p>
                     <p><span>Article: Test task && Performance optimization </span><a href="?section=article-tt-po" onclick="UI.navigate('article-tt-po'); return false;">published</a></p>
                     <p><span>Tool: Source code to HTML convertor </span><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">released</a></p>
                 </div>
@@ -944,7 +944,7 @@
                     <p><span>You can use anything found here for free in any way you like. As usually, no warranty or liability on my part.</span></p>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="not-found" data-title="Not found">
+            <section class="container" style="display:none;" id="not-found" data-title="Not found">
                 <div class="container">
                     <div class="block color-bw">
                         <h1 class="highlighted-red">Not found</h1>
@@ -954,7 +954,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="soon" data-title="Coming Soon">
+            <section class="container" style="display:none;" id="soon" data-title="Coming Soon">
                 <div class="container">
                     <div class="block color-bw">
                         <h1 class="highlighted-green">Coming Soon</h1>
@@ -964,7 +964,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="about" data-title="About">
+            <section class="container" style="display:none;" id="about" data-title="About">
                 <div class="container">
                     <div class="block">
                         <h1>In this site...</h1>
@@ -1018,7 +1018,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="services" data-title="Services and contacts">
+            <section class="container" style="display:none;" id="services" data-title="Services and contacts">
                 <div class="container">
                     <div class="block">
                         <h1>May I help you?</h1>
@@ -1095,7 +1095,7 @@
                     </div>
                 </div>
                 <div class="block">
-                    <h1>Photos: Rnd beautiful moments</h1>
+                    <h1>Photos: Rnd beauty</h1>
                     <p><span>2005 - 2009, 3 photos per year.</span></p>
                     <p><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">View</a></p>
                 </div>
@@ -1110,12 +1110,12 @@
                     <p><a href="?section=article-cors" onclick="UI.navigate('article-tt-po'); return false;">View</a></p>
                 </div>
                 <div class="block">
-                    <h1>Photos: Rnd beautiful moments</h1>
+                    <h1>Photos: Rnd beauty</h1>
                     <p><span>2010 - 2014, 3 photos per year.</span></p>
                     <p><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">View</a></p>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="links" data-title="Links">
+            <section class="container" style="display:none;" id="links" data-title="Links">
                 <script type="text/javascript">
                     if (!window.SectionLinks) {
                         window.SectionLinks = {
@@ -1187,7 +1187,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="article-cors" data-title="CORS">
+            <section class="container" style="display:none;" id="article-cors" data-title="CORS">
                 <div class="container">
                     <div class="block">
                         <h1>CORS in <strike>two words</strike> three sentences</h1>
@@ -1315,10 +1315,11 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="photos-moments-05-09" data-title="Rnd beautiful moments 2005 - 2009">
+            <section class="container" style="display:none;" id="photos-moments-05-09" data-title="Rnd beauty 2005 - 2009">
                 <div class="container">
                     <div class="block">
-                        <h1>Rnd beautiful moments 2005 - 2009</h1>
+                        <h1>Rnd beauty 2005 - 2009</h1>
+                        <p class="align-center"><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">2010 - 2014 &gt;</a></p>
                     </div>
                     <div class="block color-bw">
                         <h2>2009</h2>
@@ -1362,10 +1363,11 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="photos-moments-10-14" data-title="Rnd beautiful moments 2010 - 2014">
+            <section class="container" style="display:none;" id="photos-moments-10-14" data-title="Rnd beauty 2010 - 2014">
                 <div class="container">
                     <div class="block">
-                        <h1>Rnd beautiful moments 2010 - 2014</h1>
+                        <h1>Rnd beauty 2010 - 2014</h1>
+                        <p class="align-center"><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">&lt; 2005 - 2009</a></p>
                     </div>
                     <div class="block color-bw">
                         <h2>2014</h2>
@@ -1409,7 +1411,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="code-to-html" data-title="Code to Html">
+            <section class="container" style="display:none;" id="code-to-html" data-title="Code to Html">
                 <script type="text/javascript" id="code-to-html-script">
                     if (!window.Code2Html) {
                         window.Code2Html = {
@@ -1929,7 +1931,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="article-tt-po" data-title="Test task && Performance optimization">
+            <section class="container" style="display:none;" id="article-tt-po" data-title="Test task && Performance optimization">
                 <div class="container">
                     <div class="block">
                         <h2>The preamble</h2>
@@ -2604,32 +2606,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
