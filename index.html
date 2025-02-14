@@ -938,9 +938,9 @@
                 </div>
                 <div class="block">
                     <h1>What's new?</h1>
+                    <p><span>Code: ADFS Program.cs example </span><a href="?section=code-adfs" onclick="UI.navigate('code-adfs'); return false;">published</a></p>
                     <p><span>Code: LDAP via Novell.Directory.Ldap </span><a href="?section=code-ldap" onclick="UI.navigate('code-ldap'); return false;">published</a></p>
                     <p><span>Photos: Rnd beauty 2010 - 2014 </span><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">published</a></p>
-                    <p><span>Article: Test task &amp;&amp; Performance optimization </span><a href="?section=article-tt-po" onclick="UI.navigate('article-tt-po'); return false;">published</a></p>
                 </div>
                 <div class="block">
                     <h1>Privacy, terms, etc.</h1>
@@ -1082,7 +1082,12 @@
             </section>
             <section class="container flex" style="display:none;" id="blog" data-title="Blog">
                 <div class="block">
-                    <h1>Code: LDAP</h1>
+                    <h1>Code: Active Directory Federation Services (ADFS)</h1>
+                    <p><span>Program.cs example</span></p>
+                    <p><a href="?section=code-adfs" onclick="UI.navigate('code-adfs'); return false;">View</a></p>
+                </div>
+                <div class="block">
+                    <h1>Code: Lightweight directory access protocol (LDAP)</h1>
                     <p><span>Via Novell.Directory.Ldap</span></p>
                     <p><a href="?section=code-ldap" onclick="UI.navigate('code-ldap'); return false;">View</a></p>
                 </div>
@@ -2975,7 +2980,102 @@
                         </code>
                     </p>
                 </div>
-
+            </section>
+            <section class="container" style="display:none;" id="code-adfs" data-title="ADFS example">
+                <div class="block">
+                    <h1>ADFS example</h1>
+                    <p><span>As our team was struggling some days to get it work (debugging is somewhat tricky and <b>working</b> examples are rare), I thought it's worth sharing this piece of code.</span></p>
+                </div>
+                <div class="block">
+                    <h1>Program.cs (.NET 8, ASP.NET MVC)</h1>
+                    <p><a href="https://github.com/yuskithedeveloper/snippets/blob/main/CSharp/Program.cs" target="_blank">Github</a></p>
+                    <p>
+                        <code class="code-block csharp restricted-size">
+                            <c-l><c-dc>using</c-dc> <c-n>Microsoft</c-n><c-sp>.</c-sp><c-n>AspNetCore</c-n><c-sp>.</c-sp><c-n>Authentication</c-n><c-sp>.</c-sp><c-n>Cookies</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-dc>using</c-dc> <c-n>Microsoft</c-n><c-sp>.</c-sp><c-n>AspNetCore</c-n><c-sp>.</c-sp><c-n>Authentication</c-n><c-sp>.</c-sp><c-n>WsFederation</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-dc>using</c-dc> <c-n>Microsoft</c-n><c-sp>.</c-sp><c-n>AspNetCore</c-n><c-sp>.</c-sp><c-n>HttpOverrides</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-dc>using</c-dc> <c-n>System</c-n><c-sp>.</c-sp><c-n>Security</c-n><c-sp>.</c-sp><c-n>Claims</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-dc>namespace</c-dc> <c-n>YuskiTheDeveloper</c-n><c-sp>.</c-sp><c-n>Adfs</c-n></c-l>
+                            <br /><c-l><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-dc>public</c-dc> <c-dc>class</c-dc> <c-cl>Program</c-cl></c-l>
+                            <br /><c-l><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>public</c-dc> <c-dc>const</c-dc> <c-dc>string</c-dc> <c-n>POLICY_ADMIN</c-n> <c-sp>=</c-sp> <c-st><c-sp>"</c-sp>policy_admin<c-sp>"</c-sp></c-st><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>public</c-dc> <c-dc>const</c-dc> <c-dc>string</c-dc> <c-n>POLICY_GUEST</c-n> <c-sp>=</c-sp> <c-st><c-sp>"</c-sp>policy_guest<c-sp>"</c-sp></c-st><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>string</c-dc> <c-n>AD_ROLE_ADMIN</c-n> <c-sp>=</c-sp> <c-st><c-sp>"</c-sp>awesome_site_admin<c-sp>"</c-sp></c-st><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>string</c-dc> <c-n>AD_ROLE_GUEST</c-n> <c-sp>=</c-sp> <c-st><c-sp>"</c-sp>awesome_site_guest<c-sp>"</c-sp></c-st><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>public</c-dc> <c-dc>static</c-dc> <c-dc>void</c-dc> <c-mt>Main</c-mt><c-sp>(</c-sp><c-dc>string</c-dc><c-sp>[</c-sp><c-sp>]</c-sp> <c-n>args</c-n><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>configuration</c-n> <c-sp>=</c-sp> <c-dc>new</c-dc> <c-cl>ConfigurationBuilder</c-cl><c-sp>(</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddJsonFile</c-mt><c-sp>(</c-sp><c-st><c-sp>"</c-sp>appsettings.json<c-sp>"</c-sp></c-st><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddJsonFile</c-mt><c-sp>(</c-sp><c-st><c-sp>$"</c-sp>appsettings.</c-st><c-sp>{</c-sp><c-cl>Environment</c-cl><c-sp>.</c-sp><c-mt>GetEnvironmentVariable</c-mt><c-sp>(</c-sp><c-st><c-sp>"</c-sp>ASPNETCORE_ENVIRONMENT<c-sp>"</c-sp></c-st><c-sp>)</c-sp><c-sp>}</c-sp><c-st>.json<c-sp>"</c-sp></c-st>, optional: <c-dc>true</c-dc><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddEnvironmentVariables</c-mt><c-sp>(</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>Build</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>builder</c-n> <c-sp>=</c-sp> <c-cl>WebApplication</c-cl><c-sp>.</c-sp><c-mt>CreateBuilder</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>builder</c-n><c-sp>.</c-sp><c-n>Services</c-n></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddControllersWithViews</c-mt><c-sp>(</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddSessionStateTempDataProvider</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>builder</c-n><c-sp>.</c-sp><c-n>Services</c-n><c-sp>.</c-sp><c-mt>AddHttpContextAccessor</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>builder</c-n><c-sp>.</c-sp><c-n>Services</c-n><c-sp>.</c-sp><c-mt>AddAuthentication</c-mt><c-sp>(</c-sp><c-n>o</c-n> <c-sp>=</c-sp><c-sp>&gt;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-n>DefaultScheme</c-n> <c-sp>=</c-sp> <c-cl>CookieAuthenticationDefaults</c-cl><c-sp>.</c-sp><c-n>AuthenticationScheme</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-n>DefaultChallengeScheme</c-n> <c-sp>=</c-sp> <c-cl>WsFederationDefaults</c-cl><c-sp>.</c-sp><c-n>AuthenticationScheme</c-n><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddWsFederation</c-mt><c-sp>(</c-sp><c-n>o</c-n> <c-sp>=</c-sp><c-sp>&gt;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-n>Wtrealm</c-n> <c-sp>=</c-sp> <c-n>builder</c-n><c-sp>.</c-sp><c-n>Configuration</c-n><c-sp>[</c-sp><c-st><c-sp>"</c-sp>adfs:wtRealm<c-sp>"</c-sp></c-st><c-sp>]</c-sp><c-sp>;</c-sp> <c-cm><c-sp>//</c-sp>#example "https://yoursite.com", an uri</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-n>Wreply</c-n> <c-sp>=</c-sp> <c-n>builder</c-n><c-sp>.</c-sp><c-n>Configuration</c-n><c-sp>[</c-sp><c-st><c-sp>"</c-sp>adfs:wReply<c-sp>"</c-sp></c-st><c-sp>]</c-sp><c-sp>;</c-sp> <c-cm><c-sp>//</c-sp>#example "https://yoursite.com/signin-wsfed", "/signin-wsfed" is the default</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-n>MetadataAddress</c-n> <c-sp>=</c-sp> <c-n>builder</c-n><c-sp>.</c-sp><c-n>Configuration</c-n><c-sp>[</c-sp><c-st><c-sp>"</c-sp>adfs:metadataAddress<c-sp>"</c-sp></c-st><c-sp>]</c-sp><c-sp>;</c-sp> <c-cm><c-sp>//</c-sp>#example "https://adfs.yourcompanyname.com/FederationMetadata.xml"				</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>.</c-sp><c-mt>AddCookie</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>builder</c-n><c-sp>.</c-sp><c-n>Services</c-n><c-sp>.</c-sp><c-mt>AddAuthorization</c-mt><c-sp>(</c-sp><c-n>o</c-n> <c-sp>=</c-sp><c-sp>&gt;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-cm><c-sp>//</c-sp>map AD claims to site policies to keep everything in one place</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-mt>AddPolicy</c-mt><c-sp>(</c-sp><c-n>POLICY_ADMIN</c-n><c-sp>,</c-sp> <c-n>p</c-n> <c-sp>=</c-sp><c-sp>&gt;</c-sp> <c-n>p</c-n><c-sp>.</c-sp><c-mt>RequireClaim</c-mt><c-sp>(</c-sp><c-cl>ClaimTypes</c-cl><c-sp>.</c-sp><c-n>Role</c-n><c-sp>,</c-sp> <c-n>AD_ROLE_ADMIN</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>o</c-n><c-sp>.</c-sp><c-mt>AddPolicy</c-mt><c-sp>(</c-sp><c-n>POLICY_GUEST</c-n><c-sp>,</c-sp> <c-n>p</c-n> <c-sp>=</c-sp><c-sp>&gt;</c-sp> <c-n>p</c-n><c-sp>.</c-sp><c-mt>RequireClaim</c-mt><c-sp>(</c-sp><c-cl>ClaimTypes</c-cl><c-sp>.</c-sp><c-n>Role</c-n><c-sp>,</c-sp> <c-n>AD_ROLE_GUEST</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-cm><c-sp>//</c-sp>#example: use in the controller like [Authorize(Policy = Program.POLICY_ADMIN)]</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>builder</c-n><c-sp>.</c-sp><c-n>Services</c-n><c-sp>.</c-sp><c-mt>AddRazorPages</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>app</c-n> <c-sp>=</c-sp> <c-n>builder</c-n><c-sp>.</c-sp><c-mt>Build</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-cm><c-sp>//</c-sp>the next part resulted to be important for adfs</c-cm></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>forwardingOptions</c-n> <c-sp>=</c-sp> <c-dc>new</c-dc> <c-cl>ForwardedHeadersOptions</c-cl><c-sp>(</c-sp><c-sp>)</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>ForwardedHeaders</c-n> <c-sp>=</c-sp> <c-cl>ForwardedHeaders</c-cl><c-sp>.</c-sp><c-n>XForwardedFor</c-n> <c-sp>|</c-sp> <c-cl>ForwardedHeaders</c-cl><c-sp>.</c-sp><c-n>XForwardedProto</c-n></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>forwardingOptions</c-n><c-sp>.</c-sp><c-n>KnownNetworks</c-n><c-sp>.</c-sp><c-mt>Clear</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>forwardingOptions</c-n><c-sp>.</c-sp><c-n>KnownProxies</c-n><c-sp>.</c-sp><c-mt>Clear</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseForwardedHeaders</c-mt><c-sp>(</c-sp><c-n>forwardingOptions</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseHttpsRedirection</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseStaticFiles</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseRouting</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseStatusCodePages</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseAuthentication</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>UseAuthorization</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-cm><c-sp>//</c-sp>irrelevant stuff like app.MapControllerRoute not shown </c-cm></c-l>
+                            <br /><c-l></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>app</c-n><c-sp>.</c-sp><c-mt>Run</c-mt><c-sp>(</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                            <br /><c-l><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                            <br /><c-l><c-sp>}</c-sp></c-l>
+                        </code>
+                    </p>
+                </div>
             </section>
         </div>
     </div>
