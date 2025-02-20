@@ -878,7 +878,8 @@
                     }
                 },
 
-                showImgFullSize: function (src) {
+                showImgFullSize: function (img) {
+                    src = img.getAttribute('src').replace('preview.', '');
                     let html = '<img src="' + src + '"/>';
                     UI.openPopup(html);
                 },
@@ -1343,41 +1344,41 @@
                 <div class="block color-bw">
                     <h2>2009</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-2.jpg');" />
-                        <img data-src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-1.jpg');" />
+                        <img data-src="photos/photos-moments/2009-2.preview.jpg" alt="2009" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2009-1.preview.jpg" alt="2009" onclick="UI.showImgFullSize(this);" />
                         <img data-src="photos/photos-moments/2009-3.preview.jpg" alt="2009" onclick="UI.showImgFullSize('photos/photos-moments/2009-3.jpg');" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2008</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-1.jpg');" />
-                        <img data-src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-2.jpg');" />
-                        <img data-src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="UI.showImgFullSize('photos/photos-moments/2008-3.jpg');" />
+                        <img data-src="photos/photos-moments/2008-1.preview.jpg" alt="2008" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2008-2.preview.jpg" alt="2008" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2008-3.preview.jpg" alt="2008" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2007</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-1.jpg');" />
-                        <img data-src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-2.jpg');" />
-                        <img data-src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="UI.showImgFullSize('photos/photos-moments/2007-3.jpg');" />
+                        <img data-src="photos/photos-moments/2007-1.preview.jpg" alt="2007" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2007-2.preview.jpg" alt="2007" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2007-3.preview.jpg" alt="2007" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2006</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-1.jpg');" />
-                        <img data-src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-2.jpg');" />
-                        <img data-src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="UI.showImgFullSize('photos/photos-moments/2006-3.jpg');" />
+                        <img data-src="photos/photos-moments/2006-1.preview.jpg" alt="2006" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2006-2.preview.jpg" alt="2006" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2006-3.preview.jpg" alt="2006" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2005</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-1.jpg');" />
-                        <img data-src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-2.jpg');" />
-                        <img data-src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.showImgFullSize('photos/photos-moments/2005-3.jpg');" />
+                        <img data-src="photos/photos-moments/2005-1.preview.jpg" alt="2005" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2005-2.preview.jpg" alt="2005" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2005-3.preview.jpg" alt="2005" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
             </section>
@@ -1389,41 +1390,41 @@
                 <div class="block color-bw">
                     <h2>2014</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2014-1.preview.jpg" alt="2014" onclick="UI.showImgFullSize('photos/photos-moments/2014-1.jpg');" />
-                        <img data-src="photos/photos-moments/2014-2.preview.jpg" alt="2014" onclick="UI.showImgFullSize('photos/photos-moments/2014-2.jpg');" />
-                        <img data-src="photos/photos-moments/2014-3.preview.jpg" alt="2014" onclick="UI.showImgFullSize('photos/photos-moments/2014-3.jpg');" />
+                        <img data-src="photos/photos-moments/2014-1.preview.jpg" alt="2014" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2014-2.preview.jpg" alt="2014" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2014-3.preview.jpg" alt="2014" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2013</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2013-1.preview.jpg" alt="2013" onclick="UI.showImgFullSize('photos/photos-moments/2013-1.jpg');" />
-                        <img data-src="photos/photos-moments/2013-2.preview.jpg" alt="2013" onclick="UI.showImgFullSize('photos/photos-moments/2013-2.jpg');" />
-                        <img data-src="photos/photos-moments/2013-3.preview.jpg" alt="2013" onclick="UI.showImgFullSize('photos/photos-moments/2013-3.jpg');" />
+                        <img data-src="photos/photos-moments/2013-1.preview.jpg" alt="2013" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2013-2.preview.jpg" alt="2013" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2013-3.preview.jpg" alt="2013" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2012</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2012-1.preview.jpg" alt="2012" onclick="UI.showImgFullSize('photos/photos-moments/2012-1.jpg');" />
-                        <img data-src="photos/photos-moments/2012-2.preview.jpg" alt="2012" onclick="UI.showImgFullSize('photos/photos-moments/2012-2.jpg');" />
-                        <img data-src="photos/photos-moments/2012-3.preview.jpg" alt="2012" onclick="UI.showImgFullSize('photos/photos-moments/2012-3.jpg');" />
+                        <img data-src="photos/photos-moments/2012-1.preview.jpg" alt="2012" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2012-2.preview.jpg" alt="2012" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2012-3.preview.jpg" alt="2012" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2011</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2011-1.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2011-1.jpg');" />
-                        <img data-src="photos/photos-moments/2011-2.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2011-2.jpg');" />
-                        <img data-src="photos/photos-moments/2011-3.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2011-3.jpg');" />
+                        <img data-src="photos/photos-moments/2011-1.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2011-2.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2011-3.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2010</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2010-1.preview.jpg" alt="2010" onclick="UI.showImgFullSize('photos/photos-moments/2010-1.jpg');" />
-                        <img data-src="photos/photos-moments/2010-2.preview.jpg" alt="2010" onclick="UI.showImgFullSize('photos/photos-moments/2010-2.jpg');" />
-                        <img data-src="photos/photos-moments/2010-3.preview.jpg" alt="2010" onclick="UI.showImgFullSize('photos/photos-moments/2010-3.jpg');" />
+                        <img data-src="photos/photos-moments/2010-1.preview.jpg" alt="2010" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2010-2.preview.jpg" alt="2010" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2010-3.preview.jpg" alt="2010" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
             </section>
@@ -1435,41 +1436,41 @@
                 <div class="block color-bw">
                     <h2>2019</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2019-1.preview.jpg" alt="2019" onclick="UI.showImgFullSize('photos/photos-moments/2019-1.jpg');" />
-                        <img data-src="photos/photos-moments/2019-2.preview.jpg" alt="2019" onclick="UI.showImgFullSize('photos/photos-moments/2019-2.jpg');" />
-                        <img data-src="photos/photos-moments/2019-3.preview.jpg" alt="2019" onclick="UI.showImgFullSize('photos/photos-moments/2019-3.jpg');" />
+                        <img data-src="photos/photos-moments/2019-1.preview.jpg" alt="2019" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2019-2.preview.jpg" alt="2019" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2019-3.preview.jpg" alt="2019" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2018</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2018-1.preview.jpg" alt="2018" onclick="UI.showImgFullSize('photos/photos-moments/2018-1.jpg');" />
-                        <img data-src="photos/photos-moments/2018-2.preview.jpg" alt="2018" onclick="UI.showImgFullSize('photos/photos-moments/2018-2.jpg');" />
-                        <img data-src="photos/photos-moments/2018-3.preview.jpg" alt="2018" onclick="UI.showImgFullSize('photos/photos-moments/2018-3.jpg');" />
+                        <img data-src="photos/photos-moments/2018-1.preview.jpg" alt="2018" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2018-2.preview.jpg" alt="2018" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2018-3.preview.jpg" alt="2018" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2017</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2017-1.preview.jpg" alt="2017" onclick="UI.showImgFullSize('photos/photos-moments/2017-1.jpg');" />
-                        <img data-src="photos/photos-moments/2017-2.preview.jpg" alt="2017" onclick="UI.showImgFullSize('photos/photos-moments/2017-2.jpg');" />
-                        <img data-src="photos/photos-moments/2017-3.preview.jpg" alt="2017" onclick="UI.showImgFullSize('photos/photos-moments/2017-3.jpg');" />
+                        <img data-src="photos/photos-moments/2017-1.preview.jpg" alt="2017" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2017-2.preview.jpg" alt="2017" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2017-3.preview.jpg" alt="2017" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2016</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2016-1.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2016-1.jpg');" />
-                        <img data-src="photos/photos-moments/2016-2.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2016-2.jpg');" />
-                        <img data-src="photos/photos-moments/2016-3.preview.jpg" alt="2011" onclick="UI.showImgFullSize('photos/photos-moments/2016-3.jpg');" />
+                        <img data-src="photos/photos-moments/2016-1.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2016-2.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2016-3.preview.jpg" alt="2011" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
                 <div class="block color-bw">
                     <h2>2015</h2>
                     <p class="img-container-h preview">
-                        <img data-src="photos/photos-moments/2015-1.preview.jpg" alt="2015" onclick="UI.showImgFullSize('photos/photos-moments/2015-1.jpg');" />
-                        <img data-src="photos/photos-moments/2015-2.preview.jpg" alt="2015" onclick="UI.showImgFullSize('photos/photos-moments/2015-2.jpg');" />
-                        <img data-src="photos/photos-moments/2015-3.preview.jpg" alt="2015" onclick="UI.showImgFullSize('photos/photos-moments/2015-3.jpg');" />
+                        <img data-src="photos/photos-moments/2015-1.preview.jpg" alt="2015" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2015-2.preview.jpg" alt="2015" onclick="UI.showImgFullSize(this);" />
+                        <img data-src="photos/photos-moments/2015-3.preview.jpg" alt="2015" onclick="UI.showImgFullSize(this);" />
                     </p>
                 </div>
             </section>
@@ -3635,9 +3636,9 @@
                         <div class="map-info">
                             <h2 id="map-info-title"></h2>
                             <p id="map-info-imgs" class="img-container-h preview">
-                                <img onclick="UI.showImgFullSize(this.getAttribute('data-src-full'));" />
-                                <img onclick="UI.showImgFullSize(this.getAttribute('data-src-full'));" />
-                                <img onclick="UI.showImgFullSize(this.getAttribute('data-src-full'));" />
+                                <img onclick="UI.showImgFullSize(this);" />
+                                <img onclick="UI.showImgFullSize(this);" />
+                                <img onclick="UI.showImgFullSize(this);" />
                             </p>
                         </div>
                     </div>
