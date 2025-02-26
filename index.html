@@ -947,9 +947,9 @@
                 </div>
                 <div class="block">
                     <h1>What's new?</h1>
-                    <p><span>My world map (beta) </span><a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">published</a></p>
-                    <p><span>Photos: Rnd beauty 2015 - 2019 </span><a href="?section=photos-moments-15-19" onclick="UI.navigate('photos-moments-15-19'); return false;">published</a></p>
-                    <p><span>Code: ADFS Program.cs example </span><a href="?section=code-adfs" onclick="UI.navigate('code-adfs'); return false;">published</a></p>
+                    <p><span>SVG maps </span><a href="?section=maps" onclick="UI.navigate('maps'); return false;">published</a></p>
+                    <p><span>My world map </span><a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">published</a></p>
+                    <p><span>Photos: Rnd beauty 2015 - 2019 </span><a href="?section=photos-moments-15-19" onclick="UI.navigate('photos-moments-15-19'); return false;">published</a></p> 
                 </div>
                 <div class="block">
                     <h1>Privacy, terms, etc.</h1>
@@ -1082,6 +1082,11 @@
                 </div>
             </section>
             <section class="container flex" style="display:none;" id="blog" data-title="Blog">
+                <div class="block">
+                    <h1>Equal Earth SVG maps</h1>
+                    <p><span>A starting point for your map of the world</span></p>
+                    <p><a href="?section=maps" onclick="UI.navigate('maps'); return false;">View</a></p>
+                </div>
                 <div class="block">
                     <h1>My map of the world</h1>
                     <p><span>With places I've been</span></p>
@@ -3138,7 +3143,7 @@
                 </div>
             </section>
             <section style="display:none;" id="travel-map" data-title="My map of the world">
-                <script type="text/javascript"> 
+                <script type="text/javascript">
                     window.addEventListener("message", function (event) {
                         if (!event.data || !event.data || (event.data.indexOf('title') < 0) || (event.data.indexOf('srcs') < 0))
                             return;
@@ -3146,7 +3151,7 @@
                         const data = JSON.parse(event.data);
                         document.getElementById('map-info-title').innerText = data.title;
                         if (!data.srcs)
-                            return; 
+                            return;
 
                         const imgs = document.getElementById('map-info-imgs').getElementsByTagName('img');
                         const pointSrcsSpl = data.srcs.split(',');
@@ -3158,7 +3163,7 @@
                             imgs[i].setAttribute('src', pointSrcsSpl[i]);
                             imgs[i].setAttribute('data-src-full', pointSrcsSpl[i].replace('preview.', ''));
                         }
-                    }); 
+                    });
                 </script>
                 <style>
                     .map-info {
@@ -3171,15 +3176,15 @@
 
                         .map-info .img-container-h.preview img {
                             width: 25%;
-                        } 
+                        }
                 </style>
                 <div class="container">
                     <div class="block">
                         <h1>My map of the world</h1>
-                        <div  style="width: 100%; height: 32rem;  overflow: auto">
+                        <div style="width: 100%; height: 32rem;  overflow: auto">
                             <iframe style="width: 60rem; height: 30rem; margin: auto; display: block; border:none" data-src="photos/travel-map/map.html"></iframe>
                         </div>
-                        
+
                         <div class="map-info">
                             <h2 id="map-info-title"></h2>
                             <p id="map-info-imgs" class="img-container-h preview">
@@ -3193,13 +3198,25 @@
                         <h1>About</h1>
                         <p>
                             <span>
-                                The map is an <a href="https://equal-earth.com/" target="_blank">Equal Earth projection</a> map and is based on a SVG I found on the project site (except the Europe-Asia border which I drew roughly).
-                                <br />I'm also working on a conversion of their SVG to make the countries <code>&lt;polygons&gt;</code> instead of <code>&lt;polylines&gt;</code>.
+                                The map is an <a href="https://equal-earth.com/" target="_blank">Equal Earth projection</a> map and is based on a SVG I found on the project site. You can find more details <a href="?section=maps" onclick="UI.navigate('maps'); return false;">here</a>.
                             </span>
                         </p>
-                        <p><span>This map shows places I've been, with some nice photos.</span></p>
-                        <p><span>There is still a lot of work to do...</span></p>
+                        <p><span>This map shows places I've been, with some nice photos. <span class="highlighted-red">For now only a small number of places I want to show is shown.</span></span></p>
                     </div>
+                </div>
+            </section>
+            <section class="container" style="display:none;" id="maps" data-title="Maps">
+                <div class="block">
+                    <h1>Equal Earth maps</h1>
+                    <p><span>I created my <a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">map of the world</a> based on a SVG I found on the <a href="https://equal-earth.com/" target="_blank">Equal Earth projection</a> site.</span></p>
+                    <p><span>While it was super useful, there were a couple of flaws: the map mainly consisted of <code>&lt;polyline&gt;</code>-s (except Australia and some islands), sometimes not even connected to each other, making polygon coloring and selection operations tricky. Not to mention that there were no labels or comments with country names, only point coordinates.</span></p>
+                    <p><span>So, I decided to do some work to make the map more friendly.<br />Here is what I have for now:</span></p> 
+                    <ul>
+                        <li><span>A <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthContinents.svg" target="_blank">Continents map</a> (7 + Oceania), with continent names and some major areas labeled.</span></li>
+                        <li><span>A <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthCountries.svg" target="_blank">Political map</a> (I tried to keep the small island countries), with country names labeled.</span></li>
+                        <li><span>The reduced-size versions: <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthContinents_Light.svg" target="_blank">Continents map (light)</a> and <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthCountries_Light.svg" target="_blank">Political map (light)</a>.</span></li>
+                    </ul>
+                    <p><span>Not too much, yet a good starting point to create your own maps.</span></p>
                 </div>
             </section>
         </div>
