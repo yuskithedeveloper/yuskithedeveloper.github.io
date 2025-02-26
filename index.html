@@ -3140,7 +3140,7 @@
             <section style="display:none;" id="travel-map" data-title="My map of the world">
                 <script type="text/javascript"> 
                     window.addEventListener("message", function (event) {
-                        if (!data || (data.indexOf('title') < 0) || (data.indexOf('srcs') < 0))
+                        if (!event.data || !event.data || (event.data.indexOf('title') < 0) || (event.data.indexOf('srcs') < 0))
                             return;
 
                         const data = JSON.parse(event.data);
