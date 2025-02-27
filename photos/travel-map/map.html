@@ -16,7 +16,16 @@
 
             .map-map svg {
                 background-color: white;
+                 margin: auto; 
+                 display: block; 
             }
+
+        @media (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            .map-map svg {
+                width: 1010px;
+                height: 500px; 
+            }
+        }
 
                 .map-map svg g polygon, .map-map svg g.visited polygon.not-visited {
                     fill: #000000;
@@ -206,7 +215,7 @@
 </head>
 <body>
     <div class="map-map">
-        <svg xmlns="http://www.w3.org/2000/svg" id="world-map" style="margin: auto; display: block; min-width: 1010px; min-height: 500px " viewBox="0 0 1120 550">
+        <svg xmlns="http://www.w3.org/2000/svg" id="world-map"  viewBox="0 0 1120 550">
             <!--====================-->
             <!--Map border (fill)-->
             <!--====================-->
