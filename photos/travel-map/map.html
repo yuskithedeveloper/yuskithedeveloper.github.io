@@ -79,10 +79,10 @@
                         });
                     }
 
-                    const countries = SectionTravelMap.getVisitedCountries();
-                    for (let i = 0; i < countries.length; i++) {
-                        countries[i].addEventListener('click', function (e) {
-                            SectionTravelMap.setActiveCounty(countries[i]);
+                    const countriesWithSpots = SectionTravelMap.getVisitedCountriesWithSpots(); 
+                    for (let i = 0; i < countriesWithSpots.length; i++) {
+                        countriesWithSpots[i].addEventListener('click', function (e) {
+                            SectionTravelMap.setActiveCounty(this);
                         });
                     }
                 },
@@ -109,14 +109,8 @@
                     window.parent.postMessage(JSON.stringify(data), '*');
                 },
 
-                setActiveRandomCounty: function () {
-                    const countries = SectionTravelMap.getVisitedCountries();
-                    const countriesWithSpots = [];
-                    for (let i = 0; i < countries.length; i++) {
-                        if (countries[i].getElementsByClassName('spot').length > 0) {
-                            countriesWithSpots.push(countries[i]);
-                        }
-                    }
+                setActiveRandomCounty: function () { 
+                    const countriesWithSpots = SectionTravelMap.getVisitedCountriesWithSpots(); 
                     const rnd = Math.floor(Math.random() * countriesWithSpots.length);
                     SectionTravelMap.setActiveCounty(countriesWithSpots[rnd]);
                 },
@@ -125,38 +119,49 @@
                     const countries = SectionTravelMap.getVisitedCountries();
                     SectionTravelMap.removeClass(countries, 'active');
 
-                    SectionTravelMap.addClass(country, 'active');
+                    SectionTravelMap.addClass(country, 'active'); 
 
                     SectionTravelMap.showRandomSpot(country);
                 },
 
-                getVisitedCountries() {
+                getVisitedCountries: function () {
                     const map = document.getElementById('world-map');
-                    const result = map.getElementsByClassName('visited');
+                    const result = SectionTravelMap.getElementsByClassName( map,'visited');
                     return result;
                 },
 
-                getSpots(country) {
+                getVisitedCountriesWithSpots: function () {
+                    const countries = SectionTravelMap.getVisitedCountries();
+                    const result = [];
+                    for (let i = 0; i < countries.length; i++) {
+                        if (SectionTravelMap.getElementsByClassName(countries[i], 'spot').length > 0) {
+                            result.push(countries[i]);
+                        }
+                    }
+                    return result;
+                },
+
+                getSpots: function (country) {
                     if (!country) {
                         const map = document.getElementById('world-map');
-                        const result = map.getElementsByClassName('spot');
+                        const result = SectionTravelMap.getElementsByClassName(map, 'spot');
                         return result;
                     }
                     else {
-                        const result = country.getElementsByClassName('spot');
+                        const result = SectionTravelMap.getElementsByClassName( country,'spot');
                         return result;
                     }
                 },
 
                 //older browsers doesn't support classList for SVG elements
-                addClass(element, className) {
+                addClass: function (element, className) { 
                     let classList = SectionTravelMap.getClassList(element);
                     if (classList.indexOf(className) < 0) {
                         classList.push(className);
                         SectionTravelMap.setClassList(element, classList);
-                    }
+                    } 
                 },
-                removeClass(elements, className) {
+                removeClass: function (elements, className) {
                     for (var i = 0; i < elements.length; i++) {
                         let classList = SectionTravelMap.getClassList(elements[i]);
                         if (classList.indexOf(className) >= 0) {
@@ -165,7 +170,7 @@
                         }
                     }
                 },
-                getClassList(element) {
+                getClassList: function (element) {
                     const classAttr = element.getAttribute('class');
                     let result = [];
                     if (classAttr) {
@@ -173,12 +178,27 @@
                     }
                     return result;
                 },
-                setClassList(element, classList) {
+                setClassList: function (element, classList) {
                     element.setAttribute('class', classList.join(' '));
                 },
+                //older browsers doesn't support getElementsByClassName for SVG(?) elements
+                getElementsByClassName: function (parent, className) {
+                    if (parent.getElementsByClassName)
+                        return parent.getElementsByClassName(className);
+
+                    const descendants = parent.getElementsByTagName("*");
+                    const result = [];
+                    for (let i = 0; i < descendants.length; i++) {
+                        const classAttr = descendants[i].getAttribute('class');
+                        if (classAttr && (classAttr.indexOf(className) >= 0)) {
+                            result.push(descendants[i]);
+                        }
+                    }
+                    return result;
+                }
             }
         }
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () { 
             SectionTravelMap.assignMapEvents();
             SectionTravelMap.setActiveRandomCounty();
         });
@@ -186,7 +206,7 @@
 </head>
 <body>
     <div class="map-map">
-        <svg xmlns="http://www.w3.org/2000/svg" id="world-map" style="margin:auto;display:block" viewBox="0 0 1120 550">
+        <svg xmlns="http://www.w3.org/2000/svg" id="world-map" style="margin: auto; display: block; min-width: 1010px; min-height: 500px " viewBox="0 0 1120 550">
             <!--====================-->
             <!--Map border (fill)-->
             <!--====================-->
