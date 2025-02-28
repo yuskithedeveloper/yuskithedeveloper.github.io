@@ -2121,89 +2121,92 @@
                     }
                 </script>
                 <script type="text/javascript">
-                    function Code2HtmlRun() {
-                        const code = document.getElementById('code-to-html-src').value;
-                        const lang = document.getElementById('code-to-html-lang').value;
-                        let knownClassesRaw = document.getElementById('code-to-html-classes').value;
-                        if (!knownClassesRaw) {
-                            knownClassesRaw = '';
+                    if (!window.SectionCode2Html) {
+                        window.SectionCode2Html = {
+                            code2HtmlRun: function () {
+                                const code = document.getElementById('code-to-html-src').value;
+                                const lang = document.getElementById('code-to-html-lang').value;
+                                let knownClassesRaw = document.getElementById('code-to-html-classes').value;
+                                if (!knownClassesRaw) {
+                                    knownClassesRaw = '';
+                                }
+                                const knownClasses = knownClassesRaw.split(',');
+                                const options = {
+                                    initialIndent: parseInt(document.getElementById('code-to-html-indent-init').value),
+                                    inputIndentSize: parseInt(document.getElementById('code-to-html-indent-input').value),
+                                    outputIndentSize: parseInt(document.getElementById('code-to-html-indent-output').value),
+                                    knownClasses: knownClasses,
+
+                                    codeCss: 'code-block ' + lang + ' fixed-size',
+
+                                    defaultTag: 'c-c',
+
+                                    declarationCss: '',
+                                    declarationTag: 'c-dc',
+                                    statementCss: '',
+                                    statementTag: 'c-sm',
+                                    classCss: '',
+                                    classTag: 'c-cl',
+                                    methodCss: '',
+                                    methodTag: 'c-mt',
+                                    stringCss: '',
+                                    stringTag: 'c-st',
+                                    stringEscCss: '',
+                                    stringEscTag: 'c-es',
+                                    commentCss: '',
+                                    commentTag: 'c-cm',
+                                    normalCss: '',
+                                    normalTag: 'c-n',
+                                    specialCharCss: '',
+                                    specialCharTag: 'c-sp',
+                                    lineCss: '',
+                                    lineTag: 'c-l',
+                                    indentCss: '',
+                                    indentTag: 'c-i',
+                                };
+                                const html = Code2Html.create(lang, options).convert(code);
+                                document.getElementById('code-to-html-html').value = html;
+                                document.getElementById('code-to-html-preview').innerHTML = html;
+                            },
+
+                            code2HtmlShowSelfCode: function () {
+                                const options = {
+                                    codeCss: 'code-block js restricted-size',
+
+                                    defaultTag: 'c-c',
+
+                                    declarationCss: '',
+                                    declarationTag: 'c-dc',
+                                    statementCss: '',
+                                    statementTag: 'c-sm',
+                                    classCss: '',
+                                    classTag: 'c-cl',
+                                    methodCss: '',
+                                    methodTag: 'c-mt',
+                                    stringCss: '',
+                                    stringTag: 'c-st',
+                                    stringEscCss: '',
+                                    stringEscTag: 'c-es',
+                                    commentCss: '',
+                                    commentTag: 'c-cm',
+                                    normalCss: '',
+                                    normalTag: 'c-n',
+                                    specialCharCss: '',
+                                    specialCharTag: 'c-sp',
+                                    lineCss: '',
+                                    lineTag: 'c-l',
+                                    indentCss: '',
+                                    indentTag: 'c-i',
+                                };
+
+                                const code = document.getElementById('code-to-html-script').innerHTML;
+                                const html = Code2Html.create('js', options).convert(code);
+                                document.getElementById('code-to-html-self').innerHTML = html;
+                            }
                         }
-                        const knownClasses = knownClassesRaw.split(',');
-                        const options = {
-                            initialIndent: parseInt(document.getElementById('code-to-html-indent-init').value),
-                            inputIndentSize: parseInt(document.getElementById('code-to-html-indent-input').value),
-                            outputIndentSize: parseInt(document.getElementById('code-to-html-indent-output').value),
-                            knownClasses: knownClasses,
-
-                            codeCss: 'code-block ' + lang + ' fixed-size',
-
-                            defaultTag: 'c-c',
-
-                            declarationCss: '',
-                            declarationTag: 'c-dc',
-                            statementCss: '',
-                            statementTag: 'c-sm',
-                            classCss: '',
-                            classTag: 'c-cl',
-                            methodCss: '',
-                            methodTag: 'c-mt',
-                            stringCss: '',
-                            stringTag: 'c-st',
-                            stringEscCss: '',
-                            stringEscTag: 'c-es',
-                            commentCss: '',
-                            commentTag: 'c-cm',
-                            normalCss: '',
-                            normalTag: 'c-n',
-                            specialCharCss: '',
-                            specialCharTag: 'c-sp',
-                            lineCss: '',
-                            lineTag: 'c-l',
-                            indentCss: '',
-                            indentTag: 'c-i',
-                        };
-                        const html = Code2Html.create(lang, options).convert(code);
-                        document.getElementById('code-to-html-html').value = html;
-                        document.getElementById('code-to-html-preview').innerHTML = html;
                     }
-
-                    function Code2HtmlShowSelfCode() {
-                        const options = {
-                            codeCss: 'code-block js restricted-size',
-
-                            defaultTag: 'c-c',
-
-                            declarationCss: '',
-                            declarationTag: 'c-dc',
-                            statementCss: '',
-                            statementTag: 'c-sm',
-                            classCss: '',
-                            classTag: 'c-cl',
-                            methodCss: '',
-                            methodTag: 'c-mt',
-                            stringCss: '',
-                            stringTag: 'c-st',
-                            stringEscCss: '',
-                            stringEscTag: 'c-es',
-                            commentCss: '',
-                            commentTag: 'c-cm',
-                            normalCss: '',
-                            normalTag: 'c-n',
-                            specialCharCss: '',
-                            specialCharTag: 'c-sp',
-                            lineCss: '',
-                            lineTag: 'c-l',
-                            indentCss: '',
-                            indentTag: 'c-i',
-                        };
-
-                        const code = document.getElementById('code-to-html-script').innerHTML;
-                        const html = Code2Html.create('js', options).convert(code);
-                        document.getElementById('code-to-html-self').innerHTML = html;
-                    }
-
                     document.addEventListener("DOMContentLoaded", function () {
-                        Code2HtmlShowSelfCode();
+                        SectionCode2Html.code2HtmlShowSelfCode();
                     });
                 </script>
                 <div class="container">
@@ -2223,7 +2226,7 @@
                             <br /><span class="field"><label for="code-to-html-indent-output">Output indent:</label><input type="number" id="code-to-html-indent-output" style="width: 4rem" value="4" /></span>
                         </p>
                         <p><label for="code-to-html-classes">Known classes:</label><textarea id="code-to-html-classes" style="height:40px;"></textarea></p>
-                        <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
+                        <p><span><button class="color-1" onclick="SectionCode2Html.code2HtmlRun()">Convert</button></span></p>
                         <p><label>Preview:</label><span id="code-to-html-preview"><code class="code-block fixed-size"></code></span></p>
                         <p><label for="code-to-html-html">Html:</label><textarea id="code-to-html-html" style="height:80px;"></textarea></p>
                     </div>
