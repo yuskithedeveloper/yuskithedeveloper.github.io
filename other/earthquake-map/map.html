@@ -61,9 +61,9 @@
     <script type="text/javascript">
         if (!window.EarthquakeMap) {
             window.EarthquakeMap = {
-                addEarthquakes(data) {
-                    var svg = '';
-                    for (var i = 0; i < data.items.length; i++) {
+                addEarthquakes: function (data) {
+                    let earthquakesSvg = '';
+                    for (let i = 0; i < data.items.length; i++) {
                         let encodedPlace = '';
                         if (data.items[i].place && data.items[i].place.split) {
                             encodedPlace = data.items[i].place.split('"').join(' ');
@@ -88,11 +88,20 @@
                             cl = 'major';
                         }
 
-                        svg += '<circle class="' + cl + '" cx="' + data.items[i].point.x + '" cy="' + data.items[i].point.y + '" r="' + r + '" data-magnitude="' + data.items[i].magnitude + '" data-time="' + data.items[i].time + '" data-place="' + encodedPlace + '" onclick="EarthquakeMap.showDetails(this);" />';
+                        earthquakesSvg += '<circle class="' + cl + '" cx="' + data.items[i].point.x + '" cy="' + data.items[i].point.y + '" r="' + r + '" data-magnitude="' + data.items[i].magnitude + '" data-time="' + data.items[i].time + '" data-place="' + encodedPlace + '" onclick="EarthquakeMap.showDetails(this);" />';
                     }
-
                     const earthquakesContainer = document.getElementById('earthquakes-container');
-                    earthquakesContainer.innerHTML = svg;
+                    if (typeof earthquakesContainer.innerHTML === "undefined") {
+                        while (earthquakesContainer.firstChild) {
+                            earthquakesContainer.removeChild(earthquakesContainer.lastChild);
+                        }
+
+                        const svgDoc = new DOMParser().parseFromString('<svg xmlns="http://www.w3.org/2000/svg"><g>' + earthquakesSvg + '</g></svg>', 'application/xml'); 
+                        earthquakesContainer.appendChild(earthquakesContainer.ownerDocument.importNode(svgDoc.documentElement.firstChild, true));
+                    }
+                    else {
+                        earthquakesContainer.innerHTML = earthquakesSvg;
+                    }
                 },
 
                 showDetails: function (element) {
