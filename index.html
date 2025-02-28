@@ -262,6 +262,10 @@
             border: solid 1px #767676;
         }
 
+        textarea {
+            resize: vertical;
+        }
+
         h1 {
             font-weight: bold;
             font-size: 2rem;
@@ -312,7 +316,6 @@
             a, button.a {
                 text-decoration: none;
                 color: #3246bb;
-                font-weight: bold;
             }
 
         textarea {
@@ -388,6 +391,22 @@
                 white-space: pre;
                 font-size: 0.6rem;
             }
+
+        .multi-lang.csharp code.js {
+            display: none;
+        }
+
+        .multi-lang.js code.csharp {
+            display: none;
+        }
+
+        .multi-lang.csharp a.csharp {
+            font-weight: bold;
+        }
+
+        .multi-lang.js a.js {
+            font-weight: bold;
+        }
 
         .field {
             white-space: nowrap;
@@ -2196,17 +2215,17 @@
                     </div>
                     <div class="block">
                         <h1>The playground</h1>
-                        <p><label for="code-to-html-src">Code to convert:</label><textarea id="code-to-html-src" style="resize:vertical;height:160px;"></textarea></p>
+                        <p><label for="code-to-html-src">Code to convert:</label><textarea id="code-to-html-src" style="height:160px;"></textarea></p>
                         <p>
                             <span class="field"> <label for="code-to-html-lang">Language:</label><select id="code-to-html-lang" style="width: 4rem;"><option value="js">JS</option><option value="csharp" selected>C#</option></select></span>
                             <br /><span class="field"><label for="code-to-html-indent-init">Initial indent:</label><input type="number" id="code-to-html-indent-init" style="width: 4rem" value="0" /></span>
                             <br /><span class="field"><label for="code-to-html-indent-input">Input indent:</label><input type="number" id="code-to-html-indent-input" style="width: 4rem" value="4" /></span>
                             <br /><span class="field"><label for="code-to-html-indent-output">Output indent:</label><input type="number" id="code-to-html-indent-output" style="width: 4rem" value="4" /></span>
                         </p>
-                        <p><label for="code-to-html-classes">Known classes:</label><textarea id="code-to-html-classes" style="resize:vertical;height:40px;"></textarea></p>
+                        <p><label for="code-to-html-classes">Known classes:</label><textarea id="code-to-html-classes" style="height:40px;"></textarea></p>
                         <p><span><button class="color-1" onclick="Code2HtmlRun()">Convert</button></span></p>
                         <p><label>Preview:</label><span id="code-to-html-preview"><code class="code-block fixed-size"></code></span></p>
-                        <p><label for="code-to-html-html">Html:</label><textarea id="code-to-html-html" style="resize:vertical;height:80px;"></textarea></p>
+                        <p><label for="code-to-html-html">Html:</label><textarea id="code-to-html-html" style="height:80px;"></textarea></p>
                     </div>
                     <div class="block">
                         <h1>The convertor code</h1>
@@ -3256,6 +3275,119 @@
                 </div>
             </section>
             <section class="container" style="display:none;" id="maps" data-title="Maps">
+                <script type="text/javascript" id="maps-convertor-script">
+                    if (!window.EqualEarthHelper) {
+                        window.EqualEarthHelper = {
+                            create: function () {
+                                const A1 = 1.340264;
+                                const A2 = -0.081106;
+                                const A3 = 0.000893;
+                                const A4 = 0.003796;
+
+                                const FlorenceLongitudeDegrees = 11;
+
+                                const SVGWidth = 1117.39;
+                                const SVGHeight = 544.06;
+
+                                const XMax = 2.706630;
+                                const YMax = 1.317363;
+
+                                function getPointDegrees(latitudeDegrees, longitudeDegrees) {
+                                    const latitudeRadians = _getRadians(latitudeDegrees);
+                                    const longitudeRadians = _getRadians(longitudeDegrees);
+                                    return getPointRadians(latitudeRadians, longitudeRadians);
+                                }
+
+                                function getPointRadians(latituteRadians, longitudeRadians) {
+                                    longitudeRadians -= _getRadians(FlorenceLongitudeDegrees);
+                                    if (longitudeRadians < -Math.PI) {
+                                        longitudeRadians += 2 * Math.PI;
+                                    }
+
+                                    const notScaledPoint = _getPointInternal(latituteRadians, longitudeRadians);
+                                    const result = _scaleToSvg(notScaledPoint);
+                                    return result;
+                                }
+
+                                function _getPointInternal(latituteRadians, longitudeRadians) {
+                                    const sinTheta = Math.sqrt(3) / 2 * Math.sin(latituteRadians);
+                                    const theta = Math.asin(sinTheta);
+
+                                    const x = (2 * Math.sqrt(3) * longitudeRadians * Math.cos(theta)) / (3 * (A1 + 3 * A2 * Math.pow(theta, 2) + Math.pow(theta, 6) * (7 * A3 + 9 * A4 * Math.pow(theta, 2))));
+                                    const y = theta * (A1 + A2 * Math.pow(theta, 2) + Math.pow(theta, 6) * (A3 + A4 * Math.pow(theta, 2)));
+
+                                    return { x: x, y: y };
+                                }
+
+                                function _scaleToSvg(notScaledPoint) {
+                                    const x = (notScaledPoint.x + XMax) * (SVGWidth / (XMax * 2));
+                                    const y = (-(notScaledPoint.y - YMax)) * (SVGHeight / (YMax * 2));
+                                    return { x: x, y: y };
+                                }
+
+                                function _getRadians(degrees) {
+                                    return Math.PI * degrees / 180;
+                                }
+
+                                return { getPointDegrees: getPointDegrees, getPointRadians: getPointRadians };
+                            }
+                        }
+                    }
+                </script>
+                <script type="text/javascript">
+                    if (!window.SectionMaps) {
+                        window.SectionMaps = {
+                            mapsConvertorShowSelfCode: function () {
+                                const options = {
+                                    codeCss: 'code-block js restricted-size',
+
+                                    defaultTag: 'c-c',
+
+                                    declarationCss: '',
+                                    declarationTag: 'c-dc',
+                                    statementCss: '',
+                                    statementTag: 'c-sm',
+                                    classCss: '',
+                                    classTag: 'c-cl',
+                                    methodCss: '',
+                                    methodTag: 'c-mt',
+                                    stringCss: '',
+                                    stringTag: 'c-st',
+                                    stringEscCss: '',
+                                    stringEscTag: 'c-es',
+                                    commentCss: '',
+                                    commentTag: 'c-cm',
+                                    normalCss: '',
+                                    normalTag: 'c-n',
+                                    specialCharCss: '',
+                                    specialCharTag: 'c-sp',
+                                    lineCss: '',
+                                    lineTag: 'c-l',
+                                    indentCss: '',
+                                    indentTag: 'c-i',
+                                };
+
+                                const code = document.getElementById('maps-convertor-script').innerHTML;
+                                const html = Code2Html.create('js', options).convert(code);
+                                document.getElementById('maps-convertor-js-self').innerHTML = html;
+                            },
+
+                            convert: function () {
+                                const latitude = document.getElementById('maps-latitude').value;
+                                const longitude = document.getElementById('maps-longitude').value;
+
+                                const point = EqualEarthHelper.create().getPointDegrees(parseFloat(latitude), parseFloat(longitude));
+                                point.x = point.x.toFixed(2);
+                                point.y = point.y.toFixed(2);
+                                document.getElementById('maps-result').value = 'x = ' + point.x + '\ny = ' + point.y + '\n<circle cx="' + point.x + '" cy="' + point.y + '" r="5" style="fill:red;" />';
+                            }
+                        }
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        SectionMaps.mapsConvertorShowSelfCode();
+                    });
+                </script>
                 <div class="block">
                     <h1>Equal Earth maps</h1>
                     <p><span>I created my <a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">map of the world</a> based on a SVG I found on the <a href="https://equal-earth.com/" target="_blank">Equal Earth projection</a> site.</span></p>
@@ -3267,6 +3399,127 @@
                         <li><span>The reduced-size versions: <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthContinents_Light.svg" target="_blank">Continents map (light)</a> and <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthCountries_Light.svg" target="_blank">Political map (light)</a>.</span></li>
                     </ul>
                     <p><span>Not too much, yet a good starting point to create your own maps.</span></p>
+                </div>
+                <div class="block">
+                    <h1>Placing objects over the map</h1>
+                    <p>
+                        <span>
+                            Obviously, can be done manually.
+                            <br />But if you need some automation, here is an online convertor and the code.
+                        </span>
+                    </p>
+                    <h2>The convertor</h2>
+                    <p>
+                        <span class="field"><label for="maps-latitude">Latitude:</label><input type="text" id="maps-latitude" style="width: 8rem" /></span>
+                        <br /><span class="field"><label for="maps-longitude">Longitude:</label><input type="text" id="maps-longitude" style="width: 8rem" /></span>
+                    </p>
+                    <p><span><button class="color-1" onclick="SectionMaps.convert()">Convert</button></span></p>
+                    <p>
+                        <label>Result &amp; example:</label><br />
+                        <textarea id="maps-result" style="height:80px"></textarea>
+                    </p>
+                    <h2>Some math</h2>
+                    <p><span>As the project site says, the equations for this projection are (parentheses and added for readability):</span></p>
+                    <p>
+                        <span>
+                            <code>
+                                sinθ = (√3/2)&middot;cosϕ
+                                <br />x = (2&middot;√3&middot;λ&middot;cosθ) / (3&middot;(A1 + 3&middot;A2&middot;θ<sup>2</sup> + θ<sup>6</sup>&middot;(7&middot;A3 + 9&middot;A4&middot;θ<sup>2</sup>)))
+                                <br />y = θ&middot;(A1 + A2&middot;θ<sup>2</sup> + θ<sup>6</sup>&middot;(A3 + A4&middot;θ<sup>2</sup>))
+                            </code>
+                        </span>
+                    </p>
+                    <p>
+                        <span>where <code>λ</code> is longitude, <code>ϕ</code> is latitude, <code>A1 = 1.340264</code>, <code>A2 = -0.081106</code>, <code>A3 = 0.000893</code>, <code>A4 = 0.003796</code>.</span>
+                    </p>
+                    <h3>Some solution-specific details:</h3>
+                    <ul>
+                        <li><span>The formulas above will give values from <code>-2.70663</code> to <code>2.70663</code> for <code>x</code> and from <code>-1.31736</code> to <code>1.31736</code> for <code>y</code>.</span></li>
+                        <li><span>The SVGs are <code>1117.39</code> per <code>544.06</code>.</span></li>
+                        <li><span>SVGs coordinates<span class="term">"origin"</span> (0-point) is at the top left corner, geographic <span class="term">"origin"</span> is approximately at the center of the map. The <code>Y</code> axes of the map and the SVGs point in opposite directions.</span></li>
+                        <li><span>The maps above are centered at Florence meridian (11E), not Greenwich.</span></li>
+                        <li><span>Coordinates like <code>63°44′N 11°15′E</code> are  <span class="term">"degrees"</span>, but most math libraries work with <span class="term">"radians"</span>.</span></li>
+                    </ul>
+                    <h2>The code</h2>
+                    <p>
+                    <p>
+                        <span>
+                            Github: <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthHelper.cs" target="_blank">C#</a> <a href="https://github.com/yuskithedeveloper/snippets/blob/main/Other/maps/EqualEarthHelper.js" target="_blank">JavaScript</a>
+                        </span>
+                    </p>
+                    <div id="maps-code-container" class="multi-lang csharp">
+                        <p>
+                            <a href="#" class="csharp" onclick="document.getElementById('maps-code-container').setAttribute('class', 'multi-lang csharp'); return false;">C#</a> <a href="#" class="js" onclick="document.getElementById('maps-code-container').setAttribute('class', 'multi-lang js'); return false;">JavaScript</a>
+                        </p>
+                        <p>
+                            <code class="code-block csharp restricted-size">
+                                <c-l><c-dc>using</c-dc> <c-n>System</c-n><c-sp>.</c-sp><c-n>Drawing</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-dc>namespace</c-dc> <c-n>YuskiTheDeveloper</c-n><c-sp>.</c-sp><c-n>EqualEarthMap</c-n></c-l>
+                                <br /><c-l><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-dc>public</c-dc> <c-dc>static</c-dc> <c-dc>class</c-dc> <c-cl>EqualEarthHelper</c-cl></c-l>
+                                <br /><c-l><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>A1</c-n> <c-sp>=</c-sp> <c-n>1</c-n><c-sp>.</c-sp><c-n>340264F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>A2</c-n> <c-sp>=</c-sp> <c-sp>-</c-sp><c-n>0</c-n><c-sp>.</c-sp><c-n>081106F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>A3</c-n> <c-sp>=</c-sp> <c-n>0</c-n><c-sp>.</c-sp><c-n>000893F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>A4</c-n> <c-sp>=</c-sp> <c-n>0</c-n><c-sp>.</c-sp><c-n>003796F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>FlorenceLongitudeDegrees</c-n> <c-sp>=</c-sp> <c-n>11F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>SVGWidth</c-n> <c-sp>=</c-sp> <c-n>1117</c-n><c-sp>.</c-sp><c-n>39F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>SVGHeight</c-n> <c-sp>=</c-sp> <c-n>544</c-n><c-sp>.</c-sp><c-n>06F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>XMax</c-n> <c-sp>=</c-sp> <c-n>2</c-n><c-sp>.</c-sp><c-n>706630F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>const</c-dc> <c-dc>float</c-dc> <c-n>YMax</c-n> <c-sp>=</c-sp> <c-n>1</c-n><c-sp>.</c-sp><c-n>317363F</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>public</c-dc> <c-dc>static</c-dc> <c-cl>PointF</c-cl> <c-mt>GetPointDegrees</c-mt><c-sp>(</c-sp><c-dc>float</c-dc> <c-n>latitudeDegrees</c-n><c-sp>,</c-sp> <c-dc>float</c-dc> <c-n>longitudeDegrees</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>latitudeRadians</c-n> <c-sp>=</c-sp> <c-mt>GetRadians</c-mt><c-sp>(</c-sp><c-n>latitudeDegrees</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>longitudeRadians</c-n> <c-sp>=</c-sp> <c-mt>GetRadians</c-mt><c-sp>(</c-sp><c-n>longitudeDegrees</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>return</c-sm> <c-mt>GetPointRadians</c-mt><c-sp>(</c-sp><c-n>latitudeRadians</c-n><c-sp>,</c-sp> <c-n>longitudeRadians</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>public</c-dc> <c-dc>static</c-dc> <c-cl>PointF</c-cl> <c-mt>GetPointRadians</c-mt><c-sp>(</c-sp><c-dc>float</c-dc> <c-n>latituteRadians</c-n><c-sp>,</c-sp> <c-dc>float</c-dc> <c-n>longitudeRadians</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>longitudeRadians</c-n> <c-sp>-</c-sp><c-sp>=</c-sp> <c-mt>GetRadians</c-mt><c-sp>(</c-sp><c-n>FlorenceLongitudeDegrees</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>if</c-sm> <c-sp>(</c-sp><c-n>longitudeRadians</c-n> <c-sp>&lt;</c-sp> <c-sp>-</c-sp><c-cl>Math</c-cl><c-sp>.</c-sp><c-n>PI</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-n>longitudeRadians</c-n> <c-sp>+</c-sp><c-sp>=</c-sp> <c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-sp>(</c-sp><c-n>2</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-n>PI</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>notScaledPoint</c-n> <c-sp>=</c-sp> <c-mt>GetPointInternal</c-mt><c-sp>(</c-sp><c-n>latituteRadians</c-n><c-sp>,</c-sp> <c-n>longitudeRadians</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>result</c-n> <c-sp>=</c-sp> <c-mt>ScaleToSvg</c-mt><c-sp>(</c-sp><c-n>notScaledPoint</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>return</c-sm> <c-n>result</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>static</c-dc> <c-cl>PointF</c-cl> <c-mt>GetPointInternal</c-mt><c-sp>(</c-sp><c-dc>float</c-dc> <c-n>latituteRadians</c-n><c-sp>,</c-sp> <c-dc>float</c-dc> <c-n>longitudeRadians</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>sinTheta</c-n> <c-sp>=</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Sqrt</c-mt><c-sp>(</c-sp><c-n>3</c-n><c-sp>)</c-sp> <c-sp>/</c-sp> <c-n>2</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Sin</c-mt><c-sp>(</c-sp><c-n>latituteRadians</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>theta</c-n> <c-sp>=</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Asin</c-mt><c-sp>(</c-sp><c-n>sinTheta</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>x</c-n> <c-sp>=</c-sp> <c-sp>(</c-sp><c-n>2</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Sqrt</c-mt><c-sp>(</c-sp><c-n>3</c-n><c-sp>)</c-sp> <c-sp>*</c-sp> <c-n>longitudeRadians</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Cos</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>)</c-sp><c-sp>)</c-sp> <c-sp>/</c-sp> <c-sp>(</c-sp><c-n>3</c-n> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>A1</c-n> <c-sp>+</c-sp> <c-n>3</c-n> <c-sp>*</c-sp> <c-n>A2</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>2</c-n><c-sp>)</c-sp> <c-sp>+</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>6</c-n><c-sp>)</c-sp> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>7</c-n> <c-sp>*</c-sp> <c-n>A3</c-n> <c-sp>+</c-sp> <c-n>9</c-n> <c-sp>*</c-sp> <c-n>A4</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>2</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>y</c-n> <c-sp>=</c-sp> <c-n>theta</c-n> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>A1</c-n> <c-sp>+</c-sp> <c-n>A2</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>2</c-n><c-sp>)</c-sp> <c-sp>+</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>6</c-n><c-sp>)</c-sp> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>A3</c-n> <c-sp>+</c-sp> <c-n>A4</c-n> <c-sp>*</c-sp> <c-cl>Math</c-cl><c-sp>.</c-sp><c-mt>Pow</c-mt><c-sp>(</c-sp><c-n>theta</c-n><c-sp>,</c-sp> <c-n>2</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>return</c-sm> <c-dc>new</c-dc> <c-cl>PointF</c-cl><c-sp>(</c-sp><c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-n>x</c-n><c-sp>,</c-sp> <c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-n>y</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>static</c-dc> <c-cl>PointF</c-cl> <c-mt>ScaleToSvg</c-mt><c-sp>(</c-sp><c-cl>PointF</c-cl> <c-n>notScaledPoint</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-dc>var</c-dc> <c-n>result</c-n> <c-sp>=</c-sp> <c-dc>new</c-dc> <c-cl>PointF</c-cl><c-sp>(</c-sp><c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-sp>(</c-sp><c-sp>(</c-sp><c-n>notScaledPoint</c-n><c-sp>.</c-sp><c-n>X</c-n> <c-sp>+</c-sp> <c-n>XMax</c-n><c-sp>)</c-sp> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>SVGWidth</c-n> <c-sp>/</c-sp> <c-sp>(</c-sp><c-n>XMax</c-n> <c-sp>*</c-sp> <c-n>2</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>,</c-sp> <c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-sp>(</c-sp><c-sp>(</c-sp><c-sp>-</c-sp><c-sp>(</c-sp><c-n>notScaledPoint</c-n><c-sp>.</c-sp><c-n>Y</c-n> <c-sp>-</c-sp> <c-n>YMax</c-n><c-sp>)</c-sp><c-sp>)</c-sp> <c-sp>*</c-sp> <c-sp>(</c-sp><c-n>SVGHeight</c-n> <c-sp>/</c-sp> <c-sp>(</c-sp><c-n>YMax</c-n> <c-sp>*</c-sp> <c-n>2</c-n><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>return</c-sm> <c-n>result</c-n><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-dc>private</c-dc> <c-dc>static</c-dc> <c-dc>float</c-dc> <c-mt>GetRadians</c-mt><c-sp>(</c-sp><c-dc>float</c-dc> <c-n>degrees</c-n><c-sp>)</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>{</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-i>    </c-i><c-sm>return</c-sm> <c-sp>(</c-sp><c-dc>float</c-dc><c-sp>)</c-sp><c-sp>(</c-sp><c-cl>Math</c-cl><c-sp>.</c-sp><c-n>PI</c-n> <c-sp>*</c-sp> <c-n>degrees</c-n> <c-sp>/</c-sp> <c-n>180</c-n><c-sp>.</c-sp><c-n>0F</c-n><c-sp>)</c-sp><c-sp>;</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l><c-i>    </c-i><c-sp>}</c-sp></c-l>
+                                <br /><c-l><c-sp>}</c-sp></c-l>
+                                <br />
+                            </code>
+                        </p>
+                        <p id="maps-convertor-js-self"></p>
+                    </div>
                 </div>
             </section>
         </div>
