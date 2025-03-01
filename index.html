@@ -977,12 +977,13 @@
                 </div>
                 <div class="block">
                     <h1>What's new?</h1>
+                    <p><span>Links </span><a href="?section=links" onclick="UI.navigate('links'); return false;">updated</a></p>
                     <p><span>JFF: Earthquakes map </span><a href="?section=earthquake-map" onclick="UI.navigate('earthquake-map'); return false;">published</a></p>
                     <p><span>Code: Equal Earth SVG maps </span><a href="?section=maps" onclick="UI.navigate('maps'); return false;">updated</a></p>
-                    <p><span>Photos: Rnd beauty 2020 - 2024 </span><a href="?section=photos-moments-20-24" onclick="UI.navigate('photos-moments-20-24'); return false;">published</a></p>
+                    <p><span class="thought">Last site update: <span class="highlighted-red">1 march 2025</span></span></p>
                 </div>
                 <div class="block">
-                    <h1>Privacy, terms, etc.</h1>
+                    <h1>Privacy, terms, licenses, etc.</h1>
                     <p><span>I don't collect or store any information about the visitors of my site. I don't use cookies, browser storage or things like that.</span></p>
                     <p><span>You can use anything found here for free in any way you like. As usually, no warranty or liability on my part.</span></p>
                 </div>
@@ -1193,14 +1194,15 @@
                                 const links = document.getElementById('links-list').getElementsByTagName('li');
                                 for (let i = 0; i < links.length; i++) {
                                     const url = links[i].getElementsByTagName('a')[0].getAttribute('href');
-                                    links[i].innerHTML = '<a href="' + url + '" target="_blank">' + url + '</a><span> - checking...</span>';
+                                    const stateContainer = links[i].getElementsByClassName('state')[0];
+                                    stateContainer.innerHtml = '<span> - checking...</span>';
 
-                                    Tools.httpGetStatusAsync(url, { element: links[i], url: url }, function (context, responseStatus) {
+                                    Tools.httpGetStatusAsync(url, { element: stateContainer, url: url }, function (context, responseStatus) {
                                         if (responseStatus >= 200 && responseStatus < 400) {
-                                            context.element.innerHTML = '<a href="' + url + '" target="_blank">' + url + '</a><span class="highlighted-green"> - OK (' + responseStatus + ')</span>';
+                                            context.element.innerHTML = '<span class="highlighted-green"> - OK (' + responseStatus + ')</span>';
                                         }
                                         else {
-                                            context.element.innerHTML = '<a href="' + url + '" target="_blank">' + url + '</a><span class="highlighted-red"> - Failed (' + responseStatus + ')</span>';
+                                            context.element.innerHTML = '<span class="highlighted-red"> - Failed (' + responseStatus + ')</span>';
                                         }
                                     });
                                 }
@@ -1208,41 +1210,84 @@
                         }
                     }
                 </script>
+                <style>
+                    .section-links-list li {
+                        margin-bottom: 0.7rem;
+                    }
+                </style>
                 <div class="container">
                     <div class="block">
                         <div>
                             <p><span>Since <b>personal sites</b> have become rare and hard to find, I think it's worth having a small collection here.</span></p>
+                            <p><span>I can't tell how I decide what to add and what not, but here are some things that I appreciate:</span></p>
+                            <ul>
+                                <li><span>Lightweight design: without animations everywhere, strange scroll behavior, and pretension to look "cool". Except when it <b>is</b> cool.</span></li>
+                                <li><span>Not focused only on self-branding, portfolio works and "Hire me! Pleeeese!" kind of content.</span></li>
+                                <li><span>Sharing personal experiences, thoughts, and not work-related stuff.</span></li>
+                            </ul>
                             <p><span>I'll update this list time to time.</span></p>
                         </div>
                     </div>
                     <div class="block">
                         <h1>The links</h1>
-                        <p><span>January 2025:</span></p>
-                        <ul id="links-list">
-                            <li><a href="https://yuskithedeveloper.github.io" target="_blank">https://yuskithedeveloper.github.io</a></li>
-                            <li><a href="https://dustinbrett.com" target="_blank">https://dustinbrett.com</a></li>
-                            <li><a href="https://fahru.me" target="_blank">https://fahru.me</a></li>
-                            <li><a href="https://drfaustest.github.io" target="_blank">https://drfaustest.github.io</a></li>
-                            <li><a href="https://lakefox.net" target="_blank">https://lakefox.net</a></li>
-                            <li><a href="https://nomadmystic.com" target="_blank">https://nomadmystic.com</a></li>
-                            <li><a href="https://pjflanagan.me" target="_blank">https://pjflanagan.me</a></li>
-                            <li><a href="https://tuckermassad.com" target="_blank">https://tuckermassad.com</a></li>
-                            <li><a href="https://archive.deviouschimp.co.uk" target="_blank">https://archive.deviouschimp.co.uk</a></li>
-                            <li><a href="https://stefanzweifel.dev" target="_blank">https://stefanzweifel.dev</a></li>
-                            <li><a href="https://www.elvinmendoza.com" target="_blank">https://www.elvinmendoza.com</a></li>
-                            <li><a href="https://akgb.neocities.org" target="_blank">https://akgb.neocities.org</a></li>
-                            <li><a href="https://www.jacobcohen-rosenthal.me" target="_blank">https://www.jacobcohen-rosenthal.me</a></li>
-                            <li><a href="https://www.tylerkaraszewski.com" target="_blank">https://www.tylerkaraszewski.com</a></li>
-                            <li><a href="https://bryantcodes.art" target="_blank">https://bryantcodes.art</a></li>
-                            <li><a href="https://peteroravec.com" target="_blank">https://peteroravec.com</a></li>
-                            <li><a href="https://ddaniel.dev" target="_blank">https://ddaniel.dev</a></li>
-                            <li><a href="https://www.haakon.dev" target="_blank">https://www.haakon.dev</a></li>
-                            <li><a href="https://www.javiermorales.dev" target="_blank">https://www.javiermorales.dev</a></li>
-                            <li><a href="https://garden.alliecaton.com" target="_blank">https://garden.alliecaton.com</a></li>
-                            <li><a href="https://tahsin.us" target="_blank">https://tahsin.us</a></li>
-                            <li><a href="https://1sle.xyz" target="_blank">https://1sle.xyz</a></li>
-                            <li><a href="https://thibault.sh" target="_blank">https://thibault.sh</a></li>
-                            <li><a href="https://blacksheepcode.com" target="_blank">https://blacksheepcode.com</a></li>
+                        <p><span>Updated: March 2025</span></p>
+                        <ul id="links-list" class="section-links-list">
+                            <li>
+                                <a href="https://yuskithedeveloper.github.io" target="_blank">https://yuskithedeveloper.github.io</a><span class="state"></span>
+                                <br /><span class="thought">...</span>
+                            </li>
+                            <li>
+                                <a href="https://dustinbrett.com" target="_blank">https://dustinbrett.com</a><span class="state"></span>
+                                <br /><span class="thought">The windows-style UI and the games are cool:)</span>
+                            </li>
+                            <li>
+                                <a href="https://fahru.me" target="_blank">https://fahru.me</a><span class="state"></span>
+                                <br /><span class="thought">Interesting desktop-style UI, but seems to be abandoned, sadly</span>
+                            </li>
+                            <li>
+                                <a href="https://archive.deviouschimp.co.uk" target="_blank">https://archive.deviouschimp.co.uk</a><span class="state"></span>
+                                <br /><span class="thought">Read the "Why?" section</span>
+                            </li>
+                            <li>
+                                <a href="https://stefanzweifel.dev" target="_blank">https://stefanzweifel.dev</a><span class="state"></span>
+                                <br /><span class="thought">Overall very worth reading. I even will borrow some ideas...</span>
+                            </li>
+                            <li>
+                                <a href="https://akgb.neocities.org" target="_blank">https://akgb.neocities.org</a><span class="state"></span>
+                                <br /><span class="thought">I like diary-style blogs:)</span>
+                            </li>
+                            <li>
+                                <a href="https://bryantcodes.art" target="_blank">https://bryantcodes.art</a><span class="state"></span>
+                                <br /><span class="thought">The UI is unique!</span>
+                            </li>
+                            <li>
+                                <a href="https://peteroravec.com" target="_blank">https://peteroravec.com</a><span class="state"></span>
+                                <br /><span class="thought">Again, an unrepeatable UI:)</span>
+                            </li>
+                            <li>
+                                <a href="https://garden.alliecaton.com" target="_blank">https://garden.alliecaton.com</a><span class="state"></span>
+                                <br /><span class="thought">Sadly, abandoned. But there are some interesting links I want to check.</span>
+                            </li>
+                            <li>
+                                <a href="https://1sle.xyz" target="_blank">https://1sle.xyz</a><span class="state"></span>
+                                <br /><span class="thought">Another cool design.</span>
+                            </li>
+                            <li>
+                                <a href="https://thibault.sh" target="_blank">https://thibault.sh</a><span class="state"></span>
+                                <br /><span class="thought">2025: "In 15 years, humanity will have a permanent lunar base". Okay:)</span>
+                            </li>
+                            <li>
+                                <a href="https://blacksheepcode.com" target="_blank">https://blacksheepcode.com</a><span class="state"></span>
+                                <br /><span class="thought">Has a good IT \ dev blog.</span>
+                            </li>
+                            <li>
+                                <a href="https://mnsh.me" target="_blank">https://mnsh.me</a><span class="state"></span>
+                                <br /><span class="thought">Interesting blog, will read...</span>
+                            </li>
+                            <li>
+                                <a href="https://dawiid.io" target="_blank">https://dawiid.io</a><span class="state"></span>
+                                <br /><span class="thought">A small site, but the shared thoughts are close to what I think.</span> 
+                            </li>
                         </ul>
                     </div>
                     <div class="block">
