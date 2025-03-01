@@ -3557,9 +3557,8 @@
                                 const startTime = new Date();
                                 startTime.setUTCHours(endTime.getUTCHours() - hours);
 
-
-                                url += '?starttime=' + startTime.getUTCFullYear() + '-' + startTime.getUTCMonth() + '-' + startTime.getUTCDate() + '%20' + startTime.getUTCHours() + ':' + startTime.getUTCMinutes() + ':00';
-                                url += '&endtime=' + endTime.getUTCFullYear() + '-' + endTime.getUTCMonth() + '-' + endTime.getUTCDate() + '%20' + endTime.getUTCHours() + ':' + endTime.getUTCMinutes() + ':59';
+                                url += '?starttime=' + startTime.getUTCFullYear() + '-' + (startTime.getUTCMonth() + 1) + '-' + startTime.getUTCDate() + '%20' + startTime.getUTCHours() + ':' + startTime.getUTCMinutes() + ':00';
+                                url += '&endtime=' + endTime.getUTCFullYear() + '-' + +(endTime.getUTCMonth() + 1) + '-' + endTime.getUTCDate() + '%20' + endTime.getUTCHours() + ':' + endTime.getUTCMinutes() + ':59';
                                 url += '&minmagnitude=2.5';
                                 url += '&orderby=magnitude-asc';
                                 //url += '&orderby=time';
