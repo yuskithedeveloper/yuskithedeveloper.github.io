@@ -34,20 +34,41 @@
             fill: #3b3b3b;
         }
 
-        .map-map svg g circle.minor {
+        .map-map svg g circle.spot-border {
+            fill: transparent;
+            stroke-width: 0.2px;
+        }
+
+        .map-map svg g.minor circle.spot-dot {
             fill: #58ff00;
         }
 
-        .map-map svg g circle.moderate {
+        .map-map svg g.minor circle.spot-border { 
+            stroke: #58ff00;
+        }
+
+        .map-map svg g.moderate circle.spot-dot {
             fill: #fffa00;
         }
 
-        .map-map svg g circle.strong {
+        .map-map svg g.moderate circle.spot-border {
+            stroke: #fffa00;
+        }
+
+        .map-map svg g.strong circle.spot-dot {
             fill: #ff0000;
         }
 
-        .map-map svg g circle.major {
+        .map-map svg g.strong circle.spot-border {
+            stroke: #ff0000;
+        }
+
+        .map-map svg g.major circle.spot-dot {
             fill: #ff63e4;
+        }
+
+        .map-map svg g.major circle.spot-border {
+            stroke: #ff63e4;
         }
 
 
@@ -73,25 +94,33 @@
                         }
 
                         let cl = '';
-                        let r = '';
+                        let rDot = 0;
+                        let rBorder = 0;
                         if (data.items[i].magnitude < 3.5) {
-                            r = 3;
+                            rDot = 1.5;
+                            rBorder = 3;
                             cl = 'minor';
                         }
                         else if (data.items[i].magnitude < 5.5) {
-                            r = 4;
+                            rDot = 2;
+                            rBorder = 4;
                             cl = 'moderate';
                         }
                         else if (data.items[i].magnitude < 7) {
-                            r = 7;
+                            rDot = 2;
+                            rBorder = 7;
                             cl = 'strong';
                         }
                         else {
-                            r = 10;
+                            rDot = 2;
+                            rBorder = 10;
                             cl = 'major';
                         }
 
-                        earthquakesSvg += '<circle class="' + cl + '" cx="' + data.items[i].point.x + '" cy="' + data.items[i].point.y + '" r="' + r + '" data-magnitude="' + data.items[i].magnitude + '" data-time="' + data.items[i].time + '" data-place="' + encodedPlace + '" onclick="EarthquakeMap.showDetails(this);" />';
+                        earthquakesSvg += '<g class="'+cl+'">';
+                        earthquakesSvg += '<circle class="spot-dot" cx="' + data.items[i].point.x + '" cy="' + data.items[i].point.y + '" r="' + rDot + '" data-magnitude="' + data.items[i].magnitude + '" data-time="' + data.items[i].time + '" data-place="' + encodedPlace + '" onclick="EarthquakeMap.showDetails(this);" />';
+                        earthquakesSvg += '<circle class="spot-border" cx="' + data.items[i].point.x + '" cy="' + data.items[i].point.y + '" r="' + rBorder + '" data-magnitude="' + data.items[i].magnitude + '" data-time="' + data.items[i].time + '" data-place="' + encodedPlace + '" onclick="EarthquakeMap.showDetails(this);" />';
+                        earthquakesSvg += '</g>';
                     }
                     const earthquakesContainer = document.getElementById('earthquakes-container');
                     if (typeof earthquakesContainer.innerHTML === "undefined") {
