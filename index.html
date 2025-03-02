@@ -1166,21 +1166,22 @@
                         SectionBlog.refresh();
                     });
                 </script>
-                <style> 
+                <style>
                     #blog .tags {
                         text-align: center;
                         margin-top: 0.5rem;
                         margin-bottom: 0.5rem;
                     }
-                    #blog .tags a {
-                        color: #838383;
-                        text-decoration: line-through;
-                    }
 
-                        #blog .tags a.active-tag {
-                            color: #3246bb;
-                            text-decoration: none;
+                        #blog .tags a {
+                            color: #838383;
+                            text-decoration: line-through;
                         }
+
+                            #blog .tags a.active-tag {
+                                color: #3246bb;
+                                text-decoration: none;
+                            }
 
                     #blog .post-tag {
                         font-size: 1rem;
@@ -1265,10 +1266,10 @@
                         <p><span class="post-tag">#photos</span></p>
                     </div>
                     <div class="block">
-                        <h1>Article: Cross-Origin Resource Sharing (CORS)</h1> 
-                            <p><span>Even 10+ years after CORS was supported by most browsers, there is still a lot of misunderstanding.</span></p>
-                            <p><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">View</a></p>
-                            <p><span class="post-tag">#techtalk</span></p> 
+                        <h1>Article: Cross-Origin Resource Sharing (CORS)</h1>
+                        <p><span>Even 10+ years after CORS was supported by most browsers, there is still a lot of misunderstanding.</span></p>
+                        <p><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">View</a></p>
+                        <p><span class="post-tag">#techtalk</span></p>
                     </div>
                     <div class="block">
                         <h1>Links</h1>
@@ -1309,7 +1310,7 @@
                     }
                 </script>
                 <style>
-                    .section-links-list li {
+                    #links .links-list li {
                         margin-bottom: 0.7rem;
                     }
                 </style>
@@ -1329,7 +1330,7 @@
                     <div class="block">
                         <h1>The links</h1>
                         <p><span>Updated: March 2025</span></p>
-                        <ul id="links-list" class="section-links-list">
+                        <ul id="links-list" class="links-list">
                             <li>
                                 <a href="https://yuskithedeveloper.github.io" target="_blank">https://yuskithedeveloper.github.io</a><span class="state"></span>
                                 <br /><span class="thought">...</span>
@@ -3381,11 +3382,11 @@
                             return;
 
                         const data = JSON.parse(event.data);
-                        document.getElementById('map-info-title').innerText = data.title;
+                        document.getElementById('spot-info-title').innerText = data.title;
                         if (!data.srcs)
                             return;
 
-                        const imgs = document.getElementById('map-info-imgs').getElementsByTagName('img');
+                        const imgs = document.getElementById('spot-info-imgs').getElementsByTagName('img');
                         const pointSrcsSpl = data.srcs.split(',');
                         let iMax = pointSrcsSpl.length;
                         if (imgs.length < iMax) {
@@ -3398,15 +3399,15 @@
                     });
                 </script>
                 <style>
-                    .map-info {
+                    #travel-map .spot-info {
                         overflow: auto;
                     }
 
-                        .map-info h2 {
+                        #travel-map .spot-info h2 {
                             margin-top: 0.5rem;
                         }
 
-                        .map-info .img-container-h.preview img {
+                        #travel-map .spot-info .img-container-h.preview img {
                             width: 25%;
                         }
                 </style>
@@ -3416,9 +3417,9 @@
                             <iframe style="width: 64rem; height: 31rem; margin: auto; display: block; border:none" data-src="photos/travel-map/map.html"></iframe>
                         </div>
 
-                        <div class="map-info">
-                            <h2 id="map-info-title"></h2>
-                            <p id="map-info-imgs" class="img-container-h preview">
+                        <div class="spot-info">
+                            <h2 id="spot-info-title"></h2>
+                            <p id="spot-info-imgs" class="img-container-h preview">
                                 <img onclick="UI.showImgFullSize(this);" />
                                 <img onclick="UI.showImgFullSize(this);" />
                                 <img onclick="UI.showImgFullSize(this);" />
@@ -3738,20 +3739,7 @@
 
                         document.getElementById('earthquake-info').innerHTML = time.toLocaleTimeString() + ', ' + time.toDateString() + ' <br />Magnitude: ' + data.magnitude + '<br />' + data.place;
                     });
-                </script>
-                <style>
-                    .map-info {
-                        overflow: auto;
-                    }
-
-                        .map-info h2 {
-                            margin-top: 0.5rem;
-                        }
-
-                        .map-info .img-container-h.preview img {
-                            width: 25%;
-                        }
-                </style>
+                </script> 
                 <div class="container">
                     <div class="block">
                         <div style="width: 100%; height: 31.5rem; overflow: auto;">
