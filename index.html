@@ -1112,78 +1112,176 @@
                     <p><span><a href="https://www.linkedin.com/in/yuskithedeveloper" target="_blank">LinkedIn</a></span></p>
                 </div>
             </section>
-            <section class="container flex" style="display:none;" id="blog" data-title="Blog">
-                <div class="block">
-                    <h1>JFF: Earthquakes map</h1>
-                    <p><span>A small demo-educational project</span></p>
-                    <p><a href="?section=earthquake-map" onclick="UI.navigate('earthquake-map'); return false;">View</a></p>
+            <section style="display:none;" id="blog" data-title="Blog">
+                <script type="text/javascript">
+                    if (!window.SectionBlog) {
+                        window.SectionBlog = {
+                            filterTags: ['#techtalk', '#photos', '#projects', '#code', '#other'],
+
+                            toggleFilterTag: function (tag) {
+                                if (SectionBlog.filterTags.indexOf(tag) < 0) {
+                                    SectionBlog.filterTags.push(tag);
+                                }
+                                else {
+                                    SectionBlog.filterTags.splice(SectionBlog.filterTags.indexOf(tag), 1);
+                                }
+
+                                SectionBlog.refresh();
+                            },
+
+                            refresh: function () {
+                                console.log('tags', SectionBlog.filterTags);
+                                const posts = document.getElementById('posts-all').getElementsByClassName('block');
+                                const showingPosts = document.getElementById('posts-showing');
+                                let showingHtml = '';
+                                for (let i = 0; i < posts.length; i++) {
+                                    const postTags = posts[i].getElementsByClassName('post-tag');
+                                    let anyPostTagInFilter = false;
+                                    for (let j = 0; j < postTags.length; j++) {
+                                        if (SectionBlog.filterTags.indexOf(postTags[j].innerText) >= 0) {
+                                            anyPostTagInFilter = true;
+                                            break;
+                                        }
+                                    }
+                                    if (anyPostTagInFilter) {
+                                        showingHtml += posts[i].outerHTML;
+                                    }
+                                }
+                                showingPosts.innerHTML = showingHtml;
+
+                                const tags = document.getElementById('tags').getElementsByTagName('a');
+                                for (let i = 0; i < tags.length; i++) {
+                                    if (SectionBlog.filterTags.indexOf(tags[i].innerText) >= 0) {
+                                        tags[i].setAttribute('class', 'active-tag');
+                                    }
+                                    else {
+                                        tags[i].setAttribute('class', '');
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        SectionBlog.refresh();
+                    });
+                </script>
+                <style> 
+                    #blog .tags {
+                        text-align: center;
+                        margin-top: 0.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    #blog .tags a {
+                        color: #838383;
+                        text-decoration: line-through;
+                    }
+
+                        #blog .tags a.active-tag {
+                            color: #3246bb;
+                            text-decoration: none;
+                        }
+
+                    #blog .post-tag {
+                        font-size: 1rem;
+                        font-style: italic;
+                        color: #dc2b2b;
+                    }
+                </style>
+                <div id="tags" class="tags">
+                    <a class="active-tag" href="#" onclick="SectionBlog.toggleFilterTag(this.innerText); return false;">#photos</a>
+                    <a class="active-tag" href="#" onclick="SectionBlog.toggleFilterTag(this.innerText); return false;">#techtalk</a>
+                    <a class="active-tag" href="#" onclick="SectionBlog.toggleFilterTag(this.innerText); return false;">#projects</a>
+                    <a class="active-tag" href="#" onclick="SectionBlog.toggleFilterTag(this.innerText); return false;">#code</a>
+                    <a class="active-tag" href="#" onclick="SectionBlog.toggleFilterTag(this.innerText); return false;">#other</a>
                 </div>
-                <div class="block">
-                    <h1>Photos: Rnd beauty</h1>
-                    <p><span>2020 - 2024, 3 photos per year</span></p>
-                    <p><a href="?section=photos-moments-20-24" onclick="UI.navigate('photos-moments-20-24'); return false;">View</a></p>
+                <div id="posts-showing" class="posts container flex">
                 </div>
-                <div class="block">
-                    <h1>Code: Equal Earth SVG maps</h1>
-                    <p><span>A starting point for your map of the world</span></p>
-                    <p><a href="?section=maps" onclick="UI.navigate('maps'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Photos: My world map</h1>
-                    <p><span>With places I've been</span></p>
-                    <p><a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Photos: Rnd beauty</h1>
-                    <p><span>2015 - 2019, 3 photos per year</span></p>
-                    <p><a href="?section=photos-moments-15-19" onclick="UI.navigate('photos-moments-15-19'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Code: Active Directory Federation Services (ADFS)</h1>
-                    <p><span>Program.cs example</span></p>
-                    <p><a href="?section=code-adfs" onclick="UI.navigate('code-adfs'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Code: Lightweight directory access protocol (LDAP)</h1>
-                    <p><span>Via Novell.Directory.Ldap</span></p>
-                    <p><a href="?section=code-ldap" onclick="UI.navigate('code-ldap'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Photos: Rnd beauty</h1>
-                    <p><span>2010 - 2014, 3 photos per year</span></p>
-                    <p><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Article: Test task &amp;&amp; Performance optimization </h1>
-                    <p><span>Performance optimization approaches, based on the example of a test task that I came across.</span></p>
-                    <p><a href="?section=article-cors" onclick="UI.navigate('article-tt-po'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Tool: Code to HTML convertor</h1>
-                    <p><span>A very simple source code to HTML convertor \ syntax highlighter</span></p>
-                    <p><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Photos: Rnd beauty</h1>
-                    <p><span>2005 - 2009, 3 photos per year</span></p>
-                    <p><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Article: Cross-Origin Resource Sharing (CORS)</h1>
-                    <div>
-                        <p><span>Even 10+ years after CORS was supported by most browsers, there is still a lot of misunderstanding.</span></p>
-                        <p><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">View</a></p>
+                <div id="posts-all" style="display:none;">
+                    <div class="block">
+                        <h1>JFF: Earthquakes map</h1>
+                        <p><span>A small demo-educational project</span></p>
+                        <p><a href="?section=earthquake-map" onclick="UI.navigate('earthquake-map'); return false;">View</a></p>
+                        <p><span class="post-tag">#projects</span></p>
                     </div>
-                </div>
-                <div class="block">
-                    <h1>Links</h1>
-                    <p><span>A selected collection of other personal sites.</span></p>
-                    <p><a href="?section=links" onclick="UI.navigate('links'); return false;">View</a></p>
-                </div>
-                <div class="block">
-                    <h1>Site concept</h1>
-                    <p><span>Some details about this site, how it is done and why.</span></p>
-                    <p><a href="?section=about" onclick="UI.navigate('about'); return false;">View</a></p>
+                    <div class="block">
+                        <h1>Photos: Rnd beauty</h1>
+                        <p><span>2020 - 2024, 3 photos per year</span></p>
+                        <p><a href="?section=photos-moments-20-24" onclick="UI.navigate('photos-moments-20-24'); return false;">View</a></p>
+                        <p><span class="post-tag">#photos</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Code: Equal Earth SVG maps</h1>
+                        <p><span>A starting point for your map of the world</span></p>
+                        <p><a href="?section=maps" onclick="UI.navigate('maps'); return false;">View</a></p>
+                        <p><span class="post-tag">#code</span> <span class="post-tag">#projects</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Photos: My world map</h1>
+                        <p><span>With places I've been</span></p>
+                        <p><a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">View</a></p>
+                        <p><span class="post-tag">#photos</span> <span class="post-tag">#projects</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Photos: Rnd beauty</h1>
+                        <p><span>2015 - 2019, 3 photos per year</span></p>
+                        <p><a href="?section=photos-moments-15-19" onclick="UI.navigate('photos-moments-15-19'); return false;">View</a></p>
+                        <p><span class="post-tag">#photos</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Code: Active Directory Federation Services (ADFS)</h1>
+                        <p><span>Program.cs example</span></p>
+                        <p><a href="?section=code-adfs" onclick="UI.navigate('code-adfs'); return false;">View</a></p>
+                        <p><span class="post-tag">#code</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Code: Lightweight directory access protocol (LDAP)</h1>
+                        <p><span>Via Novell.Directory.Ldap</span></p>
+                        <p><a href="?section=code-ldap" onclick="UI.navigate('code-ldap'); return false;">View</a></p>
+                        <p><span class="post-tag">#code</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Photos: Rnd beauty</h1>
+                        <p><span>2010 - 2014, 3 photos per year</span></p>
+                        <p><a href="?section=photos-moments-10-14" onclick="UI.navigate('photos-moments-10-14'); return false;">View</a></p>
+                        <p><span class="post-tag">#photos</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Article: Test task &amp;&amp; Performance optimization </h1>
+                        <p><span>Performance optimization approaches, based on the example of a test task that I came across.</span></p>
+                        <p><a href="?section=article-cors" onclick="UI.navigate('article-tt-po'); return false;">View</a></p>
+                        <p><span class="post-tag">#techtalk</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Tool: Code to HTML convertor</h1>
+                        <p><span>A very simple source code to HTML convertor \ syntax highlighter</span></p>
+                        <p><a href="?section=code-to-html" onclick="UI.navigate('code-to-html'); return false;">View</a></p>
+                        <p><span class="post-tag">#code</span> <span class="post-tag">#projects</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Photos: Rnd beauty</h1>
+                        <p><span>2005 - 2009, 3 photos per year</span></p>
+                        <p><a href="?section=photos-moments-05-09" onclick="UI.navigate('photos-moments-05-09'); return false;">View</a></p>
+                        <p><span class="post-tag">#photos</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Article: Cross-Origin Resource Sharing (CORS)</h1> 
+                            <p><span>Even 10+ years after CORS was supported by most browsers, there is still a lot of misunderstanding.</span></p>
+                            <p><a href="?section=article-cors" onclick="UI.navigate('article-cors'); return false;">View</a></p>
+                            <p><span class="post-tag">#techtalk</span></p> 
+                    </div>
+                    <div class="block">
+                        <h1>Links</h1>
+                        <p><span>A selected collection of other personal sites.</span></p>
+                        <p><a href="?section=links" onclick="UI.navigate('links'); return false;">View</a></p>
+                        <p><span class="post-tag">#other</span></p>
+                    </div>
+                    <div class="block">
+                        <h1>Site concept</h1>
+                        <p><span>Some details about this site, how it is done and why.</span></p>
+                        <p><a href="?section=about" onclick="UI.navigate('about'); return false;">View</a></p>
+                        <p><span class="post-tag">#other</span></p>
+                    </div>
                 </div>
             </section>
             <section style="display:none;" id="links" data-title="Links">
@@ -1286,7 +1384,7 @@
                             </li>
                             <li>
                                 <a href="https://dawiid.io" target="_blank">https://dawiid.io</a><span class="state"></span>
-                                <br /><span class="thought">A small site, but the shared thoughts are close to what I think.</span> 
+                                <br /><span class="thought">A small site, but the shared thoughts are close to what I think.</span>
                             </li>
                         </ul>
                     </div>
