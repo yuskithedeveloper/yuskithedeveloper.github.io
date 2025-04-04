@@ -266,7 +266,7 @@
             resize: vertical;
         }
 
-        h1 {
+        h1, h1 > span {
             font-weight: bold;
             font-size: 2rem;
             margin-top: 0.5rem;
@@ -336,6 +336,7 @@
                 border: solid 1px #dddddd;
                 overflow: auto;
                 font-size: 1rem;
+                counter-reset: code-lines;
             }
 
                 code.code-block.fixed-size {
@@ -350,6 +351,19 @@
                 code.code-block span, code.code-block c-c {
                     font-size: 1rem;
                 }
+
+                code.code-block c-l {
+                    counter-increment: code-lines;
+                }
+
+                    code.code-block c-l:before {
+                        content: counter(code-lines) ' ';
+                        color: #bbbbbb;
+                        width: 1.5rem;
+                        display: inline-block;
+                        text-align: right;
+                        padding-right: 10px;
+                    }
 
             code.html .tag {
                 color: #800009;
@@ -977,10 +991,9 @@
                 </div>
                 <div class="block">
                     <h1>What's new?</h1>
+                    <p><span>A moment of hate </span><a href="?section=moment-of-hate" onclick="UI.navigate('moment-of-hate'); return false;">published</a></p>
                     <p><span>Photos: My world map </span><a href="?section=travel-map" onclick="UI.navigate('travel-map'); return false;">updated</a></p>
-                    <p><span>Links </span><a href="?section=links" onclick="UI.navigate('links'); return false;">updated</a></p>
-                    <p><span>JFF: Earthquakes map </span><a href="?section=earthquake-map" onclick="UI.navigate('earthquake-map'); return false;">published</a></p>
-                    <p><span class="thought">Last site update: <span class="highlighted-red">12 march 2025</span></span></p>
+                    <p><span class="thought">Last site update: <span class="highlighted-red">02 april 2025</span></span></p>
                 </div>
                 <div class="block">
                     <h1>Privacy, terms, licenses, etc.</h1>
@@ -1200,6 +1213,12 @@
                 </div>
                 <div id="posts-all" style="display:none;">
                     <div class="block">
+                        <h1>A moment of hate</h1>
+                        <p><span>Top 10 list</span></p>
+                        <p><a href="?section=moment-of-hate" onclick="UI.navigate('moment-of-hate'); return false;">View</a></p>
+                        <p><span class="post-tag">#other</span> <span class="post-tag">#techtalk</span></p>
+                    </div>
+                    <div class="block">
                         <h1>JFF: Earthquakes map</h1>
                         <p><span>A small demo-educational project</span></p>
                         <p><a href="?section=earthquake-map" onclick="UI.navigate('earthquake-map'); return false;">View</a></p>
@@ -1250,7 +1269,7 @@
                     <div class="block">
                         <h1>Article: Test task &amp;&amp; Performance optimization </h1>
                         <p><span>Performance optimization approaches, based on the example of a test task that I came across.</span></p>
-                        <p><a href="?section=article-cors" onclick="UI.navigate('article-tt-po'); return false;">View</a></p>
+                        <p><a href="?section=article-tt-po" onclick="UI.navigate('article-tt-po'); return false;">View</a></p>
                         <p><span class="post-tag">#techtalk</span></p>
                     </div>
                     <div class="block">
@@ -2094,14 +2113,14 @@
                                             esc: ['\\'],
                                             braces: ['{', '}'],
                                             callOpeningBrace: '(',
-                                            classPrecedings: ['new', 'class'],
+                                            classPrecedings: ['new', 'class', 'interface'],
                                             inheritanceChar: ':',
-                                            knownClasses: ['String', 'Int16', 'Int32', 'Int64', 'Boolean', 'Char', 'Byte', 'Single', 'Double', 'Object',
+                                            knownClasses: ['String', 'Int16', 'Int32', 'Int64', 'Boolean', 'Char', 'Byte', 'Single', 'Double', 'Decimal', 'Object',
                                                 'List', 'IList', 'Dictionary', 'IDictionary', 'HashSet', 'ICollection', 'IEnumerable', 'Enumerable', 'Array',
                                                 'Exception', 'ArgumentException', 'ArgumentNullException', 'ArgumentOutOfRangeException',
                                                 'StringBuilder', 'StringSplitOptions', 'StringComparer', 'StringComparison', 'IEqualityComparer', 'EqualityComparer',
-                                                'Task', 'Thread', 'Program', 'Console', 'GC', 'Stopwatch', 'DBNull', 'IDisposable'],
-                                            declarations: ['new', 'var', 'const', 'function', 'class', 'true', 'false', 'null', 'namespace', 'using', 'public', 'private', 'internal', 'protected', 'static', 'readonly', 'get', 'set', 'void', 'bool', 'string', 'int', 'double', 'float', 'byte', 'long', 'char', 'object'],
+                                                'Task', 'Thread', 'Program', 'Console', 'GC', 'Stopwatch', 'DBNull', 'IDisposable', 'Action', 'Func'],
+                                            declarations: ['new', 'var', 'const', 'function', 'class', 'interface', 'true', 'false', 'null', 'namespace', 'using', 'public', 'private', 'internal', 'protected', 'static', 'readonly', 'get', 'set', 'void', 'bool', 'string', 'int', 'double', 'float', 'byte', 'long', 'decimal', 'char', 'object'],
                                             statements: ['for', 'while', 'break', 'foreach', 'in', 'continue', 'if', 'else', 'switch', 'case', 'default', 'try', 'catch', 'finally', 'throw', 'return'],
                                             commentStarter1: '/',
                                             commentStarter2: '*',
@@ -3739,7 +3758,7 @@
 
                         document.getElementById('earthquake-info').innerHTML = time.toLocaleTimeString() + ', ' + time.toDateString() + ' <br />Magnitude: ' + data.magnitude + '<br />' + data.place;
                     });
-                </script> 
+                </script>
                 <div class="container">
                     <div class="block">
                         <div style="width: 100%; height: 31.5rem; overflow: auto;">
@@ -3769,6 +3788,30 @@
                             </span>
                         </p>
                     </div>
+                </div>
+            </section>
+            <section class="container" style="display:none;" id="moment-of-hate" data-title="A moment of hate">
+                <div class="block">
+                    <h1>A moment of <span class="highlighted-red">hate</span></h1>
+                    <p><span>Here is my hate list:</span></p>
+                    <ul>
+                        <li><span>Constructor dependency injection, scoped\transient\singleton stuff. Especially if the project has little to no unit tests.</span></li>
+                        <li><span>Interfaces with only one implementation.</span></li>
+                        <li><span>CQRS pattern without databases separation.</span></li>
+                        <li><span>Microservices running on the same physical server.</span></li>
+                        <li><span>MV-something patterns, all of them. Bindings are OK.</span></li>
+                        <li><span>Automapper. MediatR.</span></li>
+                        <li><span>Methods returning <code>List</code>-s instead of <code>IEnumerable</code>-s.</span></li>
+                        <li><span>The lack of an elegant way to customize the appearence of some HTML elements. No HTML\CSS-only way to fix a <code>&lt;thead&gt;</code>.</span></li>
+                        <li><span>Desktop and mobile "applications" that are basically website wrappers.</span></li>
+                        <li><span>Daily meetigns. But a project chat is a must.</span></li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <h1>A moment of <span class="highlighted-green">love</span></h1>
+                    <ul>
+                        <li><span>Even so, I love making software:)</span></li>
+                    </ul>
                 </div>
             </section>
         </div>
